@@ -1,24 +1,52 @@
 package eu.veldsoft.marias;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
+		((Button) findViewById(R.id.quit_button))
+				.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						finish();
+						System.exit(0);
+					}
+				});
 
-    
+		((Button) findViewById(R.id.about_button))
+				.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						startActivity(new Intent(MainActivity.this,
+								AboutActivity.class));
+					}
+				});
+
+		((Button) findViewById(R.id.settings_button))
+				.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						startActivity(new Intent(MainActivity.this,
+								SettingsActivity.class));
+					}
+				});
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
+
 }
