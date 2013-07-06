@@ -3,13 +3,33 @@ package eu.veldsoft.marias;
 import java.util.Map;
 import java.util.List;
 
+/**
+ * Class for ...
+ * 
+ * @author Todor Balabanov
+ * 
+ * @email tdb@tbsoft.eu
+ * 
+ * @date 06 Jul 2013
+ */
 class Datasets {
-	private Map<Integer, List<Double>> data;
+	// TODO Find way to create container.
+	private Map<Integer, List<Double>> data = null;
 
 	public Datasets() {
 	}
 
+	/**
+	 * Clear data set.
+	 * 
+	 * @author Todor Balabanov
+	 * 
+	 * @email tdb@tbsoft.eu
+	 * 
+	 * @date 04 Jul 2013
+	 */
 	public void clear() {
+		data.clear();
 	}
 
 	public double getAvg(int index) {
