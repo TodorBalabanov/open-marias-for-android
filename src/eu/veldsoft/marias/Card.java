@@ -13,10 +13,15 @@ import java.util.logging.Logger;
  * @date 04 Jul 2013
  */
 class Card {
+    /**
+     * Logger for debug.
+     */
 	private final static Logger LOGGER = Logger.getLogger(Card.class.getName());
+    static {
+        LOGGER.setLevel(Level.INFO);
+    }
 
 	public Card() {
-		LOGGER.setLevel(Level.INFO);
 	}
 
 	/**
