@@ -37,6 +37,9 @@ class Stav {
 	 */
 	public int kolo;
 
+	/**
+	 * 
+	 */
 	public Hra hra;
 
 	/**
@@ -71,9 +74,13 @@ class Stav {
 		// TODO Implement getters.
 	}
 
+	/**
+	 * ...
+	 */
 	public List<ResRow> res;
 
 	public Stav() {
+		//TODO To be done by Venci.
 	}
 
 	/**
@@ -88,6 +95,7 @@ class Stav {
 	 * 
 	 */
 	public int dalsi() {
+		//TODO To be done by Venci.
 		return (0);
 	}
 
@@ -121,6 +129,7 @@ class Stav {
 	 * 
 	 */
 	public void hlaska(int points) {
+		//TODO To be done by Venci.
 	}
 
 	/**
