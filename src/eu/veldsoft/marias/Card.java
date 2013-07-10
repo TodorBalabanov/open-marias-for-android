@@ -13,13 +13,13 @@ import java.util.logging.Logger;
  * @date 04 Jul 2013
  */
 class Card {
-    /**
-     * Logger for debug.
-     */
+	/**
+	 * Logger for debug.
+	 */
 	private final static Logger LOGGER = Logger.getLogger(Card.class.getName());
-    static {
-        LOGGER.setLevel(Level.INFO);
-    }
+	static {
+		LOGGER.setLevel(Level.INFO);
+	}
 
 	public Card() {
 	}
@@ -71,9 +71,48 @@ class Card {
 		return (null);
 	}
 
+	/**
+	 * By card index take card name.
+	 * 
+	 * @param c Card index.
+	 * 
+	 * @return Card name.
+	 * 
+	 * @author Vencislav Medarov
+	 * 
+	 * @email venci932@gmail.com
+	 * 
+	 * @date 11 Jul 2013
+	 */
 	public static String value(int c) {
-		// TODO To be done by Venci.
-		return (null);
+		if (c % 8 == 0) {
+			return ("7");
+		}
+		if (c % 8 == 1) {
+			return ("8");
+		}
+		if (c % 8 == 2) {
+			return ("9");
+		}
+		if (c % 8 == 3) {
+			return ("10");
+		}
+		if (c % 8 == 4) {
+			return ("dolnik");
+		}
+		if (c % 8 == 5) {
+			return ("hornik");
+		}
+		if (c % 8 == 6) {
+			return ("kral");
+		}
+		if (c % 8 == 7) {
+			return ("eso");
+		}
+
+		LOGGER.info("zly kod karty: " + c);
+
+		return "";
 	}
 
 	public static String valueA(int c) {
@@ -337,13 +376,17 @@ class Card {
 	 * Deprecated - use Stav::trick() instead (not a static function, but
 	 * instance of Hra was required here also).
 	 * 
-	 * @param c First card index.
+	 * @param c
+	 *            First card index.
 	 * 
-	 * @param d Second card index.
+	 * @param d
+	 *            Second card index.
 	 * 
-	 * @param e Third card index.
+	 * @param e
+	 *            Third card index.
 	 * 
-	 * @param hra ...
+	 * @param hra
+	 *            ...
 	 * 
 	 * @return Index ...
 	 * 
@@ -364,7 +407,7 @@ class Card {
 		/*
 		 * Check conditions carefully.
 		 */
-		if (stronger(d, c, hra)==true && stronger(e, d, hra)==false) {
+		if (stronger(d, c, hra) == true && stronger(e, d, hra) == false) {
 			return (1);
 		}
 
