@@ -74,20 +74,92 @@ class Stav {
 	public List<Integer> pHist = new ArrayList<Integer>();
 
 	/**
-	 * results
+	 * Results container class.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 17 Jul 2013
 	 */
-	public class ResRow {
+	public static class ResRow {
+		/**
+		 * 
+		 */
 		private final String value1;
-		private final String value2;
-		private final boolean value3;
 
+		/**
+		 * 
+		 */
+		private final String value2;
+
+		/**
+		 * 
+		 */
+		private boolean value3;
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param value1
+		 * @param value2
+		 * @param value3
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
 		public ResRow(String value1, String value2, boolean value3) {
 			this.value1 = value1;
 			this.value2 = value2;
 			this.value3 = value3;
 		}
 
-		// TODO Implement getters.
+		/**
+		 * 
+		 * @return
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public String getValue1() {
+			return value1;
+		}
+
+		/**
+		 * 
+		 * @return
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public String getValue2() {
+			return value2;
+		}
+
+		/**
+		 * 
+		 * @return
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public boolean isValue3() {
+			return value3;
+		}
+
+		/**
+		 * @param value3
+		 *            The value3 to set.
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public void setValue3(boolean value3) {
+			this.value3 = value3;
+		}
 	}
 
 	/**
@@ -277,17 +349,84 @@ class Stav {
 	/**
 	 * Returns money for hra (including fleking and quiet hundred).
 	 * 
+	 * @param storeData
+	 *            Save data.
+	 * 
+	 * @return Result.
+	 * 
+	 * @author Todor Balabanov
+	 * 
+	 * @email tdb@tbsoft.eu
+	 * 
+	 * @date 17 Jul 2013
 	 */
-	public int hraResults(boolean... args) {
-		boolean storeData = false;
+	public int hraResults(boolean storeData) {
+		int outcome = 0;
 
-		if (args.length == 1) {
-			storeData = args[0];
-		} else if (args.length > 1) {
-			// TODO Report too many arguments exception.
+		if (hra.forhontPoints > hra.oppPoints) {
+			outcome = 1;
+			if (storeData == true) {
+				res.add(new ResRow("Vyhrana hra", "+1", false));
+			}
+		} else {
+			outcome = -1;
+			if (storeData == true) {
+				res.add(new ResRow("Prehrana hra", "-1", false));
+			}
 		}
 
-		return (0);
+		if (hra.stovka == false && hra.forhontPoints >= 100) {
+			outcome <<= (hra.forhontPoints - 90) / 10;
+			if (storeData == true) {
+				res.add(new ResRow(
+						"Ticha stovka"
+								+ (hra.forhontPoints > 100 ? (" ("
+										+ hra.forhontPoints + ")") : ""), "*"
+								+ (1 << ((hra.forhontPoints - 90) / 10)), false));
+			}
+		}
+		if (hra.stovkaProti == false && hra.oppPoints >= 100) {
+			outcome <<= (hra.oppPoints - 90) / 10;
+			if (storeData == true) {
+				res.add(new ResRow("Ticha stovka proti"
+						+ (hra.oppPoints > 100 ? (" (" + hra.oppPoints + ")")
+								: ""),
+						"*" + (1 << ((hra.oppPoints - 90) / 10)), false));
+			}
+		}
+
+		outcome *= hra.flekNaHru;
+
+		if (storeData == true) {
+			if (hra.flekNaHru > 1) {
+				res.add(new ResRow("" + GlobalStrings.flek(hra.flekNaHru)
+						+ " na hru", "*" + hra.flekNaHru, false));
+			}
+
+			if (res.size() > 1) {
+				res.add(new ResRow("Hra spolu", (outcome >= 0 ? "+" : "")
+						+ outcome, true));
+			} else {
+				res.get(res.size() - 1).setValue3(true);
+			}
+		}
+
+		return outcome;
+	}
+
+	/**
+	 * Returns money for hra (including fleking and quiet hundred).
+	 * 
+	 * @return Result.
+	 * 
+	 * @author Todor Balabanov
+	 * 
+	 * @email tdb@tbsoft.eu
+	 * 
+	 * @date 17 Jul 2013
+	 */
+	public int hraResults() {
+		return (hraResults(false));
 	}
 
 	public int sedmaResults(boolean... args) {
