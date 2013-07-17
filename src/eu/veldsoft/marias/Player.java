@@ -210,9 +210,9 @@ class Player {
 	}
 
 	/**
-	 * ...
+	 * Prepare status bar message.
 	 * 
-	 * @param s
+	 * @param s Message body.
 	 * @author Todor Balabanov
 	 * @email tdb@tbsoft.eu
 	 * @date 06 Jul 2013
@@ -274,13 +274,49 @@ class Player {
 	/**
 	 * Utility method, used by validation, it must check, if the player is able
 	 * to beat given card (to beat = prebit) with card of same color(suit).
+	 * 
+	 * @param cid
+	 *            Card id.
+	 * 
+	 * @param s
+	 *            ...
+	 * @param h
+	 *            Hand of cards.
+	 * @return True if ..., false otherwise.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
 	 */
 	public boolean mozePrebitCisto(int cid, Stav s, List<Integer> h) {
-		// TODO To be done by Venci.
+		if (s == null) {
+			s = stav;
+		}
+		if (h == null) {
+			h = hand;
+		}
+		
+		for (Integer c : h) {
+			if (Card.equalColor(c, cid) && Card.stronger(c, cid, s.hra)) {
+				return (true);
+			}
+		}
+		
 		return (false);
 	}
 
-	// TODO To be done by Venci.
+	/**
+	 * Utility method, used by validation, it must check, if the player is able
+	 * to beat given card (to beat = prebit) with card of same color(suit).
+	 * 
+	 * @param cid
+	 *            Card id
+	 * @return True if ..., false otherwise.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
+	 */
 	public boolean mozePrebitCisto(int cid) {
 		return (mozePrebitCisto(cid, null, null));
 	}
@@ -288,13 +324,44 @@ class Player {
 	/**
 	 * Utility method, used by validation, it checks, if the player can play a
 	 * card with same color.
+	 * 
+	 * @param cid
+	 *            Card id
+	 * 
+	 * @param h
+	 *            ...
+	 * @return True if ..., false otherwise.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
 	 */
 	public boolean maFarbu(int cid, List<Integer> h) {
-		// TODO To be done by Venci.
+		if (h == null) {
+			h = hand;
+		}
+		
+		for (Integer c : h) {
+			if (Card.equalColor(c, cid)) {
+				return (true);
+			}
+		}
+
 		return (false);
 	}
 
-	// TODO To be done by Venci.
+	/**
+	 * Utility method, used by validation, it checks, if the player can play a
+	 * card with same color.
+	 * 
+	 * @param cid
+	 *            Card id
+	 * @return True if ..., false otherwise.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
+	 */
 	public boolean maFarbu(int cid) {
 		return (maFarbu(cid));
 	}

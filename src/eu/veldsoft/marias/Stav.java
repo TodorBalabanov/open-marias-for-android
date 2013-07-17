@@ -8,11 +8,11 @@ import java.util.logging.Logger;
 /**
  * Class Stav keeps informations on game state. Also keeps information on game
  * goals in instance of Hra.
- *
+ * 
  * @author Todor Balabanov
- *
+ * 
  * @email tdb@tbsoft.eu
- *
+ * 
  * @date 11 Jul 2013
  */
 class Stav {
@@ -74,20 +74,92 @@ class Stav {
 	public List<Integer> pHist = new ArrayList<Integer>();
 
 	/**
-	 * results
+	 * Results container class.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 17 Jul 2013
 	 */
-	public class ResRow {
+	public static class ResRow {
+		/**
+		 * 
+		 */
 		private final String value1;
-		private final String value2;
-		private final boolean value3;
 
+		/**
+		 * 
+		 */
+		private final String value2;
+
+		/**
+		 * 
+		 */
+		private boolean value3;
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param value1
+		 * @param value2
+		 * @param value3
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
 		public ResRow(String value1, String value2, boolean value3) {
 			this.value1 = value1;
 			this.value2 = value2;
 			this.value3 = value3;
 		}
 
-		// TODO Implement getters.
+		/**
+		 * 
+		 * @return
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public String getValue1() {
+			return value1;
+		}
+
+		/**
+		 * 
+		 * @return
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public String getValue2() {
+			return value2;
+		}
+
+		/**
+		 * 
+		 * @return
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public boolean isValue3() {
+			return value3;
+		}
+
+		/**
+		 * @param value3
+		 *            The value3 to set.
+		 * 
+		 * @author Todor Balabanov
+		 * @email tdb@tbsoft.eu
+		 * @date 17 Jul 2013
+		 */
+		public void setValue3(boolean value3) {
+			this.value3 = value3;
+		}
 	}
 
 	/**
@@ -95,8 +167,16 @@ class Stav {
 	 */
 	public List<ResRow> res;
 
+	/**
+	 * Round id -1: during animation of second card to talon, during bidding,
+	 * until end of bidding 0.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
+	 */
 	public Stav() {
-		//TODO To be done by Venci.
+		forhont = -1;
 	}
 
 	/**
@@ -109,10 +189,15 @@ class Stav {
 	/**
 	 * Next player's turn. (dalsi=next)
 	 * 
+	 * Returns id of next players's turn.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
 	 */
 	public int dalsi() {
-		//TODO To be done by Venci.
-		return (0);
+		id = (id + 1) % 3;
+		return (id);
 	}
 
 	/**
@@ -128,132 +213,220 @@ class Stav {
 	 * Checks if this state is valid.
 	 * 
 	 * @return Message for valid state.
-	 *
+	 * 
 	 * @author Todor Balabanov
-	 *
+	 * 
 	 * @email tdb@tbsoft.eu
-	 *
+	 * 
 	 * @date 11 Jul 2013
 	 */
 	public String validate() {
-		if(kopa.size()<0 || kopa.size()>3) {
-			return ("Na kope je zly pocet kariet: "  + kopa.size());
+		if (kopa.size() < 0 || kopa.size() > 3) {
+			return ("Na kope je zly pocet kariet: " + kopa.size());
 		}
 
-		for(int c=0;c<32;c++){
+		for (int c = 0; c < 32; c++) {
 			/*
 			 * Check if the card can be found more than once in the history.
 			 */
-			if(cHist.indexOf(c)!=cHist.lastIndexOf(c)){
-				//TODO This kind of checking can be wrong.
+			if (cHist.indexOf(c) != cHist.lastIndexOf(c)) {
+				// TODO This kind of checking can be wrong.
 				return ("Duplicitna karta v historii: " + c);
 			}
 		}
 
-		if(kopa.size()>cHist.size()) {
+		if (kopa.size() > cHist.size()) {
 			return ("Na kope je viac kariet ako v historii");
 		}
 
-		for(int i=1;i<=kopa.size();i++) {
-			if(cHist.get(cHist.size()-i) != kopa.get(kopa.size()-i)){
+		for (int i = 1; i <= kopa.size(); i++) {
+			if (cHist.get(cHist.size() - i) != kopa.get(kopa.size() - i)) {
 				return ("Karty na kope nesedia s kartami v historii");
 			}
 		}
 
-		return(""); 
+		return ("");
 	}
 
 	/**
 	 * Returns id of player that takes the trick. Also modifies the state.
 	 * 
 	 * @return Player id.
-	 *
+	 * 
 	 * @author Todor Balabanov
-	 *
+	 * 
 	 * @email tdb@tbsoft.eu
-	 *
+	 * 
 	 * @date 11 Jul 2013
 	 */
 	public int trick() {
-		if(kopa.size()!=3){
+		if (kopa.size() != 3) {
 			LOGGER.info("Stav::trick(): Kopa neni plna");
-			return( -1);
+			return (-1);
 		}
 
-		if(pHist.isEmpty() && id!=forhont){
+		if (pHist.isEmpty() && id != forhont) {
 			LOGGER.info("Stav::trick(): Nesedi id (prvy stich)");
-			return( -1);
+			return (-1);
 		}
 
-		//TODO This check for the last element can be wrong in Java.
-		if(pHist.isEmpty()==false && pHist.lastIndexOf(id)!=(pHist.size()-1)){
+		// TODO This check for the last element can be wrong in Java.
+		if (pHist.isEmpty() == false
+				&& pHist.lastIndexOf(id) != (pHist.size() - 1)) {
 			LOGGER.info("Stav::trick(): Nesedi id s pHist");
-			return( -1);
+			return (-1);
 		}
 
-		if(id!=vysid){
+		if (id != vysid) {
 			LOGGER.info("Stav::trick(): Nesedi id s vysid");
-			return( -1);
+			return (-1);
 		}
 
-		int c=cHist.get(cHist.size()-3);
-		int d=cHist.get(cHist.size()-2);
-		int e=cHist.get(cHist.size()-1);
+		int c = cHist.get(cHist.size() - 3);
+		int d = cHist.get(cHist.size() - 2);
+		int e = cHist.get(cHist.size() - 1);
 
 		/*
 		 * Player that won the trick.
 		 */
-		int p=-1;
+		int p = -1;
 
-		if(!Card.stronger(d,c,hra) && !Card.stronger(e,c,hra)){
-			p=vysid;
-		}else if(Card.stronger(d,c,hra) && !Card.stronger(e,d,hra)){
-			p=(vysid+1)%3;
-		}else{
-			p=(vysid+2)%3;
+		if (!Card.stronger(d, c, hra) && !Card.stronger(e, c, hra)) {
+			p = vysid;
+		} else if (Card.stronger(d, c, hra) && !Card.stronger(e, d, hra)) {
+			p = (vysid + 1) % 3;
+		} else {
+			p = (vysid + 2) % 3;
 		}
 
-		int stichPoints=0;
+		int stichPoints = 0;
 
-		if(Card.isFatty(c)){stichPoints+=10;}
+		if (Card.isFatty(c)) {
+			stichPoints += 10;
+		}
 
-		if(Card.isFatty(d)){stichPoints+=10;}
+		if (Card.isFatty(d)) {
+			stichPoints += 10;
+		}
 
-		if(Card.isFatty(e)){stichPoints+=10;}
+		if (Card.isFatty(e)) {
+			stichPoints += 10;
+		}
 
-		if(kolo==9){stichPoints+=10;}
+		if (kolo == 9) {
+			stichPoints += 10;
+		}
 
-		if(p==forhont){
+		if (p == forhont) {
 			hra.forhontPoints += stichPoints;
-		}else{
-			hra.oppPoints +=stichPoints;
+		} else {
+			hra.oppPoints += stichPoints;
 		}
 
-		return( p );
+		return (p);
 	}
 
 	/**
-	 * The current players has a marriage call (hlaska)
+	 * The current players has a marriage call (hlaska).
 	 * 
+	 * @param points
+	 *            ...
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
 	 */
 	public void hlaska(int points) {
-		//TODO To be done by Venci.
+		if (id == forhont) {
+			hra.forhontHlasky++;
+			hra.forhontPoints += points;
+		} else {
+			hra.oppHlasky++;
+			hra.oppPoints += points;
+		}
 	}
 
 	/**
-	 * Returns money for hra (including fleking and quiet hundred)
+	 * Returns money for hra (including fleking and quiet hundred).
 	 * 
+	 * @param storeData
+	 *            Save data.
+	 * 
+	 * @return Result.
+	 * 
+	 * @author Todor Balabanov
+	 * 
+	 * @email tdb@tbsoft.eu
+	 * 
+	 * @date 17 Jul 2013
 	 */
-	public int hraResults(boolean... args) {
-		boolean storeData = false;
+	public int hraResults(boolean storeData) {
+		int outcome = 0;
 
-		if (args.length == 1) {
-			storeData = args[0];
-		} else if (args.length > 1) {
-			// TODO Report too many arguments exception.
+		if (hra.forhontPoints > hra.oppPoints) {
+			outcome = 1;
+			if (storeData == true) {
+				res.add(new ResRow("Vyhrana hra", "+1", false));
+			}
+		} else {
+			outcome = -1;
+			if (storeData == true) {
+				res.add(new ResRow("Prehrana hra", "-1", false));
+			}
 		}
 
-		return (0);
+		if (hra.stovka == false && hra.forhontPoints >= 100) {
+			outcome <<= (hra.forhontPoints - 90) / 10;
+			if (storeData == true) {
+				res.add(new ResRow(
+						"Ticha stovka"
+								+ (hra.forhontPoints > 100 ? (" ("
+										+ hra.forhontPoints + ")") : ""), "*"
+								+ (1 << ((hra.forhontPoints - 90) / 10)), false));
+			}
+		}
+		if (hra.stovkaProti == false && hra.oppPoints >= 100) {
+			outcome <<= (hra.oppPoints - 90) / 10;
+			if (storeData == true) {
+				res.add(new ResRow("Ticha stovka proti"
+						+ (hra.oppPoints > 100 ? (" (" + hra.oppPoints + ")")
+								: ""),
+						"*" + (1 << ((hra.oppPoints - 90) / 10)), false));
+			}
+		}
+
+		outcome *= hra.flekNaHru;
+
+		if (storeData == true) {
+			if (hra.flekNaHru > 1) {
+				res.add(new ResRow("" + GlobalStrings.flek(hra.flekNaHru)
+						+ " na hru", "*" + hra.flekNaHru, false));
+			}
+
+			if (res.size() > 1) {
+				res.add(new ResRow("Hra spolu", (outcome >= 0 ? "+" : "")
+						+ outcome, true));
+			} else {
+				res.get(res.size() - 1).setValue3(true);
+			}
+		}
+
+		return outcome;
+	}
+
+	/**
+	 * Returns money for hra (including fleking and quiet hundred).
+	 * 
+	 * @return Result.
+	 * 
+	 * @author Todor Balabanov
+	 * 
+	 * @email tdb@tbsoft.eu
+	 * 
+	 * @date 17 Jul 2013
+	 */
+	public int hraResults() {
+		return (hraResults(false));
 	}
 
 	public int sedmaResults(boolean... args) {
@@ -292,4 +465,3 @@ class Stav {
 		return (0);
 	}
 }
-

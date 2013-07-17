@@ -1,5 +1,6 @@
 package eu.veldsoft.marias;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.List;
@@ -72,8 +73,23 @@ class Datasets {
 		return (0.0);
 	}
 
+	/**
+	 * Add index in arraylist.
+	 * 
+	 * @param index
+	 *            Index of element into data set.
+	 * @param value
+	 *            Value to be added.
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 11 Jul 2013
+	 */
 	public void add(int index, double value) {
-		// TODO To be done by Venci.
+		if (data.containsKey(index) == false) {
+			data.put(index, new ArrayList<Double>());
+		}
+		
+		data.get(index).add(value);
 	}
 
 	/**
