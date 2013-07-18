@@ -393,6 +393,7 @@ class Player {
 	}
 
 	public boolean somForhont() {
+        //TODO To be done by Miro.
 		return (false);
 	}
 
@@ -444,11 +445,87 @@ class Player {
 	/**
 	 * Checks, if the card is valid (can be played) in current game state. Or in
 	 * the given state with given hand.
+     *
+     * @param cid Card index.
+     * @param s ...
+     * @param h Player hand.
+     *
+     * @return True if it is valid, false otherwise.
+     *
+     * @author Todor Balabanov
+     * @email tdb@tbsoft.eu
+     * @date 18 Jul 2013
 	 */
 	public String validate(int cid, Stav s, List<Integer> h) {
-		return (null);
-	}
+        if(s==null) {
+            s=stav;
+        }
 
+        if(h==null){
+            h=hand;
+        }
+
+        if(h.contains(cid) == false) {
+            return ("" + Card.titleA(cid) +" nemas");
+        }
+
+        if("kral".equals(Card.value(cid)) && h.contains(cid-1)) {
+            return ("Z hlasky najprv hornika");
+        }
+
+        if(s.kopa.size()==0) {
+            return ("");
+        }
+
+        /*
+         * In this case kop = card that beats the stack at last.
+         */
+        int kop = s.kopa.get(0);
+        if(s.kopa.size()==2){
+            if(Card.stronger(s.kopa.get(1),s.kopa.get(0),s.hra)) {
+                kop = s.kopa.get(1);
+            }
+        }
+
+        boolean prebil = Card.stronger(cid,kop,s.hra);
+        boolean equalColor = Card.equalColor(s.kopa.get(0),cid);
+        boolean prebilCisto = prebil && equalColor;
+
+        if(maFarbu(s.kopa.get(0),h) && equalColor==false) {
+            return ("Treba priznat farbu");
+        }
+
+        if(Card.equalColor(s.kopa.get(0),kop) && mozePrebitCisto(kop,s,h) && prebilCisto==false) {
+            return ("Treba prebit cisto");
+        }
+
+        if(equalColor){
+            return("");
+        }
+
+        if(mozePrebit(kop,s,h) && prebil==false) {
+            return ("Treba prebit");
+        }
+
+        if(tromfCount(s,h)>0 && Card.isTromf(cid,s.hra)==false){
+            return ("Treba dat tromf");
+        }
+
+        return "";
+    }
+
+    /**
+     * Checks, if the card is valid (can be played) in current game state. Or in
+     * the given state with given hand.
+     *
+     * @param cid Card index.
+     *
+     * @return True if it is valid, false otherwise.
+     *
+     * @author Todor Balabanov
+     * @email tdb@tbsoft.eu
+     * @date 18 Jul 2013
+     */
 	public String validate(int cid) {
 		return (validate(cid, null, null));
 	}
@@ -456,8 +533,10 @@ class Player {
 	/**
 	 * Returns list of cards that are allowed to play. Optional in the given
 	 * state and with given hand.
+     *
 	 */
 	public List<Integer> getLegalList(Stav s, List<Integer> h) {
+        //TODO TO be done by Miro.
 		return (null);
 	}
 

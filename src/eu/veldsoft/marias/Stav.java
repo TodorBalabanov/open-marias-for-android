@@ -441,27 +441,21 @@ class Stav {
 		return (0);
 	}
 
-	public int stovkaResults(boolean... args) {
-		boolean storeData = false;
-
-		if (args.length == 1) {
-			storeData = args[0];
-		} else if (args.length > 1) {
-			// TODO Report too many arguments exception.
-		}
-
+	public int stovkaResults(boolean storeData) {
 		return (0);
 	}
 
-	public int results(boolean... args) {
-		boolean storeData = false;
+    public int stovkaResults() {
+        return (stovkaResults(false));
+    }
 
-		if (args.length == 1) {
-			storeData = args[0];
-		} else if (args.length > 1) {
-			// TODO Report too many arguments exception.
-		}
-
+	public int results(boolean storeData) {
+        //TODO To be done by Miro ...
 		return (0);
 	}
+
+    public int results() {
+        //TODO To be done by Miro ...
+        return (results(false));
+    }
 }
