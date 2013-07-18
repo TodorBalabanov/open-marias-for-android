@@ -154,31 +154,59 @@ class Player {
     }
 
     /**
-     * @param stav State of the game.
+     * ...
+     *
      * @return int Id of two cards for talon (32*id_1 + id_2).
+     * @return int Id of the played card.
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 17 Jul 2013
      */
     public int talon() {
-        //TODO To be done by Miro.
-        return (0);
+        LOGGER.info("default");
+
+        /*
+         * Method should be implemented as abstract method.
+         */
+        return (-1);
     }
 
     /**
+     * ...
+     *
      * @return int Id of the tromf card.
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 17 Jul 2013
      */
     public int tromf() {
-        //TODO To be done by Miro.
-        return (0);
+        LOGGER.info("default");
+
+        /*
+         * Method should be implemented as abstract method.
+         */
+        return (-1);
     }
 
     /**
+     * ...
+     *
      * @param stav State of the game.
      * @return int Bid (3 bits in one number less than 8) First bit is whether
      *         the player bids the game, second is bid for the seven and third
      *         is bid for the hundred.
+     *         /**
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 17 Jul 2013
      */
     public int bid() {
-        //TODO To be done by Miro.
-        return (0);
+        LOGGER.info("default");
+
+        /*
+         * Method should be implemented as abstract method.
+         */
+        return (1);
     }
 
     /**

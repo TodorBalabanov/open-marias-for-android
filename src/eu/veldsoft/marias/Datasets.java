@@ -15,6 +15,7 @@ class Datasets {
     /**
      * Data set container.
      */
+
     private Map<Integer, List<Double>> data = new HashMap<Integer, List<Double>>();
 
     /**
@@ -54,10 +55,23 @@ class Datasets {
 
         return (getSum(index) / data.get(index).size());
     }
-
+    /**
+     * Sum value getter.
+     * @param index Index of element into data set.
+     * @return Calculated Sum value.
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 17 Jul 2013
+     */
     public double getSum(int index) {
-        //TODO To be done by Miro.
-        return (0.0);
+        double sum = 0;
+        List<Double> list = data.get(index);
+
+        for(Double value : list) {
+            sum += value;
+        }
+
+        return( sum );
     }
 
     public void add(int index, double value) {

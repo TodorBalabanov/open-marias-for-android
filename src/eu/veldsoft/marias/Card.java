@@ -63,11 +63,34 @@ class Card {
 		return "";
 	}
 
-	/**
-	 * slovny zaklad
-	 */
+    /**
+     * Convert integer constant of the color to string representation.
+     *
+     * @param c
+     *            Integer constant.
+     *
+     * @return String representation of the suit.
+     *
+     * @author Miroslav Gyonov
+     *
+     * @email mirkoslavcho1@abv.bg
+     *
+     * @date 17 Jul 2013
+     */
 	public static String colorZ(int c) {
-		// TODO To be done by Miro.
+        if(c/8==0){
+            return "gulov";
+        }
+        if(c/8==1){
+            return "zaludn";
+        }
+        if(c/8==2){
+            return "zelen";
+        }
+        if(c/8==3){
+            return "cerven";
+        }
+
 		return (null);
 	}
 
