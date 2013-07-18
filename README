@@ -1,0 +1,67 @@
+OpenMarias is a free, opensource implementation of Marias.
+http://sk.wikipedia.org/wiki/Marias
+
+The original project is located at: http://sourceforge.net/openmarias
+
+***********************************************
+GAMEPLAY:
+***********************************************
+
+Complete rules in english are here: http://www.pagat.com/marriage/marias.html
+Choose tromf from 7 cards. Then you get 5 more cards.
+Choose two non-fatty cards to talon. You play with 10 remaining cards.
+Then each round each player plays one card.
+The player with strongest card takes the stich and starts at next round.
+Card played must follow these rules:
+1. if the card pile is empty, you may play any card.
+2. if there is at least one card, if you can beat the stronger one, you must.
+3. if you have card with same color as the bottom card in the card pile, you must.
+4. Otherwise you may play any card.
+Points are gained for fatty cards in stichs taken.
+
+***********************************************
+TECHNICAL ISSUES:
+***********************************************
+
+***********************************************
+FOR DEVELOPERS:
+***********************************************
+
+Vocabulary:
+
+Game:
+It has three meanings.
+1. Name of the most important class
+2. One of the three contracts of the game is also called "game" or "base game". The goal is to have more points than the other side.
+3. The game marias as contest with several goals with various outcomes for players (one instance of marias)
+
+Forhont (or forehand):
+The player that plays alone against two opponents. He has the advantage of tromf and talon choosing.
+
+Tromf:
+Forhont chooses one card from 7 given cards. It is revealed just before bidding. The color(or suit) of the tromf will be stronger.
+
+Talon:
+Two cards, that won't be played. Chosen by forhont.
+
+Stich (or trick):
+When are on the stack 3 cards, one player takes them (not to hand).
+
+Seven (or sedma):
+One of the contracts - the last (10th) stich will be taken by tromf 7.
+
+Hundred (or stovka):
+One of the contracts - to have at least 100 points with only one call counted.
+
+Call (or hlaska, marriage):
+Lower jack(dolnik) and upper jack(hornik) of the same color, owned by one player. Hornik must be played first and 20 points are gained (or 40 if it is tromf).
+
+Against (or proti):
+If the two opponents think they can play Seven or Hundred, they play the contract "against".
+
+Flek:
+If someone made a contract, opposing side may flek it, so the value of that contract will be double.
+
+Sharp card (or incorrectly translated as fatty = mastne)
+Aces and tens. (valuable cards)
+
