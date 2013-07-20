@@ -4,28 +4,94 @@ package eu.veldsoft.marias;
  * Class Hra describes goals during the game.
  */
 class Hra {
+	/**
+	 * 
+	 */
 	public boolean farba;
 
+	/**
+	 * 
+	 */
 	public int tromf;
+	
+	/**
+	 * 
+	 */
 	public int flekNaHru;
 
+	/**
+	 * 
+	 */
 	public boolean sedma;
+	
+	/**
+	 * 
+	 */
 	public boolean sedmaProti;
+	
+	/**
+	 * 
+	 */
 	public int flekNaSedmu;
 
+	/**
+	 * 
+	 */
 	public boolean stovka;
+	
+	/**
+	 * 
+	 */
 	public boolean stovkaProti;
+	
+	/**
+	 * 
+	 */
 	public int flekNaStovku;
 
+	/**
+	 * 
+	 */
 	public boolean durch;
+	
+	/**
+	 * 
+	 */
 	public boolean betl;
+	
+	/**
+	 * 
+	 */
 	public int zlaFarbaPid;
+	
+	/**
+	 * 
+	 */
 	public int flekNaDurch;
+	
+	/**
+	 * 
+	 */
 	public int flekNaBetl;
 
+	/**
+	 * 
+	 */
 	public int forhontPoints;
+	
+	/**
+	 * 
+	 */
 	public int oppPoints;
+	
+	/**
+	 * 
+	 */
 	public int forhontHlasky;
+	
+	/**
+	 * 
+	 */
 	public int oppHlasky;
 
 	public Hra() {

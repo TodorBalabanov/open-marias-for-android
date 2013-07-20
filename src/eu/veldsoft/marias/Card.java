@@ -138,9 +138,49 @@ class Card {
 		return "";
 	}
 
+	/**
+	 * Value of the card.
+	 * 
+	 * @param c
+	 *            Card index.
+	 * 
+	 * @return Value of the card.
+	 * 
+	 * @author Peter Svilarski
+	 * 
+	 * @email p.svilarski@gmail.com
+	 * 
+	 * @date 20 Jul 2013
+	 */
 	public static String valueA(int c) {
-		// TODO TO be done by Pesho.
-		return (null);
+		if (c % 8 == 0) {
+			return ("u 7");
+		}
+		if (c % 8 == 1) {
+			return ("u 8");
+		}
+		if (c % 8 == 2) {
+			return ("u 9");
+		}
+		if (c % 8 == 3) {
+			return ("u 10");
+		}
+		if (c % 8 == 4) {
+			return ("eho dolnika");
+		}
+		if (c % 8 == 5) {
+			return ("eho hornika");
+		}
+		if (c % 8 == 6) {
+			return ("eho krala");
+		}
+		if (c % 8 == 7) {
+			return ("e eso");
+		}
+
+		LOGGER.info("zly kod karty: " + c);
+
+		return "";
 	}
 
 	/**
@@ -325,7 +365,6 @@ class Card {
 		if (c / 8 < d / 8) {
 			return (false);
 		}
-
 		/*
 		 * Third parameter can be wrong.
 		 */
@@ -333,11 +372,25 @@ class Card {
 	}
 
 	/**
-	 * used for sorting in hand
+	 * Used for sorting in hand.
+	 * 
+	 * @param c
+	 *            First card index.
+	 * 
+	 * @param d
+	 *            Second card index.
+	 * 
+	 * @return True if first card is less than second one, false otherwise.
+	 * 
+	 * @author Peter Svilarski
+	 * 
+	 * @email p.svilarski@gmail.com
+	 * 
+	 * @date 20 Jul 2013
 	 */
 	public static boolean less(int c, int d) {
-		// TODO TO be done by Pesho.
-		return (false);
+		return (greater(d, c));
+
 	}
 
 	/**
