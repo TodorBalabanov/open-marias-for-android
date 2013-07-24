@@ -1,13 +1,33 @@
 package eu.veldsoft.marias;
 
-//TODO To be done by Venci.
+/**
+ * Class for..
+ * 
+ * @author Vencislav Medarov
+ * @email venci932@gmail.com
+ * @date 17 Jul 2013
+ */
 class TrustingMinimaxPlayer extends MinimaxPlayer {
+	/**
+	 * Constructor without parameters.
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 17 Jul 2013
+	 */
 	public TrustingMinimaxPlayer() {
-		//TODO To be done by Venci.
 	}
 
+	/**
+	 * Maximizes only when it is your turn forhont. If not, it is assumed that
+	 * the opposition works.
+	 * 
+	 * @return Stav id.
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 17 Jul 2013
+	 */
 	public boolean isMaximizing(MyStav ms) {
-		//TODO To be done by Venci.
-		return (false);
+		return (ms.stav.id == ms.stav.forhont);
 	}
 }
