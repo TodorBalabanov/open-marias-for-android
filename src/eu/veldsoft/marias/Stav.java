@@ -449,13 +449,57 @@ class Stav {
         return (stovkaResults(false));
     }
 
+    /**
+     * Resultst of ...
+     *
+     * @param storeData Store data flag.
+     *
+     * @return
+     *
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 24 Jul 2013
+     */
 	public int results(boolean storeData) {
-        //TODO To be done by Miro ...
-		return (0);
+        if(storeData==true){
+            res.clear();
+        }
+
+        int outcome=0;
+
+        if(hra.farba==true){
+            outcome = hraResults(storeData)+sedmaResults(storeData)+stovkaResults(storeData);
+
+            if(Card.color(hra.tromf).equals("cerven")){
+                if(storeData==true){
+                    res.add(new ResRow("Medzisucet",(outcome>=0?"+":"")+outcome,false));
+                }
+
+                if(storeData==true){
+                    res.add(new ResRow(("Cerveny tromf"),"*2",false));
+                }
+
+                outcome *= 2;
+            }
+        }
+
+        if(storeData==true){
+            res.add(new ResRow("Spolu",(outcome>=0?"+":"")+outcome,false));
+        }
+
+        return (outcome);
 	}
 
+    /**
+     * Resultst of ...
+     *
+     * @return
+     *
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 24 Jul 2013
+     */
     public int results() {
-        //TODO To be done by Miro ...
         return (results(false));
     }
 }
