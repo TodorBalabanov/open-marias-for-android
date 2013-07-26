@@ -200,7 +200,7 @@ class Player {
      * @return int Bid (3 bits in one number less than 8) First bit is whether
      *         the player bids the game, second is bid for the seven and third
      *         is bid for the hundred.
-     *         /**
+     *
      * @author Miroslav Gyonov
      * @email mirkoslavcho1@abv.bg
      * @date 17 Jul 2013
@@ -391,11 +391,18 @@ class Player {
 	public boolean maFarbu(int cid) {
 		return (maFarbu(cid));
 	}
-
+    /**
+     * ...
+     *
+     * @return  True if ..., false otherwise.
+     *
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 24 Jul 2013
+     */
 	public boolean somForhont() {
-        //TODO To be done by Miro.
-		return (false);
-	}
+        return (stav.forhont==id);
+    }
 
 	/**
 	 * Count tromf.
@@ -534,11 +541,33 @@ class Player {
 	 * Returns list of cards that are allowed to play. Optional in the given
 	 * state and with given hand.
      *
-	 */
-	public List<Integer> getLegalList(Stav s, List<Integer> h) {
-        //TODO TO be done by Miro.
-		return (null);
-	}
+     * @param s Stav.
+     * @param h Hand.
+     * @return Some kind of list.
+     *
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 24 Jul 2013
+     */
+    	public List<Integer> getLegalList(Stav s, List<Integer> h) {
+        if(s==null){
+            s=stav;
+        }
+
+        if(h==null){
+            h=hand;
+        }
+
+        List<Integer> legal=new ArrayList<Integer>();
+
+        for(int i=0;i<h.size();i++) {
+            if(validate(h.get(i),s,h).equals("") == true){
+                legal.add(h.get(i));
+            }
+        }
+
+        return( legal );
+    }
 
 	public List<Integer> getLegalList() {
 		return (getLegalList(null, null));
