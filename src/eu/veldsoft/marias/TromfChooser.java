@@ -1,9 +1,33 @@
 package eu.veldsoft.marias;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Class for tromf choose logic.
+ * 
+ * @author Petar Svilarski
+ * 
+ * @email p.svilarski@gmail.com
+ * 
+ * @date 27 Jul 2013
+ */
 class TromfChooser {
+	/**
+	 * Logger for debug.
+	 */
+	private final static Logger LOGGER = Logger.getLogger(TromfChooser.class
+			.getName());
+	static {
+		LOGGER.setLevel(Level.INFO);
+	}
+
 	/**
 	 * 
 	 */
@@ -23,26 +47,83 @@ class TromfChooser {
 	 * Param cards*: 8bit representation of cards in color.
 	 * 
 	 * @param count1
+	 *            ...
 	 * 
 	 * @param count2
+	 *            ...
 	 * 
 	 * @param cards1
+	 *            ...
 	 * 
 	 * @param cards2
+	 *            ...
 	 * 
-	 * @return
+	 * @return True if first card is less in color than second card, false
+	 *         otherwise.
 	 * 
+	 * @author Petar Svilarski
+	 * 
+	 * @email p.svilarski@gmail.com
+	 * 
+	 * @date 27 Jul 2013
 	 */
 	protected boolean colorIsLexicoLess(int count1, int count2, int cards1,
 			int cards2) {
-		// TODO To be done by Pesho.
-		return (false);
+
+		if (count1 > count2) {
+			return (true);
+		}
+
+		if (count1 < count2) {
+			return (false);
+		}
+
+		return (cards1 <= cards2);
+
 	}
 
+	// TODO To be done by Pesho.
 	public TromfChooser() {
 	}
 
+	/**
+	 * Initialize.
+	 * 
+	 * @author Todor Balabanov
+	 * 
+	 * @email tdb@tbsoft.eu
+	 * 
+	 * @date 27 Jul 2013
+	 */
 	public void init() {
+		DataInputStream in = null;
+		try {
+			in = new DataInputStream(new FileInputStream("chooseTromf.txt"));
+		} catch (FileNotFoundException e) {
+			System.err.println("TromfChooser: nejde otvorit subor");
+			e.printStackTrace();
+			return;
+		}
+
+		int a, b;
+
+		while (true) {
+			try {
+				a = in.readInt();
+				b = in.readInt();
+			} catch (Exception ex) {
+				break;
+			}
+
+			table.put(a, b);
+		}
+
+		try {
+			in.close();
+		} catch (IOException e) {
+		}
+
+		LOGGER.info("TromfChooser init OK, table size=" + table.size());
 	}
 
 	/**
@@ -121,6 +202,7 @@ class TromfChooser {
 	}
 
 	public int chooseTromf() {
+		// TODO To be done by Pesho.
 		return (0);
 	}
 }

@@ -15,7 +15,6 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/random_shuffling_label" />
-
     </TableRow>
 
     <View
@@ -31,11 +30,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/left_player_label" />
-
             <Spinner
                 android:id="@+id/left_player"
                 android:layout_width="wrap_content"
@@ -47,6 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/left_player_name_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left_player_label"
+                android:textColor="@drawable/background" />
         </LinearLayout>
     </TableRow>
 
@@ -58,11 +58,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/right_player_label" />
 
             <Spinner
                 android:id="@+id/left_player"
@@ -75,6 +70,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/right_player_name_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/right_player_label"
+                android:textColor="@drawable/background" />
         </LinearLayout>
     </TableRow>
 
@@ -87,11 +88,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/front_player_label" />
-
             <Spinner
                 android:id="@+id/left_player"
                 android:layout_width="wrap_content"
@@ -103,6 +99,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/front_player_name_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/front_player_label"
+                android:textColor="@drawable/background" />
         </LinearLayout>
     </TableRow>
 
