@@ -1,9 +1,20 @@
 package eu.veldsoft.marias;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class TromfChooser {
+	/**
+	 * Logger for debug.
+	 */
+	private final static Logger LOGGER = Logger.getLogger(TromfChooser.class
+			.getName());
+	static {
+		LOGGER.setLevel(Level.INFO);
+	}
+
 	/**
 	 * 
 	 */
@@ -120,7 +131,33 @@ class TromfChooser {
 		}
 	}
 
+	/**
+	 * Choose tromf.
+	 * 
+	 * @return ....
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 26 Jul 2013
+	 */
 	public int chooseTromf() {
-		return (0);
+		// qDebug() << "TromfChooser::chooseTromf(): rozdanie=" <<
+		// this->rozdanie;
+
+		/*
+		 * Needs to be mapped back with mapColors.
+		 */
+		int chosenTromf = table.put(rozdanie, -1);
+
+		for (int i = 0; i < 4; i++) {
+			if (mapColors[i] == chosenTromf / 8) {
+				return (i * 8 + chosenTromf % 8);
+			}
+		}
+
+		LOGGER.info("TromfChooser Fatal: no color mapped to color"
+				+ (chosenTromf / 8));
+
+		return (-1);
 	}
 }

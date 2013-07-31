@@ -1,8 +1,8 @@
 package eu.veldsoft.marias;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.ArrayList;
 
 /**
  * Class for random player AI.
@@ -36,6 +36,7 @@ class RandomPlayer extends Player {
 	 * @email venci932@gmail.com
 	 * @date 18 Jul 2013
 	 */
+	@Override
 	public int play() {
 		return (pickRandom(getLegalList()));
 	}
@@ -49,6 +50,7 @@ class RandomPlayer extends Player {
 	 * @email venci932@gmail.com
 	 * @date 18 Jul 2013
 	 */
+	@Override
 	public int talon() {
 		List<Integer> legal = new ArrayList<Integer>();
 		for (Integer c : hand) {
@@ -69,6 +71,7 @@ class RandomPlayer extends Player {
 	 * @email venci932@gmail.com
 	 * @date 18 Jul 2013
 	 */
+	@Override
 	public int bid() {
 		Random rg = new Random();
 		int bids = 0;
@@ -95,6 +98,7 @@ class RandomPlayer extends Player {
 	 * @email venci932@gmail.com
 	 * @date 17 Jul 2013
 	 */
+	@Override
 	public int tromf() {
 		return (pickRandom(hand));
 	}

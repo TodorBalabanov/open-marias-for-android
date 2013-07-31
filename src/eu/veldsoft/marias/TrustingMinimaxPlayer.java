@@ -27,6 +27,7 @@ class TrustingMinimaxPlayer extends MinimaxPlayer {
 	 * @email venci932@gmail.com
 	 * @date 17 Jul 2013
 	 */
+	@Override
 	public boolean isMaximizing(MyStav ms) {
 		return (ms.stav.id == ms.stav.forhont);
 	}

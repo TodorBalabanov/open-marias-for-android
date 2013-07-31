@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Class for random player AI.
+ * Class for smart player AI.
  * 
  * @author Vencislav Medarov
  * @email venci932@gmail.com
@@ -76,7 +76,7 @@ class SmartPlayer extends Player {
 				 * Ak mam aj hlasku, tiez nezhadzujem tuto farbu.
 				 */
 				if (hand.contains(farba * 8 + 5) == true
-						&& hand.contains(farba * 8 + 6)==true) {
+						&& hand.contains(farba * 8 + 6) == true) {
 					continue;
 				}
 				if (pocetKarietFarby[farba] == 2) {
@@ -85,7 +85,7 @@ class SmartPlayer extends Player {
 					 * takze mi ostane na ruke jedno eso.
 					 */
 					for (int c = farba * 8; c < farba * 8 + 7; c++) {
-						if (hand.contains(c)==true) {
+						if (hand.contains(c) == true) {
 							vyber.add(c);
 							legal.remove(c);
 						}
@@ -94,7 +94,7 @@ class SmartPlayer extends Player {
 			}
 		}
 		for (int farba = 0; farba < 4; farba++) {
-			if (Card.isTromf(farba * 8, stav.hra)==true) {
+			if (Card.isTromf(farba * 8, stav.hra) == true) {
 				continue;
 			}
 			if (hand.contains(farba * 8 + 3)
@@ -155,7 +155,7 @@ class SmartPlayer extends Player {
 		trhamHlasku.add(false);
 		List<Boolean> mamHlasku = new ArrayList<Boolean>(trhamHlasku);
 		for (Integer c : hand) {
-			if (Card.isFatty(c)==true) {
+			if (Card.isFatty(c) == true) {
 				fatty++;
 			}
 			if (Card.value(c) == "eso") {
@@ -171,7 +171,7 @@ class SmartPlayer extends Player {
 		}
 		int bodyZaHlasky = 0;
 		for (int i = 0; i < 4; i++) {
-			if (mamHlasku.get(i)==true) {
+			if (mamHlasku.get(i) == true) {
 				bodyZaHlasky += 20;
 				if (i == stav.hra.tromf / 8) {
 					bodyZaHlasky += 20;
@@ -190,11 +190,11 @@ class SmartPlayer extends Player {
 			bids |= 4;
 		}
 
-		if (hand.contains(stav.hra.tromf7())==true) {
+		if (hand.contains(stav.hra.tromf7()) == true) {
 			/*
 			 * Ak mam sedmu, zahlasim ju len ak mam este 2 dalsie tromfy.
 			 */
-			if (stav.hra.flekNaSedmu == 0 && chcemHratSedmu()==true) {
+			if (stav.hra.flekNaSedmu == 0 && chcemHratSedmu() == true) {
 				bids |= 2;
 			}
 			/*
@@ -237,8 +237,60 @@ class SmartPlayer extends Player {
 		return (pickMax(hand));
 	}
 
+	/**
+	 * Select smart card.
+	 * 
+	 * @param legal
+	 *            ...
+	 * @return ...
+	 * 
+	 * @author Vencislav Medarov
+	 * @email venci932@gmail.com
+	 * @date 19 Jul 2013
+	 */
 	public int pickSmart(List<Integer> legal) {
-		// TODO To be done Venci.
+		if (legal.size() == 1) {
+			return (legal.get(0));
+		}
+
+		if (stav.hra.farba == true) {
+			/*
+			 * Ked hram sedmu, nepustim ju len tak.
+			 */
+			if ((stav.hra.sedma && somForhont())
+					|| (stav.hra.sedmaProti && !somForhont()) == true) {
+				if (legal.contains(stav.hra.tromf7()) == true) {
+					legal.remove(stav.hra.tromf7());
+				}
+				if (legal.size() == 1) {
+					return (legal.get(0));
+				}
+			}
+
+			/*
+			 * Zratam netromfove karty, ked vychadzam, tak ak mozem, tak nie
+			 * tromfom.
+			 */
+			int countNoTromf = 0;
+			for (Integer c : legal) {
+				if (Card.isTromf(c, stav.hra) == false) {
+					countNoTromf++;
+				}
+				if (stav.kopa.size() == 0) {
+					if (countNoTromf > 0) {
+						for (Integer c1 : legal) {
+							if (Card.isTromf(c1, stav.hra)) {
+								legal.remove(c1);
+							}
+						}
+					}
+					return (pickMin(legal));
+				}
+			}
+		} else {
+			return (pickMin(legal));
+
+		}
 		return (0);
 	}
 
@@ -351,23 +403,23 @@ class SmartPlayer extends Player {
 		if (hand.contains(stav.hra.tromf7()) == false) {
 			return (false);
 		}
-		/* 
+		/*
 		 * If mam3 and less trumps, nehram Bingo.
 		 */
 		if (pocetKarietFarby[stav.hra.tromf7() / 8] < 4) {
 			return (false);
 		}
-		/* 
+		/*
 		 * If I have 5 or more trumps, I play Bingo.
 		 */
 		if (pocetKarietFarby[stav.hra.tromf7() / 8] > 4) {
 			return (true);
 		}
-		/* 
+		/*
 		 * If I have 4 trumps, we must have of each other color at least 1 card.
 		 */
 		for (int farba = 0; farba < 4; farba++) {
-			if (Card.isTromf(farba * 8, stav.hra)==true) {
+			if (Card.isTromf(farba * 8, stav.hra) == true) {
 				continue;
 			}
 			if (pocetKarietFarby[farba] == 0) {
