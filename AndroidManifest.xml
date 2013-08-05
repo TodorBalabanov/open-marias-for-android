@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.veldsoft.marias"
     android:versionCode="1"
@@ -12,7 +13,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="eu.veldsoft.marias.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +22,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AboutActivity"
+            android:name="eu.veldsoft.marias.AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="eu.veldsoft.marias.SettingsActivity"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="eu.veldsoft.marias.GameActivity"
+            android:label="@string/title_activity_game" >
+        </activity>
+        <activity
+            android:name="eu.veldsoft.marias.ResultsActivity"
+            android:label="@string/title_activity_results" >
         </activity>
     </application>
 
