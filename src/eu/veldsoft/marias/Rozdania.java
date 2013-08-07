@@ -54,53 +54,57 @@ class Rozdania {
 	public void initPositions() {
 	}
 
-    /**
-     * Recursive generation of ...
-     *
-     * @param universe ...
-     * @param kolko ...
-     * @param timeLimit ...
-     *
-     * @return List of ...
-     *
-     * @author Todor Balabanov
-     * @email tdb@tbsoft.eu
-     * @date 26 Jul 2013
-     */
+	/**
+	 * Recursive generation of ...
+	 * 
+	 * @param universe
+	 *            ...
+	 * @param kolko
+	 *            ...
+	 * @param timeLimit
+	 *            ...
+	 * 
+	 * @return List of ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 26 Jul 2013
+	 */
 	public List<Integer> generujRecursive(List<Integer> universe, int kolko,
 			int timeLimit) {
-        List<Integer> result = new ArrayList<Integer>();
+		List<Integer> result = new ArrayList<Integer>();
 
-        if(kolko == 0){
-            result.add(0);
+		if (kolko == 0) {
+			result.add(0);
 
-            return( result );
-        }
+			return (result);
+		}
 
-        if(profiler.getTime("minimaxSearch") > timeLimit) {
-            fail=true;
-            return( result);
-        }
+		if (profiler.getTime("minimaxSearch") > timeLimit) {
+			fail = true;
+			return (result);
+		}
 
-        List<Integer> universe2 = universe;
-        for(int i=0;i<universe.size()-kolko+1;i++){
-            universe2.remove(0);
+		List<Integer> universe2 = universe;
+		for (int i = 0; i < universe.size() - kolko + 1; i++) {
+			universe2.remove(0);
 
-            List<Integer> result2 = generujRecursive(universe2,kolko-1,timeLimit);
+			List<Integer> result2 = generujRecursive(universe2, kolko - 1,
+					timeLimit);
 
-            if(fail == true) {
-                return( result );
-            }
+			if (fail == true) {
+				return (result);
+			}
 
-            for(int j=0;j<result2.size();j++) {
-                result2.set(j, result2.get(j)|getCardMask(universe.get(i)));
-            }
+			for (int j = 0; j < result2.size(); j++) {
+				result2.set(j, result2.get(j) | getCardMask(universe.get(i)));
+			}
 
-            result.addAll(result2);
-        }
+			result.addAll(result2);
+		}
 
-        return result;
-    }
+		return result;
+	}
 
 	/**
 	 * Generate ...
@@ -662,6 +666,6 @@ class Rozdania {
 	 */
 	public void p2nemaC(List<Integer> isOne, List<Integer> isZero, int bit,
 			int c) {
-        //TODO To be done by Miro.
+		// TODO To be done by Miro.
 	}
 }

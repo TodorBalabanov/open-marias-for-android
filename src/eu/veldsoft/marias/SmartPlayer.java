@@ -200,7 +200,8 @@ class SmartPlayer extends Player {
 			/*
 			 * Ak mam sedmu a hlasil ju niekto iny, flekujem do nemoty.
 			 */
-			if (stav.hra.flekNaSedmu >= 1 && (stav.hra.flekNaSedmu) % 2 == 0) {
+			if (stav.hra.flekNaSedmu >= 1
+					&& Math.log(stav.hra.flekNaSedmu) % 2 == 0) {
 				bids |= 2;
 			}
 			/*
@@ -209,7 +210,7 @@ class SmartPlayer extends Player {
 			 * na BOTY aspon 7 tromfov
 			 */
 			if (stav.hra.flekNaSedmu >= 2
-					&& (stav.hra.flekNaSedmu) + 4 <= tromf) {
+					&& Math.log(stav.hra.flekNaSedmu) + 4 <= tromf) {
 				bids |= 2;
 			}
 		} else {
@@ -217,7 +218,7 @@ class SmartPlayer extends Player {
 			 * sedmu fleknem, ak mam aspon 4 tromfy na tutti treba 5 tromfov
 			 */
 			if (stav.hra.flekNaSedmu >= 1
-					&& (stav.hra.flekNaSedmu) + 8 <= 2 * tromf) {
+					&& Math.log(stav.hra.flekNaSedmu) + 8 <= 2 * tromf) {
 				bids |= 2;
 			}
 		}
