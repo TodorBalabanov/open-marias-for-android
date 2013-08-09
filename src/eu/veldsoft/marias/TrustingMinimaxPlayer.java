@@ -1,22 +1,13 @@
 package eu.veldsoft.marias;
 
 /**
- * Class for..
+ * Class for min-max logic check.
  * 
  * @author Vencislav Medarov
  * @email venci932@gmail.com
  * @date 17 Jul 2013
  */
 class TrustingMinimaxPlayer extends MinimaxPlayer {
-	/**
-	 * Constructor without parameters.
-	 * 
-	 * @author Vencislav Medarov
-	 * @email venci932@gmail.com
-	 * @date 17 Jul 2013
-	 */
-	public TrustingMinimaxPlayer() {
-	}
 
 	/**
 	 * Maximizes only when it is your turn forhont. If not, it is assumed that

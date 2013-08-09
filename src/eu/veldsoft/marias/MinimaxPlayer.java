@@ -71,7 +71,7 @@ class MinimaxPlayer extends Player {
 	public int cutoffLevel;
 
 	/**
-	 * Tromf chooser.
+	 * Tromf chooser reference.
 	 */
 	public TromfChooser tromfChooser;
 

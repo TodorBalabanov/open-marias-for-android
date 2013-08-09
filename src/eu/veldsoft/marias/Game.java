@@ -15,15 +15,19 @@ import java.util.Random;
  */
 class Game {
 	public Game(Marias m) {
+		// TODO To be done by ...
 	}
 
 	public void init() {
+		// TODO To be done by ...
 	}
 
 	public void resetMoney() {
+		// TODO To be done by ...
 	}
 
 	public void results() {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -35,6 +39,7 @@ class Game {
 	 * 
 	 */
 	public void cardClicked(int k) {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -42,6 +47,7 @@ class Game {
 	 * 
 	 */
 	public String validateTalon(int k) {
+		// TODO To be done by ...
 		return (null);
 	}
 
@@ -54,6 +60,7 @@ class Game {
 	 * 
 	 */
 	public void talonClicked(int k) {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -65,6 +72,7 @@ class Game {
 	 * 
 	 */
 	public void tromfClicked(int k) {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -73,10 +81,12 @@ class Game {
 	 * 
 	 */
 	public boolean turn(int k) {
+		// TODO To be done by ...
 		return (false);
 	}
 
 	public void shuffleDeck() {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -84,6 +94,7 @@ class Game {
 	 * 
 	 */
 	public void rozdaj1() {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -91,6 +102,7 @@ class Game {
 	 * 
 	 */
 	public void rozdaj2() {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -98,6 +110,7 @@ class Game {
 	 * 
 	 */
 	public void changePlayer(int i, String newType) {
+		// TODO To be done by ...
 	}
 
 	// TODO Use shared preferences.
@@ -127,6 +140,7 @@ class Game {
 	public int stats[] = new int[3];
 
 	public void newGame() {
+		// TODO To be done by ...
 	}
 
 	/**
@@ -137,5 +151,6 @@ class Game {
 	 * 
 	 */
 	public void animationFinished(int round) {
+		// TODO To be done by ...
 	}
 }
