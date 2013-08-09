@@ -677,11 +677,35 @@ class Rozdania {
 	 * Returns pair (left,right) from rozdanie at por-th position in list r left
 	 * is cards that has left player right is cards that has right player
 	 * 
-	 * 
+	 * @author Kalin VLadimirov
+	 * @email kalin06_@abv.bg
+	 * @date 27 Jul 2013
 	 */
 	public Pair<List<Integer>, List<Integer>> getCardsAtRozdanie(int por) {
-		// TODO To be done by Kalin.
-		return (null);
+		int c = r.get(por);
+		List<Integer> left = new ArrayList<Integer>();
+		List<Integer> right = new ArrayList<Integer>();
+		for (int i = 0; i < 32; i++) {
+			if (hand.contains(i) == true) {
+				continue;
+			}
+
+			if (stav.cHist.contains(i) == true) {
+				continue;
+			}
+
+			if ((((c & 31) == i) || ((c & 992) / 32 == i)) == true) {
+				continue;
+			}
+
+			if ((c & getCardMask(i)) != 0) {
+				right.add(i);
+			} else {
+				left.add(i);
+			}
+		}
+
+		return (Pair.createPair(left, right));
 	}
 
 	/**
