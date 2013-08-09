@@ -7,9 +7,7 @@ import java.util.logging.Logger;
  * Class for playing card representation.
  * 
  * @author Todor Balabanov
- * 
  * @email tdb@tbsoft.eu
- * 
  * @date 04 Jul 2013
  */
 class Card {
@@ -19,9 +17,6 @@ class Card {
 	private final static Logger LOGGER = Logger.getLogger(Card.class.getName());
 	static {
 		LOGGER.setLevel(Level.INFO);
-	}
-
-	public Card() {
 	}
 
 	/**
@@ -64,40 +59,42 @@ class Card {
 	}
 
 	/**
-	 * Slovny zaklad. Convert integer constant of the color to string representation.
-     *
-     * @param c
-     *            Integer constant.
-     *
-     * @return String representation of the suit.
-     *
-     * @author Miroslav Gyonov
-     *
-     * @email mirkoslavcho1@abv.bg
-     *
-     * @date 17 Jul 2013
-     */
-    public static String colorZ(int c) {
-        if(c/8==0){
-            return "gulov";
-        }
-        if(c/8==1){
-            return "zaludn";
-        }
-        if(c/8==2){
-            return "zelen";
-        }
-        if(c/8==3){
-            return "cerven";
-        }
+	 * Slovny zaklad. Convert integer constant of the color to string
+	 * representation.
+	 * 
+	 * @param c
+	 *            Integer constant.
+	 * 
+	 * @return String representation of the suit.
+	 * 
+	 * @author Miroslav Gyonov
+	 * 
+	 * @email mirkoslavcho1@abv.bg
+	 * 
+	 * @date 17 Jul 2013
+	 */
+	public static String colorZ(int c) {
+		if (c / 8 == 0) {
+			return "gulov";
+		}
+		if (c / 8 == 1) {
+			return "zaludn";
+		}
+		if (c / 8 == 2) {
+			return "zelen";
+		}
+		if (c / 8 == 3) {
+			return "cerven";
+		}
 
-        return ("");
-    }
+		return ("");
+	}
 
 	/**
 	 * By card index take card name.
 	 * 
-	 * @param c Card index.
+	 * @param c
+	 *            Card index.
 	 * 
 	 * @return Card name.
 	 * 
@@ -390,7 +387,6 @@ class Card {
 	 */
 	public static boolean less(int c, int d) {
 		return (greater(d, c));
-
 	}
 
 	/**

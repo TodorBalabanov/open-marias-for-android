@@ -5,6 +5,12 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * 
+ * @author Todor Balabanov
+ * @email tdb@tbsoft.eu
+ * @date 09 Aug 2013
+ */
 class TromfChooser {
 	/**
 	 * Logger for debug.
@@ -50,10 +56,8 @@ class TromfChooser {
 		return (false);
 	}
 
-	public TromfChooser() {
-	}
-
 	public void init() {
+		// TODO To be done by ...
 	}
 
 	/**

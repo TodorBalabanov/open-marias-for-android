@@ -2,14 +2,23 @@ package eu.veldsoft.marias;
 
 import java.util.List;
 
+/**
+ * Selection of trump AI.
+ * 
+ * @author Todor Balabanov
+ * @email tdb@tbsoft.eu
+ * @date 09 Aug 2013
+ */
 class ChooseTromf {
-	// i-th bit of the int is whether there is card i in first 7 cards
+	/** 
+	 * i-th bit of the int is whether there is card i in first 7 cards
+	 */
 	public List<Integer> rozdania;
 
+	/**
+	 * Game simulator reference.
+	 */
 	public GameSimulator gs;
-
-	public ChooseTromf() {
-	}
 
 	public int getCardMask(int c) {
 		// TODO To be done by Miro.
@@ -94,9 +103,9 @@ class ChooseTromf {
 				maxFarba = i;
 			}
 		}
-		
+
 		int kandidati = 0;
-		
+
 		for (int i = 0; i < 4; i++) {
 			/*
 			 * je to uplne prehrata hra, ani netrham ziadnu hlasku
@@ -181,19 +190,34 @@ class ChooseTromf {
 	}
 
 	public void generujRecursive(int rozdanie, int farby[], int ff[]) {
+		// TODO To be done by ...
 	}
 
 	public void generujRozdania() {
+		// TODO To be done by ...
 	}
 
 	public String printRozdanie(int rozdanie, boolean detail) {
+		// TODO To be done by ...
 		return (null);
 	}
 
+	/**
+	 * Print all cards after deal.
+	 * 
+	 * @param rozdanie ...
+	 * 
+	 * @return Srting representation of delt cards.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 09 Aug 2013
+	 */
 	public String printRozdanie(int rozdanie) {
 		return (printRozdanie(rozdanie, false));
 	}
 
 	public void ratajOdRozdania(int rozdanie) {
+		// TODO To be done by ...
 	}
 }
