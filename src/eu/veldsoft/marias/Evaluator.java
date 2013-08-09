@@ -392,14 +392,4 @@ class Evaluator {
 	public static boolean greater(MyStav ms1, MyStav ms2) {
 		return (evaluate(ms1) > evaluate(ms2));
 	}
-
-	/**
-	 * 
-	 * 
-	 * @author Vencislav Medarov
-	 * @email venci932@gmail.com
-	 * @date 24 Jul 2013
-	 */
-	public Evaluator() {
-	}
 }
