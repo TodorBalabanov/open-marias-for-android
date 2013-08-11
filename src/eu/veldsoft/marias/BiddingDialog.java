@@ -12,9 +12,11 @@ class BiddingDialog {
 	private List<Integer> history;
 
 	private void on_pushButton_released() {
+		// TODO To be done by ...
 	}
 
 	protected void changeEvent(Event e) {
+		// TODO To be done by ...
 	}
 
 	// TODO Depends of Android GUI.
@@ -26,18 +28,23 @@ class BiddingDialog {
 	}
 
 	public void startBidding() {
+		// TODO To be done by ...
 	}
 
 	public void endBidding() {
+		// TODO To be done by ...
 	}
 
 	public void bid(int res) {
+		// TODO To be done by ...
 	}
 
 	public void updateUi() {
+		// TODO To be done by ...
 	}
 
 	public int getAvailableBids() {
+		// TODO To be done by ...
 		return (0);
 	}
 }

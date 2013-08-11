@@ -333,9 +333,35 @@ class ChooseTromf {
 		}
 	}
 
+	/**
+	 * Print ...
+	 * 
+	 * @param rozdanie
+	 * @param detail
+	 * @return
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Aug 2013
+	 */
 	public String printRozdanie(int rozdanie, boolean detail) {
-		// TODO To be done by ...
-		return (null);
+		String result = "";
+
+		for (int i = 0; i < 32; i++) {
+			if ((rozdanie & getCardMask(i)) != 0) {
+				if (detail == true) {
+					result += Card.title(i) + " ";
+				} else {
+					result += "1";
+				}
+			} else {
+				if (detail == false) {
+					result += "0";
+				}
+			}
+		}
+
+		return (result);
 	}
 
 	/**

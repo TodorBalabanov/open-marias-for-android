@@ -4,16 +4,43 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @class Game
- * @author Mirelon
  * 
- *         Most important class that handles events, manages players, cards and
- *         whole gameplay with results. Main functions are *Clicked() and
- *         animationFinished(). TODO: split this class into more smaller with
- *         exact functionality.
+ * Most important class that handles events, manages players, cards and whole
+ * gameplay with results. Main functions are *Clicked() and animationFinished().
+ * 
+ * TODO: split this class into more smaller with exact functionality.
+ * 
+ * @author Miso Kovac
  * 
  */
 class Game {
+
+	// TODO Use shared preferences.
+	// public QSettings settings;
+
+	public List<Player> players;
+
+	public List<Integer> deck;
+
+	// Current state of the game
+	public Stav stav;
+
+	// if is now the human turn
+	public boolean waitingForClick;
+
+	public BiddingDialog bd;
+
+	public Marias marias;
+
+	public boolean quickGame;
+
+	public Profiler profiler;
+
+	public Random rg;
+
+	// for poeple test
+	public int stats[] = new int[3];
+
 	public Game(Marias m) {
 		// TODO To be done by ...
 	}
@@ -112,32 +139,6 @@ class Game {
 	public void changePlayer(int i, String newType) {
 		// TODO To be done by ...
 	}
-
-	// TODO Use shared preferences.
-	// public QSettings settings;
-
-	public List<Player> players;
-
-	public List<Integer> deck;
-
-	// Current state of the game
-	public Stav stav;
-
-	// if is now the human turn
-	public boolean waitingForClick;
-
-	public BiddingDialog bd;
-
-	public Marias marias;
-
-	public boolean quickGame;
-
-	public Profiler profiler;
-
-	public Random rg;
-
-	// for poeple test
-	public int stats[] = new int[3];
 
 	public void newGame() {
 		// TODO To be done by ...

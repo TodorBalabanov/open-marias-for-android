@@ -1,7 +1,7 @@
 package eu.veldsoft.marias;
 
 /**
- * 
+ * ...
  * 
  * @author Vencislav Medarov
  * @email venci932@gmail.com
