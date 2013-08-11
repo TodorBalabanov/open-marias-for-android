@@ -69,7 +69,6 @@ class TromfChooser {
 	 */
 	protected boolean colorIsLexicoLess(int count1, int count2, int cards1,
 			int cards2) {
-
 		if (count1 > count2) {
 			return (true);
 		}
@@ -79,11 +78,6 @@ class TromfChooser {
 		}
 
 		return (cards1 <= cards2);
-
-	}
-
-	// TODO To be done by Pesho.
-	public TromfChooser() {
 	}
 
 	/**
@@ -201,8 +195,38 @@ class TromfChooser {
 		}
 	}
 
+	/**
+	 * Trump selection.
+	 * 
+	 * @return Trum card index.
+	 * 
+	 * @author Petar Svilarski
+	 * 
+	 * @email p.svilarski@gmail.com
+	 * 
+	 * @date 07 Aug 2013
+	 */
 	public int chooseTromf() {
-		// TODO To be done by Pesho.
-		return (0);
+		// qDebug() << "TromfChooser::chooseTromf(): rozdanie=" <<
+		// this->rozdanie;
+
+		/*
+		 * needs to be mapped back with mapColors
+		 */
+		Integer chosenTromf = table.get(rozdanie);
+		if (chosenTromf == null) {
+			chosenTromf = -1;
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (mapColors[i] == chosenTromf / 8) {
+				return (i * 8 + chosenTromf % 8);
+			}
+		}
+
+		LOGGER.info("TromfChooser Fatal: no color mapped to color "
+				+ (chosenTromf / 8));
+
+		return -1;
 	}
 }
