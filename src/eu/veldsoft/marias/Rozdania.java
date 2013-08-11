@@ -1,6 +1,8 @@
 package eu.veldsoft.marias;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +44,7 @@ class Rozdania {
 	 */
 	public Profiler profiler;
 
+	// TODO Find better name for this field.
 	/**
 	 * list of possible distributions format is: 32 bit string of 0s and 1s
 	 * first 22 bits tells about which cards has which player
@@ -73,9 +76,62 @@ class Rozdania {
 	 * karty. Na i-tej pozicii je 0 ak ma danu kartu hrac vlavo odo mna, 1, ak
 	 * vpravo. 22 bitov je preto, ze sa preskakuju karty, o ktorych viem, ze ich
 	 * mam ja. Poslednych 10 bitov koduje 2 karty v talone.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 04 Jul 2013
 	 */
 	public void initPositions() {
-		// TODO To be done by ...
+		if (hand.size() < 10) {
+			if (stav.pHist.size() > 0) {
+				/*
+				 * moja karta v prvom stychu
+				 */
+				hand.add(stav.cHist.get((stav.id - stav.forhont + 3) % 3));
+			}
+			for (int i = 0; i < stav.pHist.size() - 1; i++) {
+				/*
+				 * moja karta v i+1 stychu
+				 */
+				hand.add(stav.cHist.get(3 * i + 3
+						+ ((stav.id - stav.pHist.get(i) + 3) % 3)));
+			}
+		}
+
+		positions.clear();
+
+		Collections.sort(hand, new Comparator<Integer>() {
+
+			@Override
+			public int compare(Integer a, Integer b) {
+				// TODO Check for correct elements order.
+				if (Card.less(a, b) == true) {
+					return (-1);
+				} else if (Card.greater(a, b) == true) {
+					return (+1);
+				}
+
+				return (0);
+			}
+		});
+
+		for (int i = 0; i < 32; i++) {
+			positions.add(i);
+		}
+
+		for (int j = 0; j < hand.size(); j++) {
+			for (int i = hand.get(j) + 1; i < 32; i++) {
+				Integer value = positions.get(i);
+
+				// TODO Possible bug because it is not clear what will be the
+				// value inside list container.
+				value = value - 1;
+			}
+		}
+
+		if (quickGame == false) {
+			LOGGER.info("init positions: " + positions);
+		}
 	}
 
 	/**

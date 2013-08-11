@@ -1,5 +1,9 @@
 package eu.veldsoft.marias;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -49,15 +53,57 @@ class TromfChooser {
 	 * 
 	 * @return
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Aug 2013
 	 */
 	protected boolean colorIsLexicoLess(int count1, int count2, int cards1,
 			int cards2) {
-		// TODO To be done by Pesho.
-		return (false);
+		if (count1 > count2) {
+			return true;
+		}
+
+		if (count1 < count2) {
+			return false;
+		}
+
+		return (cards1 <= cards2);
 	}
 
+	/**
+	 * Initialize.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Aug 2013
+	 */
 	public void init() {
-		// TODO To be done by ...
+		DataInputStream in = null;
+		try {
+			in = new DataInputStream(new FileInputStream("chooseTromf.txt"));
+		} catch (FileNotFoundException e) {
+			LOGGER.info("TromfChooser: nejde otvorit subor");
+			return;
+		}
+
+		int a, b;
+		while (true) {
+			try {
+				a = in.readInt();
+				b = in.readInt();
+			} catch (IOException e) {
+				break;
+			}
+
+			table.put(a, b);
+		}
+
+		try {
+			in.close();
+		} catch (IOException e) {
+		}
+
+		LOGGER.info("TromfChooser init OK, table size=" + table.size());
 	}
 
 	/**
@@ -67,9 +113,7 @@ class TromfChooser {
 	 *            Cards for hand.
 	 * 
 	 * @author Todor Balabanov
-	 * 
 	 * @email tdb@tbsoft.eu
-	 * 
 	 * @date 20 Jul 2013
 	 */
 	public void setHand(List<Integer> hand) {
