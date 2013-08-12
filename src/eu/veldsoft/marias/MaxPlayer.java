@@ -144,3 +144,4 @@ class MaxPlayer extends Player {
 		return (max2 * 32 + max1);
 	}
 }
+
