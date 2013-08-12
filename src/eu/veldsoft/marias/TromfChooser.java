@@ -84,28 +84,24 @@ class TromfChooser {
 	 * Initialize.
 	 * 
 	 * @author Todor Balabanov
-	 * 
 	 * @email tdb@tbsoft.eu
-	 * 
-	 * @date 27 Jul 2013
+	 * @date 11 Aug 2013
 	 */
 	public void init() {
 		DataInputStream in = null;
 		try {
 			in = new DataInputStream(new FileInputStream("chooseTromf.txt"));
 		} catch (FileNotFoundException e) {
-			System.err.println("TromfChooser: nejde otvorit subor");
-			e.printStackTrace();
+			LOGGER.info("TromfChooser: nejde otvorit subor");
 			return;
 		}
 
 		int a, b;
-
 		while (true) {
 			try {
 				a = in.readInt();
 				b = in.readInt();
-			} catch (Exception ex) {
+			} catch (IOException e) {
 				break;
 			}
 
@@ -127,9 +123,7 @@ class TromfChooser {
 	 *            Cards for hand.
 	 * 
 	 * @author Todor Balabanov
-	 * 
 	 * @email tdb@tbsoft.eu
-	 * 
 	 * @date 20 Jul 2013
 	 */
 	public void setHand(List<Integer> hand) {
@@ -211,7 +205,7 @@ class TromfChooser {
 		// this->rozdanie;
 
 		/*
-		 * needs to be mapped back with mapColors
+		 * Needs to be mapped back with mapColors.
 		 */
 		Integer chosenTromf = table.get(rozdanie);
 		if (chosenTromf == null) {
@@ -227,6 +221,6 @@ class TromfChooser {
 		LOGGER.info("TromfChooser Fatal: no color mapped to color "
 				+ (chosenTromf / 8));
 
-		return -1;
+		return (-1);
 	}
 }

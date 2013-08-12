@@ -30,16 +30,6 @@ class Datasets {
 	private Map<Integer, List<Double>> data = new HashMap<Integer, List<Double>>();
 
 	/**
-	 * Constructor without parameters.
-	 * 
-	 * @author Todor Balabanov
-	 * @email tdb@tbsoft.eu
-	 * @date 09 Jul 2013
-	 */
-	public Datasets() {
-	}
-
-	/**
 	 * Clear data set.
 	 * 
 	 * @author Todor Balabanov
@@ -125,6 +115,5 @@ class Datasets {
 			}
 			i++;
 		}
-
 	}
 }

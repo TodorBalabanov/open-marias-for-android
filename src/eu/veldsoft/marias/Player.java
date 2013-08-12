@@ -112,6 +112,9 @@ class Player {
 	 * @date 06 Jul 2013
 	 */
 	public void init() {
+		/*
+		 * Implementation is done somewhere else.
+		 */
 	}
 
 	/**
