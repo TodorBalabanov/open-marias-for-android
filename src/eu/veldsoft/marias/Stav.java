@@ -182,8 +182,18 @@ class Stav {
 	/**
 	 * Resetting some things, so new game can begin
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Jul 2013
 	 */
 	public void newGame() {
+		hra = new Hra();
+		kolo = -5;
+		forhont = (forhont + 1) % 3;
+		kopa.clear();
+		cHist.clear();
+		pHist.clear();
+		res.clear();
 	}
 
 	/**
@@ -215,9 +225,7 @@ class Stav {
 	 * @return Message for valid state.
 	 * 
 	 * @author Todor Balabanov
-	 * 
 	 * @email tdb@tbsoft.eu
-	 * 
 	 * @date 11 Jul 2013
 	 */
 	public String validate() {
@@ -420,86 +428,276 @@ class Stav {
 	 * @return Result.
 	 * 
 	 * @author Todor Balabanov
-	 * 
 	 * @email tdb@tbsoft.eu
-	 * 
 	 * @date 17 Jul 2013
 	 */
 	public int hraResults() {
 		return (hraResults(false));
 	}
 
-	public int sedmaResults(boolean... args) {
-		boolean storeData = false;
-
-		if (args.length == 1) {
-			storeData = args[0];
-		} else if (args.length > 1) {
-			// TODO Report too many arguments exception.
+	/**
+	 * ...
+	 * 
+	 * @param storeData
+	 *            Store data flag.
+	 * @return ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Aug 2013
+	 */
+	public int sedmaResults(boolean storeData) {
+		if (pHist.size() < 10) {
+			return (0);
 		}
 
-		return (0);
+		int outcome = 0;
+		boolean sedmaVPoslednomStichu = cHist.indexOf(hra.tromf7()) > 26;
+		boolean uhranaSedma = (veduca(9) == hra.tromf7());
+		boolean zabitaSedma = sedmaVPoslednomStichu && !uhranaSedma;
+		boolean sedmuDalForhont = cHist
+				.get((3 + forhont - pHist.get(8)) % 3 + 27) == hra.tromf7();
+
+		if (hra.sedma == false && hra.sedmaProti == false
+				&& sedmaVPoslednomStichu == true) {
+			/*
+			 * nieco tiche
+			 */
+			if (storeData == true) {
+				if (uhranaSedma && sedmuDalForhont) {
+					res.add(new ResRow("Ticha sedma", "+1", true));
+				}
+
+				if (uhranaSedma && !sedmuDalForhont) {
+					res.add(new ResRow("Ticha sedma proti", "-1", true));
+				}
+
+				if (zabitaSedma && sedmuDalForhont) {
+					res.add(new ResRow("Ticha zabita sedma", "-1", true));
+				}
+
+				if (zabitaSedma && !sedmuDalForhont) {
+					res.add(new ResRow("Ticha zabita sedma proti", "+1", true));
+				}
+			}
+
+			if (zabitaSedma ^ sedmuDalForhont) {
+				outcome = 1;
+			} else {
+				outcome = -1;
+			}
+		}
+
+		if (hra.sedma) {
+			if (uhranaSedma && sedmuDalForhont) {
+				outcome = 2;
+				if (storeData) {
+					res.add(new ResRow("Vyhrana sedma", "+2", false));
+				}
+			} else {
+				outcome = -2;
+				if (storeData) {
+					res.add(new ResRow("Prehrana sedma", "-2", false));
+				}
+			}
+		}
+
+		if (hra.sedmaProti) {
+			if (uhranaSedma && !sedmuDalForhont) {
+				outcome = -2;
+				if (storeData) {
+					res.add(new ResRow("Vyhrana sedma proti", "-2", false));
+				}
+			} else {
+				outcome = 2;
+				if (storeData) {
+					res.add(new ResRow("Prehrana sedma proti", "+2", false));
+				}
+			}
+		}
+
+		if (hra.flekNaSedmu > 1) {
+			outcome *= hra.flekNaSedmu;
+		}
+
+		if (storeData == true) {
+			if (hra.flekNaSedmu > 1) {
+				res.add(new ResRow(GlobalStrings.flek(hra.flekNaSedmu)
+						+ " na sedmu", "*" + hra.flekNaSedmu, false));
+				res.add(new ResRow("Sedma spolu", (outcome >= 0 ? "+" : "")
+						+ outcome, true));
+			} else {
+				// TODO Possible bug with update value inside of the container.
+				res.get(res.size() - 1).setValue3(true);
+			}
+		}
+
+		return (outcome);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @return ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Aug 2013
+	 */
+	public int sedmaResults() {
+		return (sedmaResults(false));
+	}
+
+	/**
+	 * 
+	 * @param storeData
+	 *            Store data flag.
+	 * @return ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Aug 2013
+	 */
 	public int stovkaResults(boolean storeData) {
-		return (0);
+		int outcome = 0;
+
+		int bodySJednouHlaskou = 0;
+
+		if (hra.stovka == true) {
+			bodySJednouHlaskou = hra.forhontPoints;
+
+			if (hra.forhontHlasky > 0) {
+				bodySJednouHlaskou -= 20 * (hra.forhontHlasky - 1);
+			}
+
+			// qDebug() << "forhontPoints: " <<
+			// QString::number(hra.forhontPoints);
+			// qDebug() << "forhontHlasky: " <<
+			// QString::number(hra.forhontHlasky);
+			// qDebug() << "body s jednou hlaskou: " <<
+			// QString::number(bodySJednouHlaskou);
+
+			if (bodySJednouHlaskou >= 100) {
+				outcome = 4 << ((hra.forhontPoints - 100) / 10);
+				if (storeData == true) {
+					res.add(new ResRow("Vyhrana stovka (" + bodySJednouHlaskou
+							+ ")", "+" + outcome, false));
+				}
+			} else {
+				outcome = -4 << ((90 - bodySJednouHlaskou) / 10);
+				if (storeData == true) {
+					res.add(new ResRow("Prehrana stovka (" + bodySJednouHlaskou
+							+ ")", "" + outcome, false));
+				}
+			}
+		}
+
+		if (hra.stovkaProti == true) {
+			bodySJednouHlaskou = hra.oppPoints;
+
+			if (hra.oppHlasky > 0) {
+				bodySJednouHlaskou -= 20 * (hra.oppHlasky - 1);
+			}
+
+			if (bodySJednouHlaskou >= 100) {
+				outcome = -4 << ((hra.oppPoints - 100) / 10);
+				if (storeData == true) {
+					res.add(new ResRow("Vyhrana stovka proti ("
+							+ bodySJednouHlaskou + ")", "" + outcome, false));
+				}
+			} else {
+				outcome = 4 << ((90 - bodySJednouHlaskou) / 10);
+				if (storeData == true) {
+					res.add(new ResRow("Prehrana stovka proti ("
+							+ bodySJednouHlaskou + "1)", "+" + outcome, false));
+				}
+			}
+		}
+
+		outcome *= hra.flekNaStovku;
+
+		if (storeData == true) {
+			if (hra.flekNaStovku > 1) {
+				res.add(new ResRow("" + GlobalStrings.flek(hra.flekNaStovku)
+						+ " na stovku", "*" + hra.flekNaStovku, false));
+				res.add(new ResRow("Stovka spolu", (outcome >= 0 ? "+" : "")
+						+ outcome, true));
+			}
+
+			// TODO Possible bug with update value inside of the container.
+			res.get(res.size() - 1).setValue3(true);
+		}
+
+		return (outcome);
 	}
 
-    public int stovkaResults() {
-        return (stovkaResults(false));
-    }
+	/**
+	 * 
+	 * @return ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 11 Aug 2013
+	 */
+	public int stovkaResults() {
+		return (stovkaResults(false));
+	}
 
-    /**
-     * Resultst of ...
-     *
-     * @param storeData Store data flag.
-     *
-     * @return
-     *
-     * @author Miroslav Gyonov
-     * @email mirkoslavcho1@abv.bg
-     * @date 24 Jul 2013
-     */
+	/**
+	 * Resultst of ...
+	 * 
+	 * @param storeData
+	 *            Store data flag.
+	 * 
+	 * @return
+	 * 
+	 * @author Miroslav Gyonov
+	 * @email mirkoslavcho1@abv.bg
+	 * @date 24 Jul 2013
+	 */
 	public int results(boolean storeData) {
-        if(storeData==true){
-            res.clear();
-        }
+		if (storeData == true) {
+			res.clear();
+		}
 
-        int outcome=0;
+		int outcome = 0;
 
-        if(hra.farba==true){
-            outcome = hraResults(storeData)+sedmaResults(storeData)+stovkaResults(storeData);
+		if (hra.farba == true) {
+			outcome = hraResults(storeData) + sedmaResults(storeData)
+					+ stovkaResults(storeData);
 
-            if(Card.color(hra.tromf).equals("cerven")){
-                if(storeData==true){
-                    res.add(new ResRow("Medzisucet",(outcome>=0?"+":"")+outcome,false));
-                }
+			if (Card.color(hra.tromf).equals("cerven")) {
+				if (storeData == true) {
+					res.add(new ResRow("Medzisucet", (outcome >= 0 ? "+" : "")
+							+ outcome, false));
+				}
 
-                if(storeData==true){
-                    res.add(new ResRow(("Cerveny tromf"),"*2",false));
-                }
+				if (storeData == true) {
+					res.add(new ResRow(("Cerveny tromf"), "*2", false));
+				}
 
-                outcome *= 2;
-            }
-        }
+				outcome *= 2;
+			}
+		}
 
-        if(storeData==true){
-            res.add(new ResRow("Spolu",(outcome>=0?"+":"")+outcome,false));
-        }
+		if (storeData == true) {
+			res.add(new ResRow("Spolu", (outcome >= 0 ? "+" : "") + outcome,
+					false));
+		}
 
-        return (outcome);
+		return (outcome);
 	}
 
-    /**
-     * Resultst of ...
-     *
-     * @return
-     *
-     * @author Miroslav Gyonov
-     * @email mirkoslavcho1@abv.bg
-     * @date 24 Jul 2013
-     */
-    public int results() {
-        return (results(false));
-    }
+	/**
+	 * Resultst of ...
+	 * 
+	 * @return
+	 * 
+	 * @author Miroslav Gyonov
+	 * @email mirkoslavcho1@abv.bg
+	 * @date 24 Jul 2013
+	 */
+	public int results() {
+		return (results(false));
+	}
 }

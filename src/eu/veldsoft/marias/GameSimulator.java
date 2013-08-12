@@ -18,9 +18,11 @@ class GameSimulator {
 	public OutputStream out;
 
 	public GameSimulator() {
+		//TODO To be done by Venci ...
 	}
 
 	public int getCardMask(int c) {
+		//TODO To be done by Venci ...
 		return (0);
 	}
 
@@ -30,6 +32,7 @@ class GameSimulator {
 	 * 
 	 */
 	public double expectedResult(int rozdanie, int tromf, int timeLimit) {
+		//TODO To be done by Venci ...
 		return (0.0);
 	}
 
@@ -38,9 +41,11 @@ class GameSimulator {
 	 * 
 	 */
 	public void rozdaj(int rozdanie) {
+		//TODO To be done by Venci ...
 	}
 
 	public void talon() {
+		//TODO To be done by Venci ...
 	}
 
 	/**
@@ -51,5 +56,6 @@ class GameSimulator {
 	 * 
 	 */
 	public void bid(int res) {
+		//TODO To be done by Venci ...
 	}
 }

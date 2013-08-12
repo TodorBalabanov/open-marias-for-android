@@ -2,6 +2,10 @@ package eu.veldsoft.marias;
 
 /**
  * Class Hra describes goals during the game.
+ * 
+ * @author Todor Balabanov
+ * @email tdb@tbsoft.eu
+ * @date 09 Aug 2013
  */
 class Hra {
 	/**
@@ -10,10 +14,10 @@ class Hra {
 	public boolean farba;
 
 	/**
-	 * 
+	 * Trump.
 	 */
 	public int tromf;
-	
+
 	/**
 	 * 
 	 */
@@ -23,12 +27,12 @@ class Hra {
 	 * 
 	 */
 	public boolean sedma;
-	
+
 	/**
 	 * 
 	 */
 	public boolean sedmaProti;
-	
+
 	/**
 	 * 
 	 */
@@ -38,12 +42,12 @@ class Hra {
 	 * 
 	 */
 	public boolean stovka;
-	
+
 	/**
 	 * 
 	 */
 	public boolean stovkaProti;
-	
+
 	/**
 	 * 
 	 */
@@ -53,22 +57,22 @@ class Hra {
 	 * 
 	 */
 	public boolean durch;
-	
+
 	/**
 	 * 
 	 */
 	public boolean betl;
-	
+
 	/**
 	 * 
 	 */
 	public int zlaFarbaPid;
-	
+
 	/**
 	 * 
 	 */
 	public int flekNaDurch;
-	
+
 	/**
 	 * 
 	 */
@@ -78,22 +82,29 @@ class Hra {
 	 * 
 	 */
 	public int forhontPoints;
-	
+
 	/**
 	 * 
 	 */
 	public int oppPoints;
-	
+
 	/**
 	 * 
 	 */
 	public int forhontHlasky;
-	
+
 	/**
 	 * 
 	 */
 	public int oppHlasky;
 
+	/**
+	 * Constructor wihtout parameters.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 09 Aug 2013
+	 */
 	public Hra() {
 		farba = true;
 		tromf = -1;
@@ -119,6 +130,15 @@ class Hra {
 		oppHlasky = 0;
 	}
 
+	/**
+	 * Trump ...
+	 * 
+	 * @return ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 09 Aug 2013
+	 */
 	public int tromf7() {
 		return 8 * (tromf / 8);
 	}

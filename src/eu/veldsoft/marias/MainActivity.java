@@ -41,6 +41,15 @@ public class MainActivity extends Activity {
 								SettingsActivity.class));
 					}
 				});
+
+		((Button) findViewById(R.id.new_game_button))
+				.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						startActivity(new Intent(MainActivity.this,
+								GameActivity.class));
+					}
+				});
 	}
 
 	@Override
