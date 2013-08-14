@@ -17,15 +17,7 @@ import java.util.logging.Logger;
  * @data 14 Aug 2013
  */
 class Game {
-	/**
-	 * Logger for debug.
-	 */
-	private final static Logger LOGGER = Logger.getLogger(Game.class.getName());
-	static {
-		LOGGER.setLevel(Level.INFO);
-	}
-
-	// TODO Only dummy class.
+	// TODO It is only for project to compile.
 	private class Settings {
 		public static final int IniFormat = 0;
 
@@ -39,6 +31,14 @@ class Game {
 		public Object value(String string, String string2) {
 			return ("");
 		}
+	}
+
+	/**
+	 * Logger for debug.
+	 */
+	private final static Logger LOGGER = Logger.getLogger(Game.class.getName());
+	static {
+		LOGGER.setLevel(Level.INFO);
 	}
 
 	// TODO Use shared preferences.
@@ -183,7 +183,7 @@ class Game {
 		int p = stav.trick();
 
 		if (quickGame == false) {
-			DeskView.log("Stich berie "+players.get(p).name);
+			DeskView.log("Stich berie " + players.get(p).name);
 			LOGGER.info("Stich berie " + players.get(p).name);
 		}
 
@@ -239,20 +239,71 @@ class Game {
 	 * whether to execute cardClicked, talonClicked or tromfClicked. cardClicked
 	 * is called when a human selects a card he wish to play.
 	 * 
+	 * @param k
+	 * 
 	 * @see CardItem
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public void cardClicked(int k) {
-		// TODO To be done by ...
+		profiler.stop(players.get(stav.id).name);
+		LOGGER.info("click");
+
+		if (quickGame == true) {
+			return;
+		}
+
+		if (waitingForClick == false) {
+			LOGGER.info("pozhovej");
+			DeskView.print("pozhovej", 0);
+			return;
+		}
+
+		if (stav.kolo == 10) {
+			return;
+		}
+
+		if (turn(k) == false) {
+			return;
+		}
+
+		waitingForClick = false;
+
+		DeskView.animateCard(k, stav.id);
+
+		stav.dalsi();
 	}
 
 	/**
 	 * Returns "" if the card is valid. Error message otherwise.
 	 * 
+	 * @param k
+	 * @return
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public String validateTalon(int k) {
-		// TODO To be done by ...
-		return (null);
+		if (players.get(stav.forhont).hand.contains(k) == false) {
+			return ("ZO SVOJICH KARIET!");
+		}
+
+		if (stav.hra.farba == false) {
+			return ("");
+		}
+
+		if (Card.value(k).equals("10") || Card.value(k).equals("eso")) {
+			return ("DO TALONA NESMU IST 10 A ESO");
+		}
+
+		if (k == stav.hra.tromf) {
+			return ("DO TALONA NESMIE IST VOLENY TROMF");
+		}
+
+		return ("");
 	}
 
 	/**
@@ -262,9 +313,59 @@ class Game {
 	 * 
 	 * @see CardItem
 	 * 
+	 * @param k
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public void talonClicked(int k) {
-		// TODO To be done by ...
+		// if(quickGame==false)
+		// LOGGER.info(players.get(stav.forhont).name << " chce dat do talonu "
+		// << Card.titleA(k);
+
+		String res = validateTalon(k);
+
+		if (res.equals("") == false) {
+			LOGGER.info(res);
+			if (players.get(stav.forhont).type.equals("human")
+					&& quickGame == false) {
+				DeskView.print(res, stav.forhont);
+			}
+			return;
+		}
+		players.get(stav.forhont).removeCard(k);
+
+		// if(quickGame==false)
+		// DeskView.log(players.get(stav.forhont).name+tr(" dal do talonu ")+Card.titleA(k));
+
+		if (players.get(stav.forhont).hand.size() == 11) {
+			players.get(stav.forhont).talonCards[0] = k;
+
+			if (quickGame = false) {
+				DeskView.talon(k);
+			}
+
+			if (players.get(stav.forhont).type == "human" && quickGame == false) {
+				DeskView.print("ESTE JEDNU", stav.forhont);
+			}
+		} else if (players.get(stav.forhont).hand.size() == 10) {
+			/*
+			 * first kolo increase, then animation
+			 */
+			players.get(stav.forhont).talonCards[1] = k;
+
+			stav.kolo = -1;
+
+			if (quickGame == false) {
+				DeskView.talon(k, true);
+			} else {
+				animationFinished(-1);
+			}
+		} else if (players.get(stav.forhont).hand.size() < 10) {
+			LOGGER.info(players.get(stav.forhont).name
+					+ " ma menej ako 10 kariet ??");
+		}
 	}
 
 	/**
@@ -272,25 +373,115 @@ class Game {
 	 * whether to execute cardClicked, talonClicked or tromfClicked.
 	 * tromfClicked is called when forhont wants to select tromf.
 	 * 
+	 * @param k
+	 * 
 	 * @see CardItem
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public void tromfClicked(int k) {
-		// TODO To be done by ...
+		// if(quickGame==false)
+		// LOGGER.info(players.get(stav.forhont).name <<
+		// tr(" chce zvolit tromf ") << Card.titleA(k);
+
+		if (players.get(stav.forhont).hand.contains(k) == false) {
+			// qDebug("Ale taku kartu nema");
+
+			if (quickGame == false) {
+				DeskView.print("VYBERAJ LEN ZO SVOJEJ RUKY!", stav.forhont);
+			}
+
+			return;
+		}
+
+		waitingForClick = false;
+
+		stav.hra.tromf = k;
+
+		if (quickGame == false) {
+			DeskView.ejectTromf(k, false);
+			DeskView.log(players.get(stav.forhont).name + " zvolil tromfa.");
+		}
+
+		rozdaj2();
 	}
 
 	/**
 	 * Current player wants to play card k, this function executes all
 	 * necessities.
 	 * 
+	 * @param k
+	 * @return
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public boolean turn(int k) {
-		// TODO To be done by ...
-		return (false);
+		if (quickGame == false) {
+			LOGGER.info(players.get(stav.id).name + ": " + Card.title(k));
+		}
+
+		String result = players.get(stav.id).validate(k);
+
+		if (result.equals("") == false) {
+			if (quickGame == false) {
+				DeskView.print(result, stav.id);
+			}
+
+			LOGGER.info(players.get(stav.id).name + " zahrala nevalidnu kartu "
+					+ Card.title(k));
+
+			return (false);
+		}
+
+		if (Card.value(k).equals("hornik")
+				&& players.get(stav.id).hand.contains(k + 1)) {
+			int hlaska = 20;
+
+			if (Card.color(k).equals(Card.color(stav.hra.tromf))) {
+				hlaska = 40;
+			}
+
+			if (quickGame == false) {
+				DeskView.print("" + hlaska, stav.id);
+			}
+
+			players.get(stav.id).body += hlaska;
+			players.get(stav.id).hlasky++;
+			stav.hlaska(hlaska);
+		}
+
+		stav.cHist.add(k);
+		stav.kopa.add(k);
+		players.get(stav.id).removeCard(k);
+
+		return (true);
 	}
 
+	/**
+	 * Deck shuffling.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
+	 */
 	public void shuffleDeck() {
-		// TODO To be done by ...
+		deck.clear();
+
+		for (int i = 0; i < 32; i++) {
+			deck.add(i);
+		}
+
+		int swapCount = 1000 + rg.nextInt(1000);
+
+		// TODO Better shuffling algorithm shuld be used.
+		for (int i = 0; i < swapCount; i++) {
+			Integer card = deck.remove(rg.nextInt(32));
+			deck.add(card);
+		}
 	}
 
 	/**

@@ -5,6 +5,10 @@ import java.util.List;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 
 class BiddingDialog {
+	// TODO It is only for project to compile.
+	private class Widget {
+	}
+
 	private BiddingDialog ui;
 
 	private Game game;
@@ -19,9 +23,9 @@ class BiddingDialog {
 		// TODO To be done by ...
 	}
 
-	// TODO Depends of Android GUI.
-	// public BiddingDialog(Game g, QWidget parent){
-	// }
+	public BiddingDialog(Game g, Widget parent) {
+		// TODO To be done by ...
+	}
 
 	public BiddingDialog(Game g) {
 		// this(g, null);
@@ -46,5 +50,13 @@ class BiddingDialog {
 	public int getAvailableBids() {
 		// TODO To be done by ...
 		return (0);
+	}
+
+	// TODO It is only for project to compile.
+	public void show() {
+	}
+
+	// TODO It is only for project to compile.
+	public void raise() {
 	}
 }
