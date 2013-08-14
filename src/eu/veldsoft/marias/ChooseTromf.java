@@ -45,20 +45,40 @@ class ChooseTromf {
 	 */
 	public GameSimulator gs;
 
-	public int getCardMask(int c) {
-		// TODO To be done by Miro.
-		return (0);
-	}
+    /**
+     * Card index mask getter.
+     *
+     * @param c Card index.
+     *
+     * @return Mask of the parameter.
+     *
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 14 Aug 2013
+     */
+    public int getCardMask(int c) {
+        return (1 << (31-c));
+    }
 
 	/**
 	 * Heuristicky zisti, ci je zrejme, co sa ma zvolit ako tromf uz len z poctu
 	 * farieb.
-	 * 
-	 */
-	public boolean jeTromfJasny(int ff[]) {
-		// TODO To be done by Miro.
-		return (false);
-	}
+     *
+     * @param ff ...
+     *
+     * @return true or false.
+     *
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 14 Aug 2013
+     */
+        public boolean jeTromfJasny(int ff[]) {
+        for(int i=0;i<ff.length;i++){
+            if(ff[i]>=5){
+                return( true );
+            }
+        } return( false );
+    }
 
 	/**
 	 * Heuristicky zisti, ktore karty su vhodne na volbu tromfa. Potom sa bude
