@@ -766,10 +766,25 @@ class Rozdania {
 
 	/**
 	 * Helper function to update isOne and isZero arrays.
-	 * 
-	 */
-	public void p2nemaC(List<Integer> isOne, List<Integer> isZero, int bit,
-			int c) {
-		// TODO To be done by Miro.
-	}
+	 *
+     * @param isOne
+     *
+     * @param isZero
+     *
+     * @param bit
+     *
+     * @param c
+     *
+     * @author Miroslav Gyonov
+     * @email mirkoslavcho1@abv.bg
+     * @date 06 Aug 2013
+     */
+    public void p2nemaC(List<Integer> isOne, List<Integer> isZero, int bit,
+                        int c) {
+        if((bit==0)==true){
+            isOne.add(c);
+        } else{
+            isZero.add(c);
+        }
+    }
 }
