@@ -2,6 +2,8 @@ package eu.veldsoft.marias;
 
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -11,50 +13,199 @@ import java.util.Random;
  * TODO: split this class into more smaller with exact functionality.
  * 
  * @author Miso Kovac
- * 
+ * @email kovac@fmph.uniba.sk
+ * @data 14 Aug 2013
  */
 class Game {
+    /**
+     * Logger for debug.
+     */
+    private final static Logger LOGGER = Logger.getLogger(Game.class.getName());
+    static {
+        LOGGER.setLevel(Level.INFO);
+    }
 
 	// TODO Use shared preferences.
 	// public QSettings settings;
 
+    /**
+     * Players container.
+     */
 	public List<Player> players;
 
+    /**
+     * Deck of cards.
+     */
 	public List<Integer> deck;
 
-	// Current state of the game
+    /**
+     * Current state of the game.
+     */
 	public Stav stav;
 
-	// if is now the human turn
+    /**
+     * If is now the human turn flag.
+     */
 	public boolean waitingForClick;
 
+    /**
+     *
+     */
 	public BiddingDialog bd;
 
+    /**
+     * Marias game logic.
+     */
 	public Marias marias;
 
+    /**
+     * Quick game flag.
+     */
 	public boolean quickGame;
 
+    /**
+     * Profiler instance.
+     */
 	public Profiler profiler;
 
+    /**
+     * Pseudo-random number generator.
+     */
 	public Random rg;
 
-	// for poeple test
+    /**
+     * for poeple test
+     */
 	public int stats[] = new int[3];
 
+    /**
+     * Constructor.
+     *
+     * @param m Marias object reference.
+     *
+     * @author Todor Balabanov
+     * @email tdb@tbsoft.eu
+     * @date 14 Aug 2013
+     */
 	public Game(Marias m) {
-		// TODO To be done by ...
+        //TODO Deep copy is bettter.
+        marias = m;
+
+        //TODO Should be implemented because it is different than Qt implementation.
+        //settings = new Settings("marias.ini", QSettings::IniFormat);
+
+        bd = new BiddingDialog(this);
+
+        profiler = new Profiler();
+
+        for(int i=0;i<stats.length;i++) {
+            stats[i] = 0;
+        }
 	}
 
+    /**
+     * Initialize game.
+     *
+     *
+     * @author Todor Balabanov
+     * @email tdb@tbsoft.eu
+     * @date 14 Aug 2013
+     */
 	public void init() {
-		// TODO To be done by ...
-	}
+        LOGGER.info( "game init" );
+        quickGame = false;
+
+//TODO Settings should be available in order this fragmetn to work.
+//        if(settings.value("shuffling/random",1)==1){
+//            LOGGER.info("random");
+//            rg.setSeed();
+//        }else{
+//            LOGGER.info("not random");
+//            rg.setSeed(settings.value("shuffling/seed",47).toInt());
+//        }
+//
+//        shuffleDeck();
+//
+//        players.clear();
+//        players.add(PlayerFactory::create(settings.value("players/front","HumanPlayer").toString()));
+//        players.add(PlayerFactory::create(settings.value("players/left","RandomPlayer").toString()));
+//        players.add(PlayerFactory::create(settings.value("players/right","RandomPlayer").toString()));
+//        players[0].name = settings.value("players/front_name",tr("front")).toString();
+//        players[1].name = settings.value("players/left_name",tr("left")).toString();
+//        players[2].name = settings.value("players/right_name",tr("right")).toString();
+
+        //TODO Use for-each loop.
+        for(int i=0;i<3;i++){
+            //TODO May be internal objects are unchainged if there is deep copy.
+            players.get(i).setStav(stav);
+            players.get(i).setId(i);
+            players.get(i).profiler = profiler;
+            players.get(i).init();
+        }
+
+        resetMoney();
+
+        stav.forhont = 2;
+        stav.kolo = -6;
+    }
 
 	public void resetMoney() {
-		// TODO To be done by ...
+		// TODO To be done by Miro ...
 	}
 
 	public void results() {
-		// TODO To be done by ...
+        int p = stav.trick();
+
+        if(quickGame == false){
+            //TODO DeskView should be implemented.
+            //DeskView.log("Stich berie "+players.get(p).name);
+            LOGGER.info("Stich berie " + players.get(p).name);
+        }
+
+        for(Integer c : stav.kopa){
+            if(Card.value(c).equals("10") || Card.value(c).equals("eso")) {
+                players.get(p).body += 10;
+            }
+        }
+
+        if(stav.kolo==9){
+            players.get(p).body += 10;
+        }
+
+        stav.id = p;
+
+        /*
+         * First kolo increase, then animation.
+         */
+        stav.kolo++;
+
+        if(quickGame == false) {
+            //TODO DeskView should be implemented.
+            //DeskView.animateStich(p);
+        }
+
+        stav.pHist.add(p);
+        stav.vysid = p;
+        stav.kopa.clear();
+
+        if(stav.kolo==10){
+            profiler.stop("game - trick taking");
+            int res = stav.results(true);
+            LOGGER.info("stav results: " + res);
+            players.get(stav.forhont).peniaze += res*2;
+            players.get((stav.forhont+1)%3).peniaze -= res;
+            players.get((stav.forhont+2)%3).peniaze -= res;
+            if(players.get(0).type=="human" && players.get(1).type=="minimax" && players.get(2).type=="smart"){
+                stats[stav.forhont] += res*2;
+                stats[(stav.forhont+1)%3] -= res;
+                stats[(stav.forhont+2)%3] -= res;
+            }
+        }
+
+        profiler.stop("trick taking - stich results");
+        if(quickGame == true) {
+            animationFinished(stav.kolo);
+        }
 	}
 
 	/**
