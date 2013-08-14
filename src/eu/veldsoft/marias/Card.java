@@ -28,9 +28,7 @@ class Card {
 	 * @return String representation of the suit.
 	 * 
 	 * @author Todor Balabanov
-	 * 
 	 * @email tdb@tbsoft.eu
-	 * 
 	 * @date 04 Jul 2013
 	 */
 	public static String color(int c) {
