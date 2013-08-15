@@ -7,13 +7,23 @@ import android.provider.ContactsContract.CommonDataKinds.Event;
  *
  */
 class SettingsDialog {
+	// TODO It is only for project to compile.
+	private class Widget {
+	}
+
+	// TODO It is only for project to compile.
+	private class Settings {
+	}
+
 	/**
 	 * 
 	 */
 	private SettingsDialog ui;
 
-	// TODO Use shared preferences.
-	// private QSettings settings;
+	/**
+	 * 
+	 */
+	private Settings settings;
 
 	/**
 	 * 
@@ -79,9 +89,8 @@ class SettingsDialog {
 		// TODO To be done by ...
 	}
 
-	// TODO Depends of Android GUI.
-	// public SettingsDialog(Game g, QWidget parent){
-	// }
+	public SettingsDialog(Game g, Widget parent) {
+	}
 
 	/**
 	 * 

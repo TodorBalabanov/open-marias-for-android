@@ -337,7 +337,7 @@ class Game {
 		players.get(stav.forhont).removeCard(k);
 
 		// if(quickGame==false)
-		// DeskView.log(players.get(stav.forhont).name+tr(" dal do talonu ")+Card.titleA(k));
+		// DeskView.log(players.get(stav.forhont).name+" dal do talonu ")+Card.titleA(k));
 
 		if (players.get(stav.forhont).hand.size() == 11) {
 			players.get(stav.forhont).talonCards[0] = k;
@@ -384,7 +384,7 @@ class Game {
 	public void tromfClicked(int k) {
 		// if(quickGame==false)
 		// LOGGER.info(players.get(stav.forhont).name <<
-		// tr(" chce zvolit tromf ") << Card.titleA(k);
+		// " chce zvolit tromf ") << Card.titleA(k);
 
 		if (players.get(stav.forhont).hand.contains(k) == false) {
 			// qDebug("Ale taku kartu nema");
@@ -487,29 +487,187 @@ class Game {
 	/**
 	 * First round of card dealing. Forhont gets 7 cards, other 5.
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public void rozdaj1() {
-		// TODO To be done by ...
+		/*
+		 * first kolo increase, then animation
+		 */
+		profiler.start("rozdaj 1");
+
+		stav.kolo = -5;
+
+		for (int i = 0; i < 3; i++) {
+			players.get(i).hand.clear();
+		}
+
+		for (int i = 0; i < 7; i++) {
+			players.get(stav.forhont).hand.add(deck.get(i));
+
+			if (quickGame == false) {
+				DeskView.rozdaj(deck.get(i), stav.forhont, i, i);
+			}
+		}
+
+		for (int i = 7; i < 12; i++) {
+			players.get((stav.forhont + 1) % 3).hand.add(deck.get(i));
+
+			if (quickGame == false) {
+				DeskView.rozdaj(deck.get(i), (stav.forhont + 1) % 3, i - 7, i);
+			}
+		}
+
+		for (int i = 12; i < 17; i++) {
+			players.get((stav.forhont + 2) % 3).hand.add(deck.get(i));
+
+			if (quickGame == false) {
+				DeskView.rozdaj(deck.get(i), (stav.forhont + 2) % 3, i - 12, i,
+						i == 16);
+			}
+		}
+
+		profiler.stop("rozdaj 1");
+
+		if (quickGame == true) {
+			animationFinished(-5);
+		}
 	}
 
 	/**
 	 * Second round of card dealing. All players get 5 cards.
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public void rozdaj2() {
-		// TODO To be done by ...
+		profiler.start("rozdaj 2");
+
+		/*
+		 * first kolo increase, then animation
+		 */
+		stav.kolo = -3;
+
+		for (int i = 17; i < 22; i++) {
+			players.get(stav.forhont).hand.add(deck.get(i));
+
+			if (quickGame == false) {
+				DeskView.rozdaj(deck.get(i), stav.forhont, i - 10, i - 17);
+			}
+		}
+
+		for (int i = 22; i < 27; i++) {
+			players.get((stav.forhont + 1) % 3).hand.add(deck.get(i));
+
+			if (quickGame == false) {
+				DeskView.rozdaj(deck.get(i), (stav.forhont + 1) % 3, i - 17,
+						i - 17);
+			}
+		}
+
+		for (int i = 27; i < 32; i++) {
+			players.get((stav.forhont + 2) % 3).hand.add(deck.get(i));
+
+			if (quickGame == false) {
+				DeskView.rozdaj(deck.get(i), (stav.forhont + 2) % 3, i - 22,
+						i - 17, i == 31);
+			}
+		}
+
+		profiler.stop("rozdaj 2");
+
+		if (quickGame == true) {
+			animationFinished(-3);
+		}
 	}
 
 	/**
 	 * Switches player type for player at position i.
 	 * 
+	 * @param i
+	 * @param newType
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public void changePlayer(int i, String newType) {
-		// TODO To be done by ...
+		if (i < 0 || i > 2) {
+			return;
+		}
+
+		if (quickGame == true) {
+			return;
+		}
+
+		List<Integer> hand = players.get(i).hand;
+
+		int body = players.get(i).body;
+		int peniaze = players.get(i).peniaze;
+		int hlasky = players.get(i).hlasky;
+
+		String message = players.get(i).message;
+
+		int talonCards[] = new int[2];
+		talonCards[0] = players.get(i).talonCards[0];
+		talonCards[1] = players.get(i).talonCards[1];
+
+		players.remove(i);
+		// TODO It is possible this to be wrong index i.
+		players.add(i, PlayerFactory.create(newType));
+
+		players.get(i).hand = hand;
+		players.get(i).body = body;
+		players.get(i).peniaze = peniaze;
+		players.get(i).hlasky = hlasky;
+		players.get(i).setStav(stav);
+		players.get(i).profiler = profiler;
+		players.get(i).message = message;
+		players.get(i).setId(i);
+
+		if (stav.forhont == i) {
+			players.get(i).talonCards[0] = talonCards[0];
+			players.get(i).talonCards[1] = talonCards[1];
+		}
+
+		players.get(i).init();
+
+		DeskView.draw();
 	}
 
+	/**
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
+	 */
 	public void newGame() {
-		// TODO To be done by ...
+		profiler.start("dealing and bidding");
+
+		if (bd.isVisible() == true) {
+			bd.hide();
+		}
+
+		for (int i = 0; i < 3; i++) {
+			players.get(i).body = 0;
+			players.get(i).hlasky = 0;
+			players.get(i).quickGame = quickGame;
+		}
+
+		stav.newGame();
+
+		shuffleDeck();
+
+		if (quickGame == false) {
+			DeskView.log("Nova hra.");
+			DeskView.log("Forhont je " + players.get(stav.forhont).name);
+			DeskView.gather();
+			DeskView.draw();
+		}
+
+		rozdaj1();
 	}
 
 	/**
@@ -518,8 +676,183 @@ class Game {
 	 * from programmers. This function must exist, maybe it can split some
 	 * functionality in more functions.
 	 * 
+	 * @param round
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 14 Aug 2013
 	 */
 	public void animationFinished(int round) {
-		// TODO To be done by ...
+		if (quickGame == false) {
+			LOGGER.info("animation finished " + stav.kolo + ":" + round);
+		}
+
+		if (stav.kolo != round) {
+			LOGGER.info("animation synchro fail");
+			return;
+		}
+
+		if (stav.kolo == -6) {
+			if (quickGame == false) {
+				DeskView.gather();
+			}
+
+			stav.kolo = -5;
+			return;
+		}
+
+		if (stav.kolo == -5) {
+			if (quickGame == false) {
+				for (int i = 0; i < players.get(0).hand.size(); i++) {
+					DeskView.revealCard(players.get(0).hand.get(i));
+				}
+			}
+
+			players.get(0).sortHand();
+
+			/*
+			 * first kolo increase, then animation
+			 */
+			stav.kolo = -4;
+			
+			if (quickGame == false) {
+				for (int i = 0; i < players.get(0).hand.size(); i++) {
+					DeskView.rozdaj(players.get(0).hand.get(i), 0, i, 0,
+							i == players.get(0).hand.size() - 1);
+				}
+			} else {
+				animationFinished(-4);
+			}
+
+			return;
+		}
+
+		if (stav.kolo == -4) {
+			if (players.get(stav.forhont).type == "human" && quickGame == false) {
+				DeskView.print("ZVOL TROMF", stav.forhont);
+				waitingForClick = true;
+			} else {
+				int k = players.get(stav.forhont).tromf();
+				tromfClicked(k);
+			}
+			return;
+		}
+
+		if (stav.kolo == -3) {
+			/*
+			 * first kolo increase, then animation
+			 */
+			stav.kolo = -2;
+
+			if (quickGame == false) {
+				for (int i = 0; i < players.get(0).hand.size(); i++) {
+					DeskView.revealCard(players.get(0).hand.get(i));
+				}
+			}
+
+			players.get(0).sortHand();
+
+			if (quickGame == false) {
+				DeskView.fixHand(0, true);
+			} else {
+				animationFinished(-2);
+			}
+
+			return;
+		}
+
+		if (stav.kolo == -2) {
+			if (players.get(stav.forhont).type == "human" && quickGame == false) {
+				DeskView.print("2 KARTY DO TALONU", stav.forhont);
+				waitingForClick = true;
+			} else {
+				int tal = players.get(stav.forhont).talon();
+				talonClicked(tal % 32);
+				talonClicked(tal / 32);
+			}
+			return;
+		}
+
+		if (stav.kolo == -1) {
+			if (quickGame == false) {
+				DeskView.fixHand(0);
+			}
+
+			/*
+			 * farba - dobra - dobra
+			 */
+			if (quickGame == false) {
+				DeskView.draw();
+			}
+
+			stav.hra.farba = true;
+			stav.kopa.clear();
+			stav.id = stav.forhont;
+			bd.startBidding();
+
+			return;
+		}
+
+		if (stav.kolo == 10) {
+			stav.hra.tromf = -1;
+
+			if (quickGame == false) {
+				profiler.start("draw");
+				DeskView.draw();
+				DeskView.drawResults();
+				profiler.stop("draw");
+			}
+
+			profiler.stop("game - results");
+			profiler.start("game - after results");
+			
+			return;
+		}
+
+		if (stav.kolo >= 0) {
+			if (stav.kopa.size() < 3) {
+				profiler.start(players.get(stav.id).name);
+
+				int k = players.get(stav.id).play();
+
+				profiler.stop(players.get(stav.id).name);
+
+				if (quickGame == false) {
+					LOGGER.info(players.get(stav.id).name + " rozmyslal: "
+							+ profiler.totals.get(players.get(stav.id).name));
+				}
+
+				if (k == -1 && players.get(stav.id).type == "human") {
+					profiler.start(players.get(stav.id).name);
+					waitingForClick = true;
+					return;
+				}
+
+				if (turn(k) == false) {
+					LOGGER.info("Niekto nevie zahrat toto kolo");
+				}
+
+				if (quickGame == false) {
+					if (players.get(stav.id).message != "") {
+						DeskView.log(players.get(stav.id).message);
+						players.get(stav.id).message = "";
+						DeskView.draw();
+					}
+
+					DeskView.animateCard(k, stav.id);
+				}
+
+				stav.dalsi();
+
+				if (quickGame == true) {
+					animationFinished(stav.kolo);
+				}
+			} else {
+				profiler.start("trick taking - stich results");
+				results();
+			}
+
+			return;
+		}
 	}
 }
