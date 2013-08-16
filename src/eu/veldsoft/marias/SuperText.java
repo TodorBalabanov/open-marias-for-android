@@ -4,7 +4,7 @@ import android.graphics.Color;
 
 public class SuperText /* extends QGraphicsTextItem */{
 	// TODO It is only for project to compile.
-	private class Font {
+	private static class Font {
 
 		public void setBold(boolean b) {
 		}

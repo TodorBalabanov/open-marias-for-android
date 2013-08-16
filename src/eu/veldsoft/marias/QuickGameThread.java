@@ -13,9 +13,12 @@ import java.util.logging.Logger;
  */
 class QuickGameThread extends Thread {
 	// TODO It is only for project to compile.
-	private class Qt {
+	private static class Qt {
 		public static final int Checked = 1;
 		public static final int Unchecked = 0;
+	}
+
+	public void terminate() {
 	}
 
 	/**

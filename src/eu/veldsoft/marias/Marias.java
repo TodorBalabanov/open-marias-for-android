@@ -17,7 +17,7 @@ class Marias /* extends QMainWindow */{
 	// Q_OBJECT
 
 	// TODO It is only for project to compile.
-	private class Settings {
+	private static class Settings {
 		public static final int IniFormat = 0;
 
 		public Settings(String string, int format) {

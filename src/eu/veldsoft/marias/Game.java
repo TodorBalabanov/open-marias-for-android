@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 class Game {
 	// TODO It is only for project to compile.
-	private class Settings {
+	static class Settings {
 		public static final int IniFormat = 0;
 
 		public Settings(String string, int format) {
@@ -30,6 +30,16 @@ class Game {
 
 		public Object value(String string, String string2) {
 			return ("");
+		}
+
+		public void setValue(String string, int i) {
+		}
+
+		public void setValue(String string, String lineEdit_text) {
+		}
+
+		public int value(String string) {
+			return 0;
 		}
 	}
 
