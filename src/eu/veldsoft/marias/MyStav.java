@@ -163,11 +163,6 @@ class MyStav {
 		Collections.sort(legal, comparator);
 
 		/*
-		 * 7 8 9 D H K 10 E
-		 */
-		// qDebug() << "generate: legal list: " << legal;
-
-		/*
 		 * OREZAVANIE - NEMUSIM PREHLADAVAT VETVY, KDE DAM 8,9,D,H,K
 		 */
 		List<Integer> legal2 = new ArrayList<Integer>();
@@ -219,7 +214,6 @@ class MyStav {
 				}
 			}
 		}
-		// qDebug() << "orezany: " << legal2;
 
 		for (Integer c : legal2) {
 			qlms.add(makeMove(c));

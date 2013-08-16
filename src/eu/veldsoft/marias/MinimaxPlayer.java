@@ -75,11 +75,6 @@ class MinimaxPlayer extends Player {
 	 */
 	public TromfChooser tromfChooser;
 
-	/*
-	 * Temp variable only for debugging of evaluator.
-	 */
-	// public Datasets evals;
-
 	/**
 	 * Constructor.
 	 * 
@@ -174,20 +169,9 @@ class MinimaxPlayer extends Player {
 			return (0);
 		}
 
-		// qDebug() << "Vnaram sa, level=" << ms.getHeight();
 		ms.checkIntegrity();
 		if (ms.getHeight() == 0) {
 			int outcome = ms.stav.results(true);
-			// qDebug() << ms.stav.hra.forhontPoints << ":" <<
-			// ms.stav.hra.oppPoints; qDebug() << "pHist" << ms.stav.pHist;
-			// qDebug() << "cHist" << ms.stav.cHist;
-			// if(ms.stav.hra.stovka)qDebug() << "hrala sa stovka";
-			// if(ms.stav.hra.stovkaProti)qDebug() << "hrala sa stovka proti";
-			// if(ms.stav.hra.sedma)qDebug() << "hrala sa sedma";
-			// if(ms.stav.hra.sedmaProti)qDebug() << "hrala sa sedma proti";
-			// for(int i=0;i<ms.stav.res.size();i++){ Stav::ResRow r =
-			// ms.stav.res.at(i); qDebug() << r.first << r.second << r.third; }
-			// qDebug() << "outcome="<<outcome;
 			return (outcome);
 		}
 
@@ -213,16 +197,10 @@ class MinimaxPlayer extends Player {
 		}
 		
 		for (int i = 0; i < gen.size(); i++) {
-			// qDebug() << "skusi sa zahrat " <<
-			// Card::title(gen[i].stav.cHist.last()) << " " <<
-			// ms.stav.pHist.size();
 			int outcome = minimax(gen.get(i), false, best);
 			if (fail == true) {
 				return (0);
 			}
-
-			// qDebug() << "vynaram sa, level=" << ms.getHeight() <<
-			// ", outcome=" << outcome;
 
 			if (firstLevel == true) {
 				List<Integer> hist = gen.get(i).stav.cHist;
@@ -230,10 +208,6 @@ class MinimaxPlayer extends Player {
 			}
 
 			if ((outcome - alpha) * (max ? 1 : -1) >= 0) {
-				// qDebug() << "alphabeta cut, alpha = " << alpha <<
-				// " , beta = " << outcome; qDebug() << "na tahu je " <<
-				// stav->id << ", moje id=" << this->id << ", forhont je " <<
-				// ms.stav.forhont;
 				return (outcome);
 			}
 
@@ -242,7 +216,6 @@ class MinimaxPlayer extends Player {
 			}
 		}
 
-		// qDebug() << "Vynaram sa, best=" << best;
 		return (best);
 	}
 
@@ -290,8 +263,6 @@ class MinimaxPlayer extends Player {
 		} else {
 			LOGGER.info("MINIMAX FAILED " + Card.title(chosen)
 					+ " expected reward=" + String.valueOf(max));
-
-			// if(!quickGame)this->say(word);
 		}
 
 		return (chosen);
@@ -345,21 +316,15 @@ class MinimaxPlayer extends Player {
 				}
 
 				for (int i = 0; i < rozdania.r.size(); i++) {
-					// QString s=""; for(int j=0;j<32;j++) s += (rozdania.r[i] &
-					// rozdania.getMask(j) )?"1":"0"; qDebug() << s;
-
 					Rozdania.Pair<List<Integer>, List<Integer>> handsLeftRight = rozdania
 							.getCardsAtRozdanie(i);
 
-					// qDebug() << rozdania.getCardsAtRozdanie(i);
 					ms.hand[id] = hand;
 					ms.hand[(id + 1) % 3] = handsLeftRight.getElement0();
 					ms.hand[(id + 2) % 3] = handsLeftRight.getElement1();
 					ms.talon[0] = rozdania.r.get(i) & 31;
 					ms.talon[1] = (rozdania.r.get(i) & 992) / 32;
 
-					// if(!quickGame)qDebug() << ms.hand[0] << ms.hand[1] <<
-					// ms.hand[2];
 					states.clear();
 					minimax(ms, true, somForhont() ? 999999 : -999999);
 					kolkoSaStihlo = i + 1;

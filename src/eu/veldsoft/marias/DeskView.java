@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import android.graphics.Color;
+
 /**
  * ...
  * 
@@ -13,19 +15,63 @@ import java.util.logging.Logger;
  * @date 15 Aug 2013
  */
 public class DeskView {
+	// TODO It is only for project to compile.
+	private class AbstractAnimation {
+
+		public static final String DeleteWhenStopped = "";
+	}
+	
+	// TODO It is only for project to compile.
+	private class EasingCurve {
+
+		public static final String InQuad = "";
+	}
+	
+	// TODO It is only for project to compile.
+	private class Point {
+	}
+	
+	// TODO It is only for project to compile.
+	private class PropertyAnimation {
+
+		public PropertyAnimation(SuperText sText, String string) {
+		}
+
+		public void setDuration(int i) {
+		}
+
+		public void setEndValue(int i) {
+		}
+
+		public void setEasingCurve(String inquad) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void start(String deletewhenstopped) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
 
 	// TODO It is only for project to compile.
-	private class Ui_Marias {
+	private class Marias {
 	}
 
 	// TODO It is only for project to compile.
 	private class GraphicsScene {
+
+		public void addItem(SuperText sText) {
+		}
 	}
 
 	// TODO It is only for project to compile.
 	private class GraphicsView {
 		public Object scene() {
 			return (null);
+		}
+
+		public void show() {
 		}
 	}
 
@@ -38,31 +84,38 @@ public class DeskView {
 	}
 
 	// TODO It is only for project to compile.
-	private class Point {
-	}
-
-	// TODO It is only for project to compile.
 	private class GraphicsEllipseItem {
 	}
 
 	// TODO It is only for project to compile.
 	private class Settings {
+
+		public String value(String string, int i) {
+			return "";
+		}
 	}
 
 	// TODO It is only for project to compile.
-	private class Font {
+	class Font {
+
+		public void setBold(boolean b) {
+		}
+
+		public void setFamily(String string) {
+		}
+
+		public void setPointSize(int i) {
+		}
 	}
 
 	// TODO It is only for project to compile.
 	private class GraphicsItem {
 
 		public String data(int i) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		public GraphicsItem parentItem() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 	}
@@ -209,7 +262,7 @@ public class DeskView {
 	 * @email tdb@tbsoft.eu
 	 * @date 15 Aug 2013
 	 */
-	public static void createInstance(Ui_Marias ui, Game g) {
+	public static void createInstance(eu.veldsoft.marias.Marias ui, Game g) {
 		if (instance != null) {
 			LOGGER.info("DeskView: create instance called twice");
 		}
@@ -263,13 +316,23 @@ public class DeskView {
 	 * Gathers all cards from desk, cleans all animations if some remains and
 	 * recreates the cards at deck.
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 16 Aug 2013
 	 */
 	public static void gather() {
-		// TODO To be done by ...
+		Instance()._gather();
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 16 Aug 2013
+	 */
 	public static void intro() {
-		// TODO To be done by ...
+		Instance()._intro();
 	}
 
 	/**
@@ -278,10 +341,19 @@ public class DeskView {
 	 * case when a players plays a card and a gap arises in the hand - the cards
 	 * are shifted then. Note: offset is zero-based.
 	 * 
+	 * @param cid
+	 * @param pid
+	 * @param offset
+	 * @param pause
+	 * @param last
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 16 Aug 2013
 	 */
 	public static void rozdaj(int cid, int pid, int offset, int pause,
 			boolean last) {
-		// TODO To be done by ...
+		Instance()._rozdaj(cid, pid, offset, pause, last);
 	}
 
 	public static void rozdaj(int cid, int pid, int offset, int pause) {
@@ -427,7 +499,7 @@ public class DeskView {
 		// TODO To be done by ...
 	}
 
-	public DeskView(Ui_Marias ui, Game g) {
+	public DeskView(eu.veldsoft.marias.Marias ui, Game g) {
 		// TODO To be done by ...
 	}
 
@@ -514,21 +586,85 @@ public class DeskView {
 		// TODO To be done by ...
 	}
 
+	/**
+	 * ... 
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 16 Aug 2013
+	 */
 	public void _show() {
-		// TODO To be done by ...
+		graphicsView.show();
 	}
 
+	/**
+	 * Game instance getter.
+	 *  
+	 * @return
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 16 Aug 2013
+	 */
 	public Game _getGame() {
-		// TODO To be done by ...
-		return (null);
+		return( game );
 	}
 
+	/**
+	 * ...
+	 *  
+	 * @param s
+	 * @param pos
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 16 Aug 2013
+	 */
 	public void _print(String s, int pos) {
-		// TODO To be done by ...
+		 /*
+		  * nice animation
+		  */
+		 int textWidth = 750;
+		
+		 font.setBold(false);
+		 font.setFamily("Monospace");
+		 font.setPointSize(50);
+		
+		 SuperText sText = new SuperText();
+		 sText.setHtml("<p align=\"center\">"+s+"</p>");
+		 sText.setTextWidth(textWidth);
+		 sText.setData(0,"anim");
+		 if(pos>2 || pos<0)pos=0;
+		 //TODO Need to be implemented in more complex way.
+		 //sText.setPos(poziciaTextu[pos]-Point(textWidth/2,0));
+		 sText.setFont(font);
+		 sText.setDefaultTextColor(Color.YELLOW);
+		 graphicsScene.addItem(sText);
+		
+		 PropertyAnimation superTextAnim = new PropertyAnimation(sText,"opacity");
+		 superTextAnim.setDuration(10*Integer.valueOf(settings.value("graphics/delay",100)));
+		 superTextAnim.setEndValue(0);
+		 superTextAnim.setEasingCurve(EasingCurve.InQuad);
+		 superTextAnim.start(AbstractAnimation.DeleteWhenStopped);
+		
+		 _log(s);
+		 _draw();
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @param s
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 16 Aug 2013
+	 */
 	public void _log(String s) {
-		// TODO To be done by ...
+		if (out.size() > 5) {
+			out.remove(out.size() - 1);
+		}
+		out.add(0, s);
 	}
 }
 
@@ -548,7 +684,7 @@ public class DeskView {
 //
 // //INIT IMAGES
 //
-// QString fName = settings.value("cards/images","img/classic7").toString();
+// String fName = settings.value("cards/images","img/classic7").toString();
 // QDir dir(fName);
 // if (!dir.exists())
 // qWarning() << QObject.tr("Cannot find the directory: ") << fName << "now: "
@@ -578,31 +714,31 @@ public class DeskView {
 //
 // //INIT ITEM POSITIONS
 //
-// poziciaKopy[0] = QPoint(330,275);
-// poziciaKopy[1] = QPoint(295,235);
-// poziciaKopy[2] = QPoint(365,245);
+// poziciaKopy[0] = Point(330,275);
+// poziciaKopy[1] = Point(295,235);
+// poziciaKopy[2] = Point(365,245);
 //
-// poziciaKariet[0] = QPoint(200,445);
-// poziciaKariet[1] = QPoint(70,50);
-// poziciaKariet[2] = QPoint(400,50);
+// poziciaKariet[0] = Point(200,445);
+// poziciaKariet[1] = Point(70,50);
+// poziciaKariet[2] = Point(400,50);
 //
-// poziciaTromfu[0] = QPoint(300,395);
-// poziciaTromfu[1] = QPoint(50,160);
-// poziciaTromfu[2] = QPoint(420,160);
+// poziciaTromfu[0] = Point(300,395);
+// poziciaTromfu[1] = Point(50,160);
+// poziciaTromfu[2] = Point(420,160);
 //
-// poziciaMena[0] = QPoint(550,395);
-// poziciaMena[1] = QPoint(100,160);
-// poziciaMena[2] = QPoint(480,160);
+// poziciaMena[0] = Point(550,395);
+// poziciaMena[1] = Point(100,160);
+// poziciaMena[2] = Point(480,160);
 //
-// poziciaStichov[0] = QPoint(700,445);
-// poziciaStichov[1] = QPoint(1,50);
-// poziciaStichov[2] = QPoint(700,50);
+// poziciaStichov[0] = Point(700,445);
+// poziciaStichov[1] = Point(1,50);
+// poziciaStichov[2] = Point(700,50);
 //
-// poziciaTextu[0] = QPoint(400,350);
-// poziciaTextu[1] = QPoint(200,150);
-// poziciaTextu[2] = QPoint(600,150);
+// poziciaTextu[0] = Point(400,350);
+// poziciaTextu[1] = Point(200,150);
+// poziciaTextu[2] = Point(600,150);
 //
-// poziciaBase = QPoint(700,200);
+// poziciaBase = Point(700,200);
 //
 // //INIT LIGHT
 //
@@ -720,32 +856,32 @@ public class DeskView {
 // QSequentialAnimationGroup* ys = new QSequentialAnimationGroup();
 // cardItem[i].setPos(x[i][0],y[i][0]);
 // for(int j=1;j<n;j++){
-// QPropertyAnimation* ax = new QPropertyAnimation(cardItem[i],"x");
+// PropertyAnimation* ax = new PropertyAnimation(cardItem[i],"x");
 // ax.setStartValue(x[i][j-1]);
 // ax.setEndValue(x[i][j]);
 // ax.setDuration(15*delay+rand()%(5*delay));
-// ax.setEasingCurve(QEasingCurve.InOutSine);
+// ax.setEasingCurve(EasingCurve.InOutSine);
 // xs.addAnimation(ax);
 //
-// QPropertyAnimation* ay = new QPropertyAnimation(cardItem[i],"y");
+// PropertyAnimation* ay = new PropertyAnimation(cardItem[i],"y");
 // ay.setStartValue(y[i][j-1]);
 // ay.setEndValue(y[i][j]);
 // ay.setDuration(15*delay+rand()%(5*delay));
-// ay.setEasingCurve(QEasingCurve.InOutSine);
+// ay.setEasingCurve(EasingCurve.InOutSine);
 // ys.addAnimation(ay);
 // }
-// QPropertyAnimation* ax = new QPropertyAnimation(cardItem[i],"x");
+// PropertyAnimation* ax = new PropertyAnimation(cardItem[i],"x");
 // ax.setStartValue(x[i][n-1]);
 // ax.setEndValue(poziciaBase.x());
 // ax.setDuration(15*delay+rand()%(5*delay));
-// ax.setEasingCurve(QEasingCurve.InOutSine);
+// ax.setEasingCurve(EasingCurve.InOutSine);
 // xs.addAnimation(ax);
 //
-// QPropertyAnimation* ay = new QPropertyAnimation(cardItem[i],"y");
+// PropertyAnimation* ay = new PropertyAnimation(cardItem[i],"y");
 // ay.setStartValue(y[i][n-1]);
 // ay.setEndValue(poziciaBase.y());
 // ay.setDuration(15*delay+rand()%(5*delay));
-// ay.setEasingCurve(QEasingCurve.InOutSine);
+// ay.setEasingCurve(EasingCurve.InOutSine);
 // ys.addAnimation(ay);
 //
 // xy.addAnimation(xs);
@@ -753,7 +889,7 @@ public class DeskView {
 // }
 // signalMapper.setMapping(xy,game.stav.kolo);
 // QObject.connect(xy,SIGNAL(finished()),signalMapper,SLOT(map()));
-// xy.start(QAbstractAnimation.DeleteWhenStopped);
+// xy.start(AbstractAnimation.DeleteWhenStopped);
 //
 // }
 //
@@ -765,8 +901,8 @@ public class DeskView {
 // //qDebug() << "rozdavam " << cid << " " << pid << " " << offset;
 // cardItem[cid].setZValue(offset);
 // QSequentialAnimationGroup* rozd = new QSequentialAnimationGroup();
-// QPropertyAnimation* anim = new QPropertyAnimation(cardItem[cid],"pos");
-// anim.setEndValue(poziciaKariet[pid]+QPoint(offset*(pid==0?30:20),0));
+// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"pos");
+// anim.setEndValue(poziciaKariet[pid]+Point(offset*(pid==0?30:20),0));
 // anim.setDuration(3*settings.value("graphics/delay",100).toInt());
 // if(pause>0)
 // rozd.addPause(pause*settings.value("graphics/delay",100).toInt());
@@ -775,7 +911,7 @@ public class DeskView {
 // signalMapper.setMapping(rozd,game.stav.kolo);
 // QObject.connect(rozd,SIGNAL(finished()),signalMapper,SLOT(map()));
 // }
-// rozd.start(QAbstractAnimation.DeleteWhenStopped);
+// rozd.start(AbstractAnimation.DeleteWhenStopped);
 // }
 //
 // void DeskView.rozdaj(int cid, int pid,int offset,int pause, bool last){
@@ -784,23 +920,23 @@ public class DeskView {
 //
 // void DeskView._fixHand(int pid,bool last){
 // int lastBad=0;
-// for(int i=0;i<game.players[pid].hand.count();i++){
+// for(int i=0;i<game.players[pid].hand.size();i++){
 // int cid = game.players[pid].hand[i];
 // cardItem[cid].setZValue(i);
 // if(cardItem[cid].x() != poziciaKariet[pid].x()+i*(pid==0?30:20))
 // lastBad=i;
 // }
-// for(int i=0;i<game.players[pid].hand.count();i++){
+// for(int i=0;i<game.players[pid].hand.size();i++){
 // int cid = game.players[pid].hand[i];
 // if(cardItem[cid].x() != poziciaKariet[pid].x()+i*(pid==0?30:20)){
-// QPropertyAnimation* anim = new QPropertyAnimation(cardItem[cid],"x");
+// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"x");
 // anim.setEndValue(poziciaKariet[pid].x()+i*(pid==0?30:20));
 // anim.setDuration(3*settings.value("graphics/delay",100).toInt());
 // if(last && i==lastBad){
 // signalMapper.setMapping(anim,game.stav.kolo);
 // QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
 // }
-// anim.start(QAbstractAnimation.DeleteWhenStopped);
+// anim.start(AbstractAnimation.DeleteWhenStopped);
 // }
 // }
 // }
@@ -811,14 +947,14 @@ public class DeskView {
 //
 // void DeskView._talon(int cid,bool last){
 // cardItem[cid].setPixmap(rub);
-// QPropertyAnimation* anim = new QPropertyAnimation(cardItem[cid],"pos");
+// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"pos");
 // anim.setEndValue(poziciaBase);
 // anim.setDuration(3*settings.value("graphics/delay",100).toInt());
 // if(last){
 // signalMapper.setMapping(anim,game.stav.kolo);
 // QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
 // }
-// anim.start(QAbstractAnimation.DeleteWhenStopped);
+// anim.start(AbstractAnimation.DeleteWhenStopped);
 // }
 //
 // void DeskView.talon(int cid,bool last){
@@ -872,7 +1008,7 @@ public class DeskView {
 // QGraphicsTextItem* text = new QGraphicsTextItem();
 // text.setHtml(game.players[i].name +
 // ": <span style=\"font-size: xx-large;\">" +
-// QString.number(game.players[i].peniaze)+QString.fromUtf8(" xxx</span>"));
+// String.number(game.players[i].peniaze)+String.fromUtf8(" xxx</span>"));
 // text.setPos(poziciaMena[i]);
 // text.setFont(*&font);
 // if(game.stav.forhont==i)
@@ -887,8 +1023,8 @@ public class DeskView {
 // font.setBold(false);
 // font.setPointSize(9);
 // int i=0;
-// QString o="";
-// foreach(QString s,out){
+// String o="";
+// foreach(String s,out){
 // if(i==0){
 // font.setPointSize(11);
 // font.setBold(true);
@@ -930,23 +1066,23 @@ public class DeskView {
 // font.setPointSize(12);
 //
 // QGraphicsTextItem* text = new QGraphicsTextItem();
-// QString
-// html="<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\"><tr><td align=\"center\" colspan=\"2\">"+QString.number(game.stav.hra.forhontPoints)+":"+QString.number(game.stav.hra.oppPoints)+"</td></tr>";
-// typedef QTriple<QString,QString,bool> ResRow;
+// String
+// html="<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\"><tr><td align=\"center\" colspan=\"2\">"+String.number(game.stav.hra.forhontPoints)+":"+String.number(game.stav.hra.oppPoints)+"</td></tr>";
+// typedef QTriple<String,String,bool> ResRow;
 // foreach(ResRow row,game.stav.res){
-// html+="<tr"+QString(row.third?" style=\"font-weight:bold;\"":"")+"><td>"+row.first+"</td><td align=\"right\">"+row.second+"</td></tr>";
+// html+="<tr"+String(row.third?" style=\"font-weight:bold;\"":"")+"><td>"+row.first+"</td><td align=\"right\">"+row.second+"</td></tr>";
 // if(row.third)
 // html+="<tr><td></td><td></td></tr>";
 // }
 // html+="</table><a href=\"#\" style=\"color:white;\">"+QObject.tr("New game")+"</a>";
 //
 // text.setHtml(html);
-// text.setPos(QPoint(270,220));
+// text.setPos(Point(270,220));
 // text.setFont(*&font);
 // text.setDefaultTextColor(QColor("white"));
 // text.setTextInteractionFlags(Qt.TextBrowserInteraction);
 // text.setCursor(Qt.PointingHandCursor);
-// QObject.connect(text,SIGNAL(linkActivated(QString)),game,SLOT(newGame()));
+// QObject.connect(text,SIGNAL(linkActivated(String)),game,SLOT(newGame()));
 // graphicsScene.addItem(text);
 // }
 //
@@ -957,17 +1093,17 @@ public class DeskView {
 // void DeskView._animateCard(int cid,int pid){
 // cardItem[cid].setPixmap(images[cid]);
 // QParallelAnimationGroup* hodKartu= new QParallelAnimationGroup();
-// QPropertyAnimation* anim = new QPropertyAnimation(cardItem[cid],"pos");
+// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"pos");
 // anim.setEndValue(poziciaKopy[pid]);
 // anim.setDuration(3*settings.value("graphics/delay",100).toInt());
 // hodKartu.addAnimation(anim);
-// anim = new QPropertyAnimation(cardItem[cid],"z");
-// anim.setEndValue(game.stav.kopa.count());
+// anim = new PropertyAnimation(cardItem[cid],"z");
+// anim.setEndValue(game.stav.kopa.size());
 // anim.setDuration(3*settings.value("graphics/delay",100).toInt());
 // hodKartu.addAnimation(anim);
 // signalMapper.setMapping(hodKartu,game.stav.kolo);
 // QObject.connect(hodKartu,SIGNAL(finished()),signalMapper,SLOT(map()));
-// hodKartu.start(QAbstractAnimation.DeleteWhenStopped);
+// hodKartu.start(AbstractAnimation.DeleteWhenStopped);
 // return;
 // }
 //
@@ -984,12 +1120,12 @@ public class DeskView {
 // for(int i=0;i<3;i++){
 // //qDebug() << "Adding anim"<< i << ": " << game.stav.kopa[i];
 // cardItem[game.stav.kopa[i]].setZValue(cardItem[game.stav.kopa[i]].zValue()-1000+100*game.stav.kolo);
-// QPropertyAnimation* anim = new
-// QPropertyAnimation(cardItem[game.stav.kopa[i]],"pos");
+// PropertyAnimation* anim = new
+// PropertyAnimation(cardItem[game.stav.kopa[i]],"pos");
 // anim.setEndValue(poziciaStichov[pid]);
 // anim.setDuration(3*settings.value("graphics/delay",100).toInt());
 // berStich.addAnimation(anim);
-// anim = new QPropertyAnimation(cardItem[game.stav.kopa[i]],"opacity");
+// anim = new PropertyAnimation(cardItem[game.stav.kopa[i]],"opacity");
 // anim.setEndValue(0);
 // anim.setDuration(3*settings.value("graphics/delay",100).toInt());
 // berStich.addAnimation(anim);
@@ -1000,7 +1136,7 @@ public class DeskView {
 //
 // signalMapper.setMapping(sag,game.stav.kolo);
 // QObject.connect(sag,SIGNAL(finished()),signalMapper,SLOT(map()));
-// sag.start(QAbstractAnimation.DeleteWhenStopped);
+// sag.start(AbstractAnimation.DeleteWhenStopped);
 // }
 //
 // void DeskView.animateStich(int pid){
@@ -1023,13 +1159,13 @@ public class DeskView {
 // return Instance()._getGame();
 // }
 //
-// void DeskView._print(QString s,int pos){
+// void DeskView._print(String s,int pos){
 //
 // //nice animation
 //
 // //qDebug() << "printing on pos " << pos << ": " <<
-// QString.number(poziciaTextu[pos].x()) << ":" <<
-// QString.number(poziciaTextu[pos].y());
+// String.number(poziciaTextu[pos].x()) << ":" <<
+// String.number(poziciaTextu[pos].y());
 // int textWidth = 750;
 //
 // font.setBold(false);
@@ -1041,30 +1177,30 @@ public class DeskView {
 // sText.setTextWidth(textWidth);
 // sText.setData(0,"anim");
 // if(pos>2 || pos<0)pos=0;
-// sText.setPos(poziciaTextu[pos]-QPoint(textWidth/2,0));
+// sText.setPos(poziciaTextu[pos]-Point(textWidth/2,0));
 // sText.setFont(*&font);
 // sText.setDefaultTextColor(QColor("yellow"));
 // graphicsScene.addItem(sText);
 //
-// QPropertyAnimation* superTextAnim = new QPropertyAnimation(sText,"opacity");
+// PropertyAnimation* superTextAnim = new PropertyAnimation(sText,"opacity");
 // superTextAnim.setDuration(10*settings.value("graphics/delay",100).toInt());
 // superTextAnim.setEndValue(0);
-// superTextAnim.setEasingCurve(QEasingCurve.InQuad);
-// superTextAnim.start(QAbstractAnimation.DeleteWhenStopped);
+// superTextAnim.setEasingCurve(EasingCurve.InQuad);
+// superTextAnim.start(AbstractAnimation.DeleteWhenStopped);
 //
 // _log(s);
 // _draw();
 // }
 //
-// void DeskView.print(QString s,int pos){
+// void DeskView.print(String s,int pos){
 // Instance()._print(s,pos);
 // }
 //
-// void DeskView._log(QString s){
-// if(out.count()>5)out.pop_back();
-// out.push_front(s);
+// void DeskView._log(String s){
+// if(out.size()>5)out.pop_back();
+// out.add(0, s);
 // }
 //
-// void DeskView.log(QString s){
+// void DeskView.log(String s){
 // Instance()._log(s);
 // }

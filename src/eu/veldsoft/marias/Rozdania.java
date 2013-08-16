@@ -215,9 +215,6 @@ class Rozdania {
 		 * "HRAC VPRAVO NEMA KARTU x"
 		 */
 		for (int kolo = 0; 3 * kolo < stav.cHist.size() - 1; kolo++) {
-			// qDebug() << "analyzing round " << kolo << "/" <<
-			// stav.cHist.size();
-
 			int A = stav.cHist.get(kolo * 3);
 			int B = stav.cHist.get(kolo * 3 + 1);
 			int C;
@@ -237,12 +234,8 @@ class Rozdania {
 
 			int P2 = (P1 + 1) % 3;
 			int P3 = (P2 + 1) % 3;
-			// qDebug() << "A=" << A << "B=" << B << "C=" << C;
-			// qDebug() << "P1=" << P1 << "P2=" << P2 << "P3=" << P3;
 
 			if (myID != P2) {
-				// qDebug() << "myID!=P2";
-
 				int P2Bit;
 				if ((3 + myID - P2) % 3 == 1) {
 					/*
@@ -254,11 +247,7 @@ class Rozdania {
 				}
 
 				if (Card.equalColor(B, A)) {
-					// qDebug() << "Card.equalColor(B,A)";
-
 					if (Card.stronger(B, A, stav.hra) == false) {
-						// qDebug() << "!Card.stronger(B,A,stav.hra)";
-
 						/*
 						 * P2 nema A+1..<(A/8)*8+8;
 						 */
@@ -269,10 +258,7 @@ class Rozdania {
 					}
 
 				} else {
-					// qDebug() << "vetva 3";
-
 					if (Card.isTromf(B, stav.hra)) {
-						// qDebug() << "vetva 4";
 						/*
 						 * P2 nema A/8*8...<A/8*8+8;
 						 */
@@ -281,7 +267,6 @@ class Rozdania {
 							p2nemaC(isOne, isZero, P2Bit, i);
 						}
 					} else {
-						// qDebug() << "vetva 5";
 						/*
 						 * P2 nema A/8*8..<A/8*8+8;
 						 */
@@ -290,8 +275,9 @@ class Rozdania {
 							p2nemaC(isOne, isZero, P2Bit, i);
 						}
 
-						// P2 nema tromf stav.hra.tromf7()
-						// ..stav.hra.tromf7()+7
+						/*
+						 * P2 nema tromf stav.hra.tromf7() ..stav.hra.tromf7()+7
+						 */
 						for (int i = stav.hra.tromf7(); i < stav.hra.tromf7() + 8; i = Card
 								.plus1(i)) {
 							p2nemaC(isOne, isZero, P2Bit, i);
@@ -300,11 +286,7 @@ class Rozdania {
 				}
 			}
 
-			// else qDebug() << "myID==P2";
-
 			if (myID != P3 && C != -1) {
-				// qDebug() << "myID!=P3 && C!=-1";
-
 				int P3Bit;
 				if ((3 + myID - P3) % 3 == 1) {
 					/*
@@ -316,10 +298,8 @@ class Rozdania {
 				}
 
 				if (Card.equalColor(C, A)) {
-					// qDebug() << "vetva 6";
 					if (Card.equalColor(B, A)) {
 						if (stav.veduca(kolo) != C) {
-							// qDebug() << "vetva 6";
 							/*
 							 * P3 nema stav.veduca(kolo)..%8!=0;
 							 */
@@ -328,19 +308,18 @@ class Rozdania {
 								this.p2nemaC(isOne, isZero, P3Bit, i);
 							}
 						}
-						// else qDebug() << "veduca=" << stav.veduca(kolo);
 					}
 				} else {
-					// qDebug() << "vetva 7";
 					if (Card.isTromf(C, stav.hra)) {
 						if (stav.veduca(kolo) == C) {
-							// P3 nema A/8*8...<A/8*8+8
+							/* 
+							 * P3 nema A/8*8...<A/8*8+8
+							 */
 							for (int i = A / 8 * 8; i < A / 8 * 8 + 8; i = Card
 									.plus1(i)) {
 								this.p2nemaC(isOne, isZero, P3Bit, i);
 							}
 						} else {
-							// qDebug() << "vetva 8";
 							/*
 							 * A nie je veduca, lebo A nie je tromf a C je tromf
 							 * B je veduca P3 nema A/8*8...<A/8*8+8 P3 nema
@@ -356,7 +335,6 @@ class Rozdania {
 							}
 						}
 					} else {
-						// qDebug() << "vetva 9";
 						/*
 						 * P3 nema A/8*8..<A/8*8+8 P3 nema tromf
 						 * stav.hra.tromf7() ..stav.hra.tromf7()+7
@@ -372,10 +350,6 @@ class Rozdania {
 					}
 				}
 			}
-
-			// else qDebug() << "! myID!=P3 && C!=-1 ///" << myID << " " << P3
-			// << " " << C;
-			// qDebug() << isOne << isZero;
 		}
 
 		/*
@@ -514,12 +488,6 @@ class Rozdania {
 		}
 
 		/*
-		 * Povolim aj dlhsie prehladavanie, dolezite je, aby vsetky vygenerovane
-		 * boli uplne aj s talonmi.
-		 */
-		// if(fail)return;
-
-		/*
 		 * MAM VYGENEROVANE ROZDANIA, DOPLNIM TAM INFORMACIE, KED SOM VEDEL, ZE
 		 * KARTU MA HRAC VPRAVO
 		 */
@@ -600,8 +568,6 @@ class Rozdania {
 					if (j % 4 == 3) {
 						continue;
 					}
-
-					// if(profiler.getTime("minimaxSearch")>timeLimit){fail=true;return;}
 
 					/*
 					 * 31 je mastna.
@@ -766,25 +732,25 @@ class Rozdania {
 
 	/**
 	 * Helper function to update isOne and isZero arrays.
-	 *
-     * @param isOne
-     *
-     * @param isZero
-     *
-     * @param bit
-     *
-     * @param c
-     *
-     * @author Miroslav Gyonov
-     * @email mirkoslavcho1@abv.bg
-     * @date 06 Aug 2013
-     */
-    public void p2nemaC(List<Integer> isOne, List<Integer> isZero, int bit,
-                        int c) {
-        if((bit==0)==true){
-            isOne.add(c);
-        } else{
-            isZero.add(c);
-        }
-    }
+	 * 
+	 * @param isOne
+	 * 
+	 * @param isZero
+	 * 
+	 * @param bit
+	 * 
+	 * @param c
+	 * 
+	 * @author Miroslav Gyonov
+	 * @email mirkoslavcho1@abv.bg
+	 * @date 06 Aug 2013
+	 */
+	public void p2nemaC(List<Integer> isOne, List<Integer> isZero, int bit,
+			int c) {
+		if ((bit == 0) == true) {
+			isOne.add(c);
+		} else {
+			isZero.add(c);
+		}
+	}
 }
