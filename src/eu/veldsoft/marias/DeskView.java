@@ -16,23 +16,23 @@ import android.graphics.Color;
  */
 public class DeskView {
 	// TODO It is only for project to compile.
-	private class AbstractAnimation {
+	private static class AbstractAnimation {
 
 		public static final String DeleteWhenStopped = "";
 	}
 	
 	// TODO It is only for project to compile.
-	private class EasingCurve {
+	private static class EasingCurve {
 
 		public static final String InQuad = "";
 	}
 	
 	// TODO It is only for project to compile.
-	private class Point {
+	private static class Point {
 	}
 	
 	// TODO It is only for project to compile.
-	private class PropertyAnimation {
+	private static class PropertyAnimation {
 
 		public PropertyAnimation(SuperText sText, String string) {
 		}
@@ -55,18 +55,14 @@ public class DeskView {
 	}
 
 	// TODO It is only for project to compile.
-	private class Marias {
-	}
-
-	// TODO It is only for project to compile.
-	private class GraphicsScene {
+	private static class GraphicsScene {
 
 		public void addItem(SuperText sText) {
 		}
 	}
 
 	// TODO It is only for project to compile.
-	private class GraphicsView {
+	private static class GraphicsView {
 		public Object scene() {
 			return (null);
 		}
@@ -76,19 +72,19 @@ public class DeskView {
 	}
 
 	// TODO It is only for project to compile.
-	private class SignalMapper {
+	private static class SignalMapper {
 	}
 
 	// TODO It is only for project to compile.
-	private class Pixmap {
+	private static class Pixmap {
 	}
 
 	// TODO It is only for project to compile.
-	private class GraphicsEllipseItem {
+	private static class GraphicsEllipseItem {
 	}
 
 	// TODO It is only for project to compile.
-	private class Settings {
+	private static class Settings {
 
 		public String value(String string, int i) {
 			return "";
@@ -96,7 +92,7 @@ public class DeskView {
 	}
 
 	// TODO It is only for project to compile.
-	class Font {
+	static class Font {
 
 		public void setBold(boolean b) {
 		}
@@ -109,7 +105,7 @@ public class DeskView {
 	}
 
 	// TODO It is only for project to compile.
-	private class GraphicsItem {
+	private static class GraphicsItem {
 
 		public String data(int i) {
 			return null;

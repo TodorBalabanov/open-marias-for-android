@@ -6,7 +6,7 @@ import android.provider.ContactsContract.CommonDataKinds.Event;
 
 class BiddingDialog {
 	// TODO It is only for project to compile.
-	private class Widget {
+	private static class Widget {
 	}
 
 	private BiddingDialog ui;

@@ -14,17 +14,17 @@ import android.provider.ContactsContract.CommonDataKinds.Event;
  */
 class SettingsDialog {
 	// TODO It is only for project to compile.
-	private class Qt {
+	private static class Qt {
 		public static final int Checked = 1;
 		public static final int Unchecked = 0;
 	}
 
 	// TODO It is only for project to compile.
-	private class Widget {
+	private static class Widget {
 	}
 
 	// TODO It is only for project to compile.
-	private class Settings {
+	private static class Settings {
 		public static final int IniFormat = 0;
 
 		public Settings(String string, int value) {
