@@ -201,9 +201,6 @@ class TromfChooser {
 	 * @date 07 Aug 2013
 	 */
 	public int chooseTromf() {
-		// qDebug() << "TromfChooser::chooseTromf(): rozdanie=" <<
-		// this->rozdanie;
-
 		/*
 		 * Needs to be mapped back with mapColors.
 		 */

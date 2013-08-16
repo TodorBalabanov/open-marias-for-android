@@ -156,6 +156,7 @@ class Profiler {
 			return;
 		}
 
+		// TODO Java map can not have more than one instance.
 		// if(timers.count(name)>1) {
 		// LOGGER.info( "timer stop warning: " + name + " has multiple starts");
 		// }

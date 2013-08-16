@@ -320,10 +320,6 @@ class Game {
 	 * @date 14 Aug 2013
 	 */
 	public void talonClicked(int k) {
-		// if(quickGame==false)
-		// LOGGER.info(players.get(stav.forhont).name << " chce dat do talonu "
-		// << Card.titleA(k);
-
 		String res = validateTalon(k);
 
 		if (res.equals("") == false) {
@@ -335,9 +331,6 @@ class Game {
 			return;
 		}
 		players.get(stav.forhont).removeCard(k);
-
-		// if(quickGame==false)
-		// DeskView.log(players.get(stav.forhont).name+" dal do talonu ")+Card.titleA(k));
 
 		if (players.get(stav.forhont).hand.size() == 11) {
 			players.get(stav.forhont).talonCards[0] = k;
@@ -382,13 +375,7 @@ class Game {
 	 * @date 14 Aug 2013
 	 */
 	public void tromfClicked(int k) {
-		// if(quickGame==false)
-		// LOGGER.info(players.get(stav.forhont).name <<
-		// " chce zvolit tromf ") << Card.titleA(k);
-
 		if (players.get(stav.forhont).hand.contains(k) == false) {
-			// qDebug("Ale taku kartu nema");
-
 			if (quickGame == false) {
 				DeskView.print("VYBERAJ LEN ZO SVOJEJ RUKY!", stav.forhont);
 			}

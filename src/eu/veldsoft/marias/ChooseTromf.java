@@ -265,8 +265,6 @@ class ChooseTromf {
 				return;
 			}
 
-			// assert kartyVoFarbach[0] <= kartyVoFarbach[1] <=
-			// kartyVoFarbach[2]
 			rozdania.add(rozdanie);
 			return;
 		}

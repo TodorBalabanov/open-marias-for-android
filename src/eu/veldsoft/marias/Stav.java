@@ -570,13 +570,6 @@ class Stav {
 				bodySJednouHlaskou -= 20 * (hra.forhontHlasky - 1);
 			}
 
-			// qDebug() << "forhontPoints: " <<
-			// QString::number(hra.forhontPoints);
-			// qDebug() << "forhontHlasky: " <<
-			// QString::number(hra.forhontHlasky);
-			// qDebug() << "body s jednou hlaskou: " <<
-			// QString::number(bodySJednouHlaskou);
-
 			if (bodySJednouHlaskou >= 100) {
 				outcome = 4 << ((hra.forhontPoints - 100) / 10);
 				if (storeData == true) {

@@ -226,7 +226,7 @@ class Player {
 	 * @date 06 Jul 2013
 	 */
 	public void removeCard(int cid) {
-		// TODO hand.remove( new Integer(cid) );
+		// TODO May be it should be like this: hand.remove( new Integer(cid) );
 		for (int i = 0; i < hand.size(); i++) {
 			if (hand.get(i).intValue() == cid) {
 				hand.remove((int) i);

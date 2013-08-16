@@ -47,9 +47,6 @@ class Evaluator {
 			}
 		}
 
-		// qDebug() << "sedma" << forhontTromfs << oppTromfs << opp2Tromfs <<
-		// oppCards;
-
 		int opp2Cards = ms.hand[(ms.stav.forhont + 2) % 3].size();
 		if (opp2Tromfs > oppTromfs) {
 			oppTromfs = opp2Tromfs;
@@ -278,19 +275,10 @@ class Evaluator {
 			return (0);
 		}
 
-		// qDebug() << "(napinavost,  potencial forhonta) =" << napinavost <<
-		// potencialForhonta;
-
 		double exponent = (5.0 - 5.0 / napinavost) - 10 * potencialForhonta;
 		double ret = 1.0 / (1.0 + Math.exp(exponent));
 
-		// qDebug() << "ret" << ret;
 		return (ret);
-
-		/*
-		 * Ten vychadza
-		 */
-		// ms->stav.vysid;
 	}
 
 	/**
@@ -357,8 +345,6 @@ class Evaluator {
 		if ((ms.stav.hra.flekNaHru) != 0) {
 			res += ms.stav.hra.flekNaHru * (2.0 * evaluateHra(ms) - 1.0);
 		}
-
-		// qDebug() << res;
 
 		return (res);
 	}
