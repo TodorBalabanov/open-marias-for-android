@@ -162,7 +162,7 @@ class SettingsDialog {
 	/**
 	 * Logger for debug.
 	 */
-	private final static Logger LOGGER = Logger.getLogger(Card.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(SettingsDialog.class.getName());
 	static {
 		LOGGER.setLevel(Level.INFO);
 	}

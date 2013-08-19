@@ -34,6 +34,8 @@ class Marias /* extends QMainWindow */{
 		}
 	}
 
+	public eu.veldsoft.marias.DeskView.GraphicsView graphicsView;
+
 	/**
 	 * Logger for debug.
 	 */
@@ -59,6 +61,10 @@ class Marias /* extends QMainWindow */{
 	private SettingsDialog sd;
 
 	private void setupUi(Marias marias) {
+	}
+
+	public Rect getGeomety() {
+		return null;
 	}
 
 	private Rect geometry() {

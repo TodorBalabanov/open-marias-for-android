@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import android.graphics.Color;
-
 /**
  * ...
  * 
@@ -16,21 +14,114 @@ import android.graphics.Color;
  */
 public class DeskView {
 	// TODO It is only for project to compile.
-	private static class AbstractAnimation {
+	private static class FileInfo {
+		public String baseName() {
+			return null;
+		}
 
+		public boolean isFile() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class DirIterator {
+
+		public DirIterator(Dir dir) {
+		}
+
+		public boolean hasNext() {
+			return false;
+		}
+
+		public FileInfo fileInfo() {
+			return null;
+		}
+
+		public String filePath() {
+			return "";
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class Qt {
+		public static final int Checked = 1;
+		public static final int Unchecked = 0;
+		public static final int SolidPattern = 0;
+	}
+
+	// TODO It is only for project to compile.
+	private static class Brush {
+		public Brush(RadialGradient gradient) {
+		}
+
+		public Brush(Object fromRgb, int solidpattern) {
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class Color {
+		public static final int YELLOW = 0;
+
+		public static Object fromRgbF(int i, int j, int k, int l) {
+			return null;
+		}
+
+		public static Object fromRgb(int i, int j, int k, int l) {
+			return null;
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class RadialGradient {
+		public RadialGradient(int i, int j, int k) {
+		}
+
+		public void setColorAt(int i, Object fromRgbF) {
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class Dir {
+		public Dir(String fName) {
+		}
+
+		public boolean exists() {
+			return false;
+		}
+
+		public static int current() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class GraphicsScene {
+		public GraphicsScene(Object sceneRect) {
+		}
+
+		public void addItem(SuperText sText) {
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class AbstractAnimation {
 		public static final String DeleteWhenStopped = "";
 	}
-	
+
 	// TODO It is only for project to compile.
 	private static class EasingCurve {
-
 		public static final String InQuad = "";
 	}
-	
+
 	// TODO It is only for project to compile.
 	private static class Point {
+		public Point(int i, int j) {
+		}
 	}
-	
+
 	// TODO It is only for project to compile.
 	private static class PropertyAnimation {
 
@@ -44,30 +135,26 @@ public class DeskView {
 		}
 
 		public void setEasingCurve(String inquad) {
-			// TODO Auto-generated method stub
-			
 		}
 
 		public void start(String deletewhenstopped) {
-			// TODO Auto-generated method stub
-			
 		}
 	}
 
 	// TODO It is only for project to compile.
-	private static class GraphicsScene {
-
-		public void addItem(SuperText sText) {
-		}
-	}
-
-	// TODO It is only for project to compile.
-	private static class GraphicsView {
+	public static class GraphicsView {
 		public Object scene() {
 			return (null);
 		}
 
 		public void show() {
+		}
+
+		public Object sceneRect() {
+			return null;
+		}
+
+		public void setScene(GraphicsScene graphicsScene) {
 		}
 	}
 
@@ -77,16 +164,38 @@ public class DeskView {
 
 	// TODO It is only for project to compile.
 	private static class Pixmap {
+		public Pixmap(String string) {
+		}
 	}
 
 	// TODO It is only for project to compile.
 	private static class GraphicsEllipseItem {
+		public GraphicsEllipseItem(int i, int j, int k, int l) {
+		}
+
+		public void setPen(Object fromRgb) {
+		}
+
+		public void setBrush(Brush brush) {
+		}
+
+		public void setData(int i, String string) {
+		}
 	}
 
 	// TODO It is only for project to compile.
 	private static class Settings {
 
+		public static final int IniFormat = 0;
+
+		public Settings(String string, int value) {
+		}
+
 		public String value(String string, int i) {
+			return "";
+		}
+
+		public String value(String string, String string2) {
 			return "";
 		}
 	}
@@ -352,9 +461,20 @@ public class DeskView {
 		Instance()._rozdaj(cid, pid, offset, pause, last);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @param cid
+	 * @param pid
+	 * @param offset
+	 * @param pause
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
+	 */
 	public static void rozdaj(int cid, int pid, int offset, int pause) {
 		rozdaj(cid, pid, offset, pause, false);
-		// TODO To be done by ...
 	}
 
 	/**
@@ -367,11 +487,26 @@ public class DeskView {
 	 * last card has been given to talon and the finish of the animation is
 	 * connected to next action.
 	 * 
+	 * @param cid
+	 * @param last
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void talon(int cid, boolean last) {
-		// TODO To be done by ...
+		Instance()._talon(cid, last);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @param cid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
+	 */
 	public static void talon(int cid) {
 		talon(cid, false);
 	}
@@ -379,10 +514,25 @@ public class DeskView {
 	/**
 	 * Moves cards in player's hand to their correct positions.
 	 * 
+	 * @param pid
+	 * @param last
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void fixHand(int pid, boolean last) {
+		Instance()._fixHand(pid, last);
 	}
 
+	/**
+	 * 
+	 * @param pid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
+	 */
 	public static void fixHand(int pid) {
 		fixHand(pid, false);
 	}
@@ -396,93 +546,159 @@ public class DeskView {
 	 * after tromf has been chosen, so it only ejects the card softly to be
 	 * visible.
 	 * 
+	 * @param cid
+	 * @param reverse
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void ejectTromf(int cid, boolean reverse) {
-		// TODO To be done by ...
+		Instance()._ejectTromf(cid, reverse);
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
+	 */
 	public static void ejectTromf(int cid) {
-		// TODO To be done by ...
+		ejectTromf(cid, false);
 	}
 
 	/**
 	 * Sets the card image. If the former was back of the card, now it will be
 	 * front.
 	 * 
+	 * @param cid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void revealCard(int cid) {
-		// TODO To be done by ...
+		Instance()._revealCard(cid);
 	}
 
 	/**
 	 * Sets the card image to back. The value of the card will therefore be
 	 * hidden.
 	 * 
+	 * @param cid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void hideCard(int cid) {
-		// TODO To be done by ...
+		Instance()._hideCard(cid);
 	}
 
 	/**
 	 * Draws light at forhont, name labels with money, console with game
 	 * messages and tromf suit.
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void draw() {
-		// TODO To be done by ...
+		Instance()._draw();
+		return;
 	}
 
 	/**
 	 * Cleans all the graphics and displays results. They are stored in
 	 * game.stav.hra.results
 	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void drawResults() {
-		// TODO To be done by ...
+		Instance()._drawResults();
 	}
 
 	/**
 	 * Animate card cid from player pid to the stack (poziciaKopy[pid])
 	 * 
+	 * @param cid
+	 * @param pid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void animateCard(int cid, int pid) {
-		// TODO To be done by ...
+		Instance()._animateCard(cid, pid);
 	}
 
 	/**
 	 * Animate stich(trick) - all 3 cards at the stack(kopa) are transferred to
 	 * player pid.
 	 * 
+	 * @param pid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void animateStich(int pid) {
-		// TODO To be done by ...
+		Instance()._animateStich(pid);
 	}
 
 	/**
 	 * deprecated
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void show() {
-		// TODO To be done by ...
+		Instance().show();
+		return;
 	}
 
 	/**
 	 * Dirty hook how anyone can easily get pointer to Game (Game have access to
 	 * any class).
 	 * 
+	 * @return
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static Game getGame() {
-		// TODO To be done by ...
-		return (null);
+		return Instance()._getGame();
 	}
 
 	/**
 	 * Prints animated text s that says player with id pos. Also logs it.
 	 * 
+	 * @param s
+	 * @param pos
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void print(String s, int pos) {
-		// TODO To be done by ...
+		Instance()._print(s, pos);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @param s
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
+	 */
 	public static void print(String s) {
 		print(s, 0);
 	}
@@ -490,13 +706,152 @@ public class DeskView {
 	/**
 	 * Adds given string to console output.
 	 * 
+	 * @param s
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
 	 */
 	public static void log(String s) {
-		// TODO To be done by ...
+		Instance()._log(s);
 	}
 
+	/**
+	 * 
+	 * @param ui
+	 * @param g
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 19 Aug 2013
+	 */
 	public DeskView(eu.veldsoft.marias.Marias ui, Game g) {
-		// TODO To be done by ...
+		game = g;
+
+		signalMapper = new SignalMapper();
+
+		// TODO Qt specific code.
+		// QObject.connect(signalMapper,SIGNAL(mapped(int)),game,SLOT(animationFinished(int)));
+
+		graphicsView = ui.graphicsView;
+		graphicsScene = new GraphicsScene(graphicsView.sceneRect());
+		graphicsView.setScene(graphicsScene);
+		settings = new Settings("marias.ini", Settings.IniFormat);
+
+		/*
+		 * INIT IMAGES
+		 */
+
+		String fName = settings.value("cards/images", "img/classic7");
+
+		Dir dir = new Dir(fName);
+
+		if (dir.exists() == false) {
+			LOGGER.info("Cannot find the directory: " + fName + "now: "
+					+ Dir.current());
+		}
+
+		DirIterator it = new DirIterator(dir);
+		
+		while (it.hasNext()==true) {
+			LOGGER.info("" + it.hasNext());
+			if (it.fileInfo().isFile()) {
+				LOGGER.info(it.fileInfo().baseName());
+				if (it.fileInfo().baseName().contains("s")) {
+					int k = it.fileInfo().baseName().charAt(1) - '0';
+					if (k < 4 && k >= 0) {
+						suits[k] = new Pixmap((String) it.filePath());
+						LOGGER.info("suit loaded: " + k);
+					}
+				} else {
+					int k = new Integer(it.fileInfo().baseName());
+					if (k < 32 && k >= 0) {
+						images[k] = new Pixmap((String) it.filePath());
+						LOGGER.info("image loaded: " + k);
+					}
+				}
+			}
+		}
+
+		rub = new Pixmap("" + settings.value("cards/rub", "img/rub.png"));
+
+		LOGGER.info("rub loaded");
+
+		/*
+		 * INIT ITEM POSITIONS
+		 */
+
+		poziciaKopy[0] = new Point(330, 275);
+		poziciaKopy[1] = new Point(295, 235);
+		poziciaKopy[2] = new Point(365, 245);
+
+		poziciaKariet[0] = new Point(200, 445);
+		poziciaKariet[1] = new Point(70, 50);
+		poziciaKariet[2] = new Point(400, 50);
+
+		poziciaTromfu[0] = new Point(300, 395);
+		poziciaTromfu[1] = new Point(50, 160);
+		poziciaTromfu[2] = new Point(420, 160);
+
+		poziciaMena[0] = new Point(550, 395);
+		poziciaMena[1] = new Point(100, 160);
+		poziciaMena[2] = new Point(480, 160);
+
+		poziciaStichov[0] = new Point(700, 445);
+		poziciaStichov[1] = new Point(1, 50);
+		poziciaStichov[2] = new Point(700, 50);
+
+		poziciaTextu[0] = new Point(400, 350);
+		poziciaTextu[1] = new Point(200, 150);
+		poziciaTextu[2] = new Point(600, 150);
+
+		poziciaBase = new Point(700, 200);
+
+		/*
+		 * INIT LIGHT
+		 */
+
+		int cx[] = new int[3];
+		int cy[] = new int[3];
+		int r[] = new int[3];
+
+		cx[0] = 600;
+		cy[0] = 800;
+		r[0] = 500;
+
+		cx[1] = -100;
+		cy[1] = -100;
+		r[1] = 500;
+
+		cx[2] = 700;
+		cy[2] = -200;
+		r[2] = 500;
+
+		for (int i = 0; i < 3; i++) {
+			RadialGradient gradient = new RadialGradient(cx[i], cy[i], r[i]);
+
+			gradient.setColorAt(0, Color.fromRgbF(1, 1, 1, 1));
+			gradient.setColorAt(1, Color.fromRgbF(0, 0, 0, 0));
+
+			Brush brush = new Brush(gradient);
+			lightGradient[i] = new GraphicsEllipseItem(cx[i] - r[i], cy[i]
+					- r[i], 2 * r[i], 2 * r[i]);
+			lightGradient[i].setPen(Color.fromRgb(255, 255, 255, 0));
+			lightGradient[i].setBrush(brush);
+			lightGradient[i].setData(0, "light");
+		}
+
+		lightSimple[0] = new GraphicsEllipseItem(100, 300, 800, 600);
+		lightSimple[1] = new GraphicsEllipseItem(-300, -300, 800, 600);
+		lightSimple[2] = new GraphicsEllipseItem(300, -300, 800, 600);
+		for (int i = 0; i < 3; i++) {
+			lightSimple[i].setPen(Color.fromRgb(255, 255, 255, 0));
+			lightSimple[i].setBrush(new Brush(Color.fromRgb(255, 255, 255,
+					i == 0 ? 15 : 25), Qt.SolidPattern));
+			lightSimple[i].setData(0, "light");
+		}
+
+		font = new Font();
 	}
 
 	/**
@@ -583,7 +938,7 @@ public class DeskView {
 	}
 
 	/**
-	 * ... 
+	 * ...
 	 * 
 	 * @author Todor Balabanov
 	 * @email tdb@tbsoft.eu
@@ -595,7 +950,7 @@ public class DeskView {
 
 	/**
 	 * Game instance getter.
-	 *  
+	 * 
 	 * @return
 	 * 
 	 * @author Todor Balabanov
@@ -603,12 +958,12 @@ public class DeskView {
 	 * @date 16 Aug 2013
 	 */
 	public Game _getGame() {
-		return( game );
+		return (game);
 	}
 
 	/**
 	 * ...
-	 *  
+	 * 
 	 * @param s
 	 * @param pos
 	 * 
@@ -617,34 +972,37 @@ public class DeskView {
 	 * @date 16 Aug 2013
 	 */
 	public void _print(String s, int pos) {
-		 /*
-		  * nice animation
-		  */
-		 int textWidth = 750;
-		
-		 font.setBold(false);
-		 font.setFamily("Monospace");
-		 font.setPointSize(50);
-		
-		 SuperText sText = new SuperText();
-		 sText.setHtml("<p align=\"center\">"+s+"</p>");
-		 sText.setTextWidth(textWidth);
-		 sText.setData(0,"anim");
-		 if(pos>2 || pos<0)pos=0;
-		 //TODO Need to be implemented in more complex way.
-		 //sText.setPos(poziciaTextu[pos]-Point(textWidth/2,0));
-		 sText.setFont(font);
-		 sText.setDefaultTextColor(Color.YELLOW);
-		 graphicsScene.addItem(sText);
-		
-		 PropertyAnimation superTextAnim = new PropertyAnimation(sText,"opacity");
-		 superTextAnim.setDuration(10*Integer.valueOf(settings.value("graphics/delay",100)));
-		 superTextAnim.setEndValue(0);
-		 superTextAnim.setEasingCurve(EasingCurve.InQuad);
-		 superTextAnim.start(AbstractAnimation.DeleteWhenStopped);
-		
-		 _log(s);
-		 _draw();
+		/*
+		 * nice animation
+		 */
+		int textWidth = 750;
+
+		font.setBold(false);
+		font.setFamily("Monospace");
+		font.setPointSize(50);
+
+		SuperText sText = new SuperText();
+		sText.setHtml("<p align=\"center\">" + s + "</p>");
+		sText.setTextWidth(textWidth);
+		sText.setData(0, "anim");
+		if (pos > 2 || pos < 0)
+			pos = 0;
+		// TODO Need to be implemented in more complex way.
+		// sText.setPos(poziciaTextu[pos]-Point(textWidth/2,0));
+		sText.setFont(font);
+		sText.setDefaultTextColor(Color.YELLOW);
+		graphicsScene.addItem(sText);
+
+		PropertyAnimation superTextAnim = new PropertyAnimation(sText,
+				"opacity");
+		superTextAnim.setDuration(10 * Integer.valueOf(settings.value(
+				"graphics/delay", 100)));
+		superTextAnim.setEndValue(0);
+		superTextAnim.setEasingCurve(EasingCurve.InQuad);
+		superTextAnim.start(AbstractAnimation.DeleteWhenStopped);
+
+		_log(s);
+		_draw();
 	}
 
 	/**
@@ -710,29 +1068,29 @@ public class DeskView {
 //
 // //INIT ITEM POSITIONS
 //
-// poziciaKopy[0] = Point(330,275);
-// poziciaKopy[1] = Point(295,235);
-// poziciaKopy[2] = Point(365,245);
+// poziciaKopy[0] = new Point(330,275);
+// poziciaKopy[1] = new Point(295,235);
+// poziciaKopy[2] = new Point(365,245);
 //
-// poziciaKariet[0] = Point(200,445);
-// poziciaKariet[1] = Point(70,50);
-// poziciaKariet[2] = Point(400,50);
+// poziciaKariet[0] = new Point(200,445);
+// poziciaKariet[1] = new Point(70,50);
+// poziciaKariet[2] = new Point(400,50);
 //
-// poziciaTromfu[0] = Point(300,395);
-// poziciaTromfu[1] = Point(50,160);
-// poziciaTromfu[2] = Point(420,160);
+// poziciaTromfu[0] = new Point(300,395);
+// poziciaTromfu[1] = new Point(50,160);
+// poziciaTromfu[2] = new Point(420,160);
 //
-// poziciaMena[0] = Point(550,395);
-// poziciaMena[1] = Point(100,160);
-// poziciaMena[2] = Point(480,160);
+// poziciaMena[0] = new Point(550,395);
+// poziciaMena[1] = new Point(100,160);
+// poziciaMena[2] = new Point(480,160);
 //
-// poziciaStichov[0] = Point(700,445);
-// poziciaStichov[1] = Point(1,50);
-// poziciaStichov[2] = Point(700,50);
+// poziciaStichov[0] = new Point(700,445);
+// poziciaStichov[1] = new Point(1,50);
+// poziciaStichov[2] = new Point(700,50);
 //
-// poziciaTextu[0] = Point(400,350);
-// poziciaTextu[1] = Point(200,150);
-// poziciaTextu[2] = Point(600,150);
+// poziciaTextu[0] = new Point(400,350);
+// poziciaTextu[1] = new Point(200,150);
+// poziciaTextu[2] = new Point(600,150);
 //
 // poziciaBase = Point(700,200);
 //
