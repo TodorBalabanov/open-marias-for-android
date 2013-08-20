@@ -78,7 +78,7 @@ public class CardItem {
 		if (kolo == -6) {
 			DeskView.getGame().animationFinished(kolo);
 		} else if (kolo == -5) {
-			DeskView.getGame().marias.on_actionNew_game_triggered();
+			//TODO DeskView.getGame().marias.on_actionNew_game_triggered();
 		}else if (kolo == -4) {
 			DeskView.getGame().tromfClicked(cid);
 		}else if (kolo == -3) {
