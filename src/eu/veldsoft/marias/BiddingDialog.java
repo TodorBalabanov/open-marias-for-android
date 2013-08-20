@@ -239,10 +239,12 @@ class BiddingDialog {
 					return 0;
 				}
 			}
-			LocalRect mainW = new LocalRect(game.marias.getGeomety());
 
-			setGeometry(mainW.x() + 350 + (mainW.width() - 802) / 2, mainW.y()
-					+ 280 + (mainW.height() - 641) / 2, width(), height());
+			// TODO LocalRect mainW = new
+			// LocalRect(game.gameActivity.getGeomety());
+
+			// TODO setGeometry(mainW.x() + 350 + (mainW.width() - 802) / 2,
+			// mainW.y() + 280 + (mainW.height() - 641) / 2, width(), height());
 
 			show();
 

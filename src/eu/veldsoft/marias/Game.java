@@ -80,9 +80,9 @@ class Game {
 	public BiddingDialog bd;
 
 	/**
-	 * Marias game logic.
+	 * Reference to game windows.
 	 */
-	public Marias marias;
+	public GameActivity gameActivity;
 
 	/**
 	 * Quick game flag.
@@ -107,16 +107,15 @@ class Game {
 	/**
 	 * Constructor.
 	 * 
-	 * @param m
+	 * @param gameActivity
 	 *            Marias object reference.
 	 * 
 	 * @author Todor Balabanov
 	 * @email tdb@tbsoft.eu
 	 * @date 14 Aug 2013
 	 */
-	public Game(Marias m) {
-		// TODO Deep copy is bettter.
-		marias = m;
+	public Game(GameActivity gameActivity) {
+		this.gameActivity = gameActivity;
 
 		// TODO Should be implemented because it is different than Qt
 		// implementation.

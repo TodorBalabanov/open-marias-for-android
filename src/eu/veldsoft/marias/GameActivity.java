@@ -5,11 +5,20 @@ import android.app.Activity;
 import android.view.Menu;
 
 public class GameActivity extends Activity {
+	/**
+	 * Game state machine.
+	 */
+	private Game game = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
+		
+		game = new Game(this);
+		game.init();
+		
+		game.newGame();
 	}
 
 	@Override

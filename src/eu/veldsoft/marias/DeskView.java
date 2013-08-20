@@ -15,6 +15,11 @@ import java.util.logging.Logger;
  */
 public class DeskView {
 	// TODO It is only for project to compile.
+	private static class Marias {
+		public GraphicsView graphicsView;
+	}
+
+	// TODO It is only for project to compile.
 	private static class GraphicsPixmapItem {
 
 		public void setPixmap(Pixmap pixmap) {
@@ -503,7 +508,7 @@ public class DeskView {
 	 * @email tdb@tbsoft.eu
 	 * @date 15 Aug 2013
 	 */
-	public static void createInstance(eu.veldsoft.marias.Marias ui, Game g) {
+	public static void createInstance(Marias ui, Game g) {
 		if (instance != null) {
 			LOGGER.info("DeskView: create instance called twice");
 		}
@@ -861,7 +866,7 @@ public class DeskView {
 	 * @email tdb@tbsoft.eu
 	 * @date 19 Aug 2013
 	 */
-	public DeskView(eu.veldsoft.marias.Marias ui, Game g) {
+	public DeskView(Marias ui, Game g) {
 		game = g;
 
 		signalMapper = new SignalMapper();
@@ -1506,30 +1511,30 @@ public class DeskView {
 		for (int i = 0; i < 3; i++) {
 			cardItem[game.stav.kopa.get(i)].setZValue(cardItem[game.stav.kopa
 					.get(i)].zValue() - 1000 + 100 * game.stav.kolo);
-			
+
 			PropertyAnimation anim = new PropertyAnimation(
 					cardItem[game.stav.kopa.get(i)], "pos");
-			
+
 			anim.setEndValue(poziciaStichov[pid]);
-			
+
 			anim.setDuration(3 * Integer.valueOf(settings.value(
 					"graphics/delay", 100)));
-			
+
 			berStich.addAnimation(anim);
-			
+
 			anim = new PropertyAnimation(cardItem[game.stav.kopa.get(i)],
 					"opacity");
-			
+
 			anim.setEndValue(0);
-			
+
 			anim.setDuration(3 * Integer.valueOf(settings.value(
 					"graphics/delay", 100)));
-			
+
 			berStich.addAnimation(anim);
 		}
-		
+
 		SequentialAnimationGroup sag = new SequentialAnimationGroup();
-		
+
 		sag.addPause(7 * Integer.valueOf(settings.value("graphics/delay", 100)));
 		sag.addAnimation(berStich);
 
