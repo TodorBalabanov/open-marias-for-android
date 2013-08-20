@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="player_type">
+        <item>Human</item>
+        <item>Random</item>
+        <item>Min</item>
+        <item>Max</item>
+        <item>Smart</item>
+        <item>Min-Max</item>
+    </string-array>
+    <string-array name="game_types">
+        <item>Game</item>
+        <item>Seven</item>
+        <item>Hundred</item>
+    </string-array>
+    <string-array name="openings">
+        <item>Flek</item>
+        <item>Re</item>
+        <item>Tutti</item>
+        <item>Boty</item>
+        <item>Kalhoty</item>
+        <item>Kaiser</item>
+        <item>Rekaiser</item>
+    </string-array>
+
+</resources>

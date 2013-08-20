@@ -37,6 +37,10 @@
             android:name="eu.veldsoft.marias.ResultsActivity"
             android:label="@string/title_activity_results" >
         </activity>
+        <activity
+            android:name="eu.veldsoft.marias.BiddingActivity"
+            android:label="@string/title_activity_bidding" >
+        </activity>
     </application>
 
 </manifest>
