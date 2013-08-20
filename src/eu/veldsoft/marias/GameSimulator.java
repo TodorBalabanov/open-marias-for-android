@@ -11,8 +11,6 @@ class GameSimulator {
 
 	public Player p[] = new Player[3];
 
-	public Random rg = new Random();
-
 	public List<Integer> biddingHistory;
 
 	public OutputStream out;

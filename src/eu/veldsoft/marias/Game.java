@@ -1,9 +1,13 @@
 package eu.veldsoft.marias;
 
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import android.content.SharedPreferences;
 
 /**
  * 
@@ -17,32 +21,6 @@ import java.util.logging.Logger;
  * @data 14 Aug 2013
  */
 class Game {
-	// TODO It is only for project to compile.
-	static class Settings {
-		public static final int IniFormat = 0;
-
-		public Settings(String string, int format) {
-		}
-
-		public int value(String string, int value) {
-			return (0);
-		}
-
-		public Object value(String string, String string2) {
-			return ("");
-		}
-
-		public void setValue(String string, int i) {
-		}
-
-		public void setValue(String string, String lineEdit_text) {
-		}
-
-		public int value(String string) {
-			return 0;
-		}
-	}
-
 	/**
 	 * Logger for debug.
 	 */
@@ -50,9 +28,6 @@ class Game {
 	static {
 		LOGGER.setLevel(Level.INFO);
 	}
-
-	// TODO Use shared preferences.
-	public Settings settings;
 
 	/**
 	 * Players container.
@@ -82,7 +57,7 @@ class Game {
 	/**
 	 * Reference to game windows.
 	 */
-	public GameActivity gameActivity;
+	public GameActivity gameActivity = null;
 
 	/**
 	 * Quick game flag.
@@ -95,14 +70,27 @@ class Game {
 	public Profiler profiler;
 
 	/**
-	 * Pseudo-random number generator.
-	 */
-	public static Random prng = new Random();
-
-	/**
 	 * for poeple test
 	 */
 	public int stats[] = new int[3];
+
+	/**
+	 * Used instead of destructor.
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
+	protected void finalize() throws Throwable {
+		LOGGER.info("" + stats[0] + stats[1] + stats[2]);
+
+		String uncompressed = "" + stats[0] + " " + stats[1] + " " + stats[2];
+
+		DataOutputStream out = new DataOutputStream(new FileOutputStream(
+				"vysledky.txt"));
+		out.writeUTF(uncompressed);
+		out.close();
+	}
 
 	/**
 	 * Constructor.
@@ -117,11 +105,7 @@ class Game {
 	public Game(GameActivity gameActivity) {
 		this.gameActivity = gameActivity;
 
-		// TODO Should be implemented because it is different than Qt
-		// implementation.
-		settings = new Settings("marias.ini", Settings.IniFormat);
-
-		bd = new BiddingDialog(this);
+		//TODO bd = new BiddingDialog(this);
 
 		profiler = new Profiler();
 
@@ -141,31 +125,36 @@ class Game {
 		LOGGER.info("game init");
 		quickGame = false;
 
-		// TODO Settings should be available in order this fragmetn to work.
-		if (settings.value("shuffling/random", 1) == 1) {
+		SharedPreferences preferences = gameActivity
+				.getPreferences(gameActivity.MODE_PRIVATE);
+
+		preferences.getBoolean("shuffling_random", true);
+		preferences.getInt("shuffling_seed", 47);
+
+		if (preferences.getBoolean("shuffling_random", true) == true) {
 			LOGGER.info("random");
-			prng.setSeed(System.currentTimeMillis());
+			MainActivity.prng.setSeed(System.currentTimeMillis());
 			;
 		} else {
 			LOGGER.info("not random");
-			prng.setSeed(settings.value("shuffling/seed", 47));
+			MainActivity.prng.setSeed(preferences.getInt("shuffling_seed", 47));
 		}
 
 		shuffleDeck();
 
 		players.clear();
-		players.add(PlayerFactory.create(settings.value("players/front",
-				"HumanPlayer").toString()));
-		players.add(PlayerFactory.create(settings.value("players/left",
-				"RandomPlayer").toString()));
-		players.add(PlayerFactory.create(settings.value("players/right",
-				"RandomPlayer").toString()));
-		players.get(0).name = settings.value("players/front_name", "front")
-				.toString();
-		players.get(1).name = settings.value("players/left_name", "left")
-				.toString();
-		players.get(2).name = settings.value("players/right_name", "right")
-				.toString();
+		players.add(PlayerFactory.create(preferences.getString("players_front",
+				"HumanPlayer")));
+		players.add(PlayerFactory.create(preferences.getString("players_left",
+				"RandomPlayer")));
+		players.add(PlayerFactory.create(preferences.getString("players_right",
+				"RandomPlayer")));
+		players.get(0).name = preferences.getString("players_front_name",
+				"front");
+		players.get(1).name = preferences
+				.getString("players_left_name", "left");
+		players.get(2).name = preferences.getString("players_right_name",
+				"right");
 
 		// TODO Use for-each loop.
 		for (int i = 0; i < 3; i++) {
@@ -476,11 +465,11 @@ class Game {
 			deck.add(i);
 		}
 
-		int swapCount = 1000 + prng.nextInt(1000);
+		int swapCount = 1000 + MainActivity.prng.nextInt(1000);
 
 		// TODO Better shuffling algorithm shuld be used.
 		for (int i = 0; i < swapCount; i++) {
-			Integer card = deck.remove(prng.nextInt(32));
+			Integer card = deck.remove(MainActivity.prng.nextInt(32));
 			deck.add(card);
 		}
 	}
@@ -715,7 +704,7 @@ class Game {
 			 * first kolo increase, then animation
 			 */
 			stav.kolo = -4;
-			
+
 			if (quickGame == false) {
 				for (int i = 0; i < players.get(0).hand.size(); i++) {
 					DeskView.rozdaj(players.get(0).hand.get(i), 0, i, 0,
@@ -806,7 +795,7 @@ class Game {
 
 			profiler.stop("game - results");
 			profiler.start("game - after results");
-			
+
 			return;
 		}
 

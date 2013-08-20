@@ -1,5 +1,6 @@
 package eu.veldsoft.marias;
 
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +22,11 @@ public class MainActivity extends Activity {
 	static {
 		LOGGER.setLevel(Level.INFO);
 	}
+
+	/**
+	 * Pseudo-random number generator.
+	 */
+	public static Random prng = new Random();
 
 	/**
 	 * Load default settings values as it was done in the original source code.

@@ -66,9 +66,9 @@ class QuickGameThread extends Thread {
 		game.profiler.reset();
 
 		if (ui.checkBox_checkState() == Qt.Checked) {
-			game.prng.setSeed(-1);
+			MainActivity.prng.setSeed(-1);
 		} else {
-			game.prng.setSeed(new Integer(ui.lineEdit_text()));
+			MainActivity.prng.setSeed(new Integer(ui.lineEdit_text()));
 		}
 
 		// TODO Android specific implementation.

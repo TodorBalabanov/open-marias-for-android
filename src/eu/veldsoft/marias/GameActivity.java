@@ -15,10 +15,10 @@ public class GameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		
-		game = new Game(this);
-		game.init();
+		game = new Game(GameActivity.this);
+		//TODO game.init();
 		
-		game.newGame();
+		//TODO game.newGame();
 	}
 
 	@Override

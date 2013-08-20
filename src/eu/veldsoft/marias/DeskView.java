@@ -371,11 +371,6 @@ public class DeskView {
 	}
 
 	/**
-	 * Pseudo random number generator.
-	 */
-	public static Random prng = new Random();
-
-	/**
 	 * instance
 	 */
 	private static DeskView instance;
@@ -1077,8 +1072,8 @@ public class DeskView {
 			y.add(new ArrayList<Double>());
 
 			for (int j = 0; j < n; j++) {
-				x.get(i).add((double) prng.nextInt(700));
-				y.get(i).add((double) prng.nextInt(500));
+				x.get(i).add((double) MainActivity.prng.nextInt(700));
+				y.get(i).add((double) MainActivity.prng.nextInt(500));
 			}
 
 			revealCard(i);
@@ -1096,14 +1091,14 @@ public class DeskView {
 				PropertyAnimation ax = new PropertyAnimation(cardItem[i], "x");
 				ax.setStartValue(x.get(i).get(j - 1));
 				ax.setEndValue(x.get(i).get(j));
-				ax.setDuration(15 * delay + prng.nextInt(5 * delay));
+				ax.setDuration(15 * delay + MainActivity.prng.nextInt(5 * delay));
 				ax.setEasingCurve(EasingCurve.InOutSine);
 				xs.addAnimation(ax);
 
 				PropertyAnimation ay = new PropertyAnimation(cardItem[i], "y");
 				ay.setStartValue(y.get(i).get(j - 1));
 				ay.setEndValue(y.get(i).get(j));
-				ay.setDuration(15 * delay + prng.nextInt(5 * delay));
+				ay.setDuration(15 * delay + MainActivity.prng.nextInt(5 * delay));
 				ay.setEasingCurve(EasingCurve.InOutSine);
 				ys.addAnimation(ay);
 			}
@@ -1111,14 +1106,14 @@ public class DeskView {
 			PropertyAnimation ax = new PropertyAnimation(cardItem[i], "x");
 			ax.setStartValue(x.get(i).get(n - 1));
 			ax.setEndValue(poziciaBase.x());
-			ax.setDuration(15 * delay + prng.nextInt(5 * delay));
+			ax.setDuration(15 * delay + MainActivity.prng.nextInt(5 * delay));
 			ax.setEasingCurve(EasingCurve.InOutSine);
 			xs.addAnimation(ax);
 
 			PropertyAnimation ay = new PropertyAnimation(cardItem[i], "y");
 			ay.setStartValue(y.get(i).get(n - 1));
 			ay.setEndValue(poziciaBase.y());
-			ay.setDuration(15 * delay + prng.nextInt(5 * delay));
+			ay.setDuration(15 * delay + MainActivity.prng.nextInt(5 * delay));
 			ay.setEasingCurve(EasingCurve.InOutSine);
 			ys.addAnimation(ay);
 
