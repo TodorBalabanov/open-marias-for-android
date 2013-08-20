@@ -1,8 +1,6 @@
 package eu.veldsoft.marias;
 
-import android.graphics.Color;
-
-public class SuperText /* extends QGraphicsTextItem */{
+public class SuperText {
 	// TODO It is only for project to compile.
 	private static class Font {
 
@@ -15,9 +13,6 @@ public class SuperText /* extends QGraphicsTextItem */{
 		public void setPointSize(int i) {
 		}
 	}
-	
-	// Q_OBJECT
-	// Q_PROPERTY(qreal opacity READ opacity WRITE setOpacity)
 
 	public void setHtml(String string) {
 	}

@@ -12,6 +12,10 @@ import java.util.Random;
  * @date 18 Jul 2013
  */
 class RandomPlayer extends Player {
+	/**
+	 * Pseudo-random number generator.
+	 */
+	private static Random prng = new Random();
 
 	/**
 	 * Constructor
@@ -21,10 +25,9 @@ class RandomPlayer extends Player {
 	 * @date 18 Jul 2013
 	 */
 	public RandomPlayer() {
-		Random rg = new Random();
 		type = "random";
 		name = "Randomak";
-		rg.setSeed(-1);
+		prng.setSeed(-1);
 	}
 
 	/**
@@ -73,17 +76,16 @@ class RandomPlayer extends Player {
 	 */
 	@Override
 	public int bid() {
-		Random rg = new Random();
 		int bids = 0;
 		if (hand.contains(stav.hra.tromf7())) {
-			if (rg.nextInt((stav.hra.flekNaSedmu + 1) + 3) == 0) {
+			if (prng.nextInt((stav.hra.flekNaSedmu + 1) + 3) == 0) {
 				bids |= 2;
 			}
 		}
-		if (rg.nextInt((stav.hra.flekNaStovku + 1) + 3) == 0) {
+		if (prng.nextInt((stav.hra.flekNaStovku + 1) + 3) == 0) {
 			bids |= 1;
 		}
-		if (rg.nextInt(stav.hra.flekNaHru + 1) == 0) {
+		if (prng.nextInt(stav.hra.flekNaHru + 1) == 0) {
 			bids |= 4;
 		}
 		return (bids);
@@ -115,8 +117,7 @@ class RandomPlayer extends Player {
 	 * @date 17 Jul 2013
 	 */
 	public int pickRandom(List<Integer> legal) {
-		Random rg = new Random();
-		return (legal.indexOf(rg.nextInt(legal.size())));
+		return (legal.indexOf(prng.nextInt(legal.size())));
 	}
 
 	/**
@@ -132,11 +133,10 @@ class RandomPlayer extends Player {
 	 * @date 17 Jul 2013
 	 */
 	public int pickRandomTwo(List<Integer> legal) {
-		Random rg = new Random();
-		int i = rg.nextInt(legal.size());
+		int i = prng.nextInt(legal.size());
 		int k = legal.get(i);
 		legal.remove(i);
-		int j = rg.nextInt(legal.size());
+		int j = prng.nextInt(legal.size());
 		return (k * 32 + legal.get(j));
 	}
 }

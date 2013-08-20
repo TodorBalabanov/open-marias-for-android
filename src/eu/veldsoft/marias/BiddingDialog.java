@@ -121,20 +121,16 @@ class BiddingDialog {
 		return (0);
 	}
 
-	// TODO It is only for project to compile.
 	public void show() {
 	}
 
-	// TODO It is only for project to compile.
 	public void raise() {
 	}
 
-	// TODO It is only for project to compile.
 	public boolean isVisible() {
 		return false;
 	}
 
-	// TODO It is only for project to compile.
 	public void hide() {
 	}
 

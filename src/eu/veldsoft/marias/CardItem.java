@@ -11,7 +11,47 @@ import android.view.MotionEvent;
  * @email tdb@tbsoft.eu
  * @date 14 Aug 2013
  */
-public class CardItem /* extends QObject, QGraphicsPixmapItem */{
+public class CardItem {
+
+	public int zValue() {
+		return 0;
+	}
+
+	public void setX(double d) {
+	}
+
+	public void setY(double d) {
+	}
+
+	public double x() {
+		return 0;
+	}
+
+	public double y() {
+		return 0;
+	}
+
+	public void setPos(Double double1, Double double2) {
+	}
+
+	public void setPixmap(eu.veldsoft.marias.DeskView.Pixmap rub) {
+	}
+
+	public void setPos(eu.veldsoft.marias.DeskView.Point poziciaBase) {
+	}
+
+	public void setOpacity(int i) {
+	}
+
+	public void setData(int i, String string) {
+	}
+
+	public void setData(int i, int i2) {
+	}
+
+	public void setZValue(int i) {
+	}
+	
 	/**
 	 * Logger for debug.
 	 */
@@ -19,13 +59,6 @@ public class CardItem /* extends QObject, QGraphicsPixmapItem */{
 	static {
 		LOGGER.setLevel(Level.INFO);
 	}
-
-	// Q_OBJECT
-	// Q_PROPERTY(QPointF pos READ pos WRITE setPos)
-	// Q_PROPERTY(qreal x READ x WRITE setX)
-	// Q_PROPERTY(qreal y READ y WRITE setY)
-	// Q_PROPERTY(qreal opacity READ opacity WRITE setOpacity)
-	// Q_PROPERTY(qreal z READ zValue WRITE setZValue)
 
 	public int cid;
 
