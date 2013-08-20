@@ -3,6 +3,7 @@ package eu.veldsoft.marias;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import android.content.SharedPreferences;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 
 /**
@@ -215,9 +216,13 @@ class QuickGameDialog {
 		thread.terminate();
 		game.quickGame = false;
 		ui.progressBar_setValue(0);
-		game.settings.setValue("shuffling/random",
-				ui.checkBox_checkState() == Qt.Checked ? 1 : 0);
-		game.settings.setValue("shuffling/seed", ui.lineEdit_text());
+
+		SharedPreferences.Editor editor = game.gameActivity.getPreferences(
+				game.gameActivity.MODE_PRIVATE).edit();
+		editor.putBoolean("shuffling_random",
+				(ui.checkBox_checkState() == Qt.Checked ? true : false));
+		editor.putInt("shuffling_seed", Integer.valueOf(ui.lineEdit_text()));
+		editor.commit();
 	}
 
 	/**
@@ -232,9 +237,13 @@ class QuickGameDialog {
 		thread.terminate();
 		game.quickGame = false;
 		ui.progressBar_setValue(0);
-		game.settings.setValue("shuffling/random",
-				ui.checkBox_checkState() == Qt.Checked ? 1 : 0);
-		game.settings.setValue("shuffling/seed", ui.lineEdit_text());
+		
+		SharedPreferences.Editor editor = game.gameActivity.getPreferences(
+				game.gameActivity.MODE_PRIVATE).edit();
+		editor.putBoolean("shuffling_random",
+				(ui.checkBox_checkState() == Qt.Checked ? true : false));
+		editor.putInt("shuffling_seed", Integer.valueOf(ui.lineEdit_text()));
+		editor.commit();
 	}
 
 	/**
@@ -319,7 +328,11 @@ class QuickGameDialog {
 		ui.label_2_setText(game.players.get(0).name);
 		ui.label_3_setText(game.players.get(1).name);
 		ui.label_4_setText(game.players.get(2).name);
-		ui.lineEdit_setText("" + game.settings.value("shuffling/seed", 47));
-		ui.checkBox_setChecked(game.settings.value("shuffling/random") == 1);
+		
+		SharedPreferences preferences = game.gameActivity
+				.getPreferences(game.gameActivity.MODE_PRIVATE);
+		
+		ui.lineEdit_setText("" + preferences.getInt("shuffling_seed", 47));
+		ui.checkBox_setChecked(preferences.getBoolean("shuffling_random", true));
 	}
 }

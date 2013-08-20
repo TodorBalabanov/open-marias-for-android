@@ -27,11 +27,6 @@ class Player {
 	}
 
 	/**
-	 * Pseudo random number generator.
-	 */
-	public static Random prng = new Random();
-
-	/**
 	 * Player name.
 	 */
 	public String name;
