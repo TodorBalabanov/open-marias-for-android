@@ -2,6 +2,7 @@ package eu.veldsoft.marias;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,13 +15,85 @@ import java.util.logging.Logger;
  */
 public class DeskView {
 	// TODO It is only for project to compile.
+	private static class GraphicsPixmapItem {
+
+		public void setPixmap(Pixmap pixmap) {
+		}
+
+		public void setPos(Point point) {
+		}
+
+		public void setZValue(int i) {
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class GraphicsTextItem {
+
+		public GraphicsTextItem(String string) {
+		}
+
+		public GraphicsTextItem() {
+		}
+
+		public void setDefaultTextColor(int white) {
+		}
+
+		public void setPos(Point point) {
+		}
+
+		public void setFont(Font font) {
+		}
+
+		public void setPos(int i, int j) {
+		}
+
+		public void setHtml(String string) {
+		}
+
+		public void setTextInteractionFlags(int textbrowserinteraction) {
+		}
+
+		public void setCursor(int pointinghandcursor) {
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class SequentialAnimationGroup {
+
+		public void addAnimation(PropertyAnimation ax) {
+		}
+
+		public void start(String deletewhenstopped) {
+		}
+
+		public void addPause(int i) {
+		}
+
+		public void addAnimation(ParallelAnimationGroup berStich) {
+		}
+	}
+
+	// TODO It is only for project to compile.
+	private static class ParallelAnimationGroup {
+
+		public void addAnimation(SequentialAnimationGroup xs) {
+		}
+
+		public void start(String deletewhenstopped) {
+		}
+
+		public void addAnimation(PropertyAnimation anim) {
+		}
+	}
+
+	// TODO It is only for project to compile.
 	private static class FileInfo {
 		public String baseName() {
 			return null;
 		}
 
 		public boolean isFile() {
-			// TODO Auto-generated method stub
 			return false;
 		}
 	}
@@ -48,7 +121,9 @@ public class DeskView {
 	private static class Qt {
 		public static final int Checked = 1;
 		public static final int Unchecked = 0;
-		public static final int SolidPattern = 0;
+		public static final int SolidPattern = 2;
+		public static final int TextBrowserInteraction = 4;
+		public static final int PointingHandCursor = 8;
 	}
 
 	// TODO It is only for project to compile.
@@ -63,6 +138,7 @@ public class DeskView {
 	// TODO It is only for project to compile.
 	private static class Color {
 		public static final int YELLOW = 0;
+		public static final int WHITE = 0;
 
 		public static Object fromRgbF(int i, int j, int k, int l) {
 			return null;
@@ -92,7 +168,6 @@ public class DeskView {
 		}
 
 		public static int current() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}
@@ -104,6 +179,12 @@ public class DeskView {
 
 		public void addItem(SuperText sText) {
 		}
+
+		public void addItem(GraphicsEllipseItem graphicsEllipseItem) {
+		}
+
+		public void addItem(GraphicsTextItem text) {
+		}
 	}
 
 	// TODO It is only for project to compile.
@@ -113,12 +194,21 @@ public class DeskView {
 
 	// TODO It is only for project to compile.
 	private static class EasingCurve {
-		public static final String InQuad = "";
+		public static final int InQuad = 1;
+		public static final int InOutSine = 2;
 	}
 
 	// TODO It is only for project to compile.
-	private static class Point {
+	static class Point {
 		public Point(int i, int j) {
+		}
+
+		public Double x() {
+			return 0.0D;
+		}
+
+		public Double y() {
+			return 0.0D;
 		}
 	}
 
@@ -128,22 +218,50 @@ public class DeskView {
 		public PropertyAnimation(SuperText sText, String string) {
 		}
 
+		public PropertyAnimation(CardItem cardItem, String string) {
+		}
+
 		public void setDuration(int i) {
 		}
 
 		public void setEndValue(int i) {
 		}
 
-		public void setEasingCurve(String inquad) {
+		public void setEasingCurve(int inoutsine) {
 		}
 
 		public void start(String deletewhenstopped) {
+		}
+
+		public void setStartValue(Double double1) {
+		}
+
+		public void setEndValue(Double double1) {
+		}
+
+		public void setEndValue(Point poziciaBase) {
+		}
+	}
+
+	// TODO It is only for project to compile.
+	public static class Scene {
+		public List<GraphicsItem> items() {
+			return null;
+		}
+
+		public void removeItem(GraphicsItem git) {
+		}
+
+		public void addItem(CardItem ci) {
+		}
+
+		public void addItem(GraphicsPixmapItem pi) {
 		}
 	}
 
 	// TODO It is only for project to compile.
 	public static class GraphicsView {
-		public Object scene() {
+		public Scene scene() {
 			return (null);
 		}
 
@@ -160,10 +278,19 @@ public class DeskView {
 
 	// TODO It is only for project to compile.
 	private static class SignalMapper {
+
+		public void setMapping(ParallelAnimationGroup xy, int kolo) {
+		}
+
+		public void setMapping(SequentialAnimationGroup rozd, int kolo) {
+		}
+
+		public void setMapping(PropertyAnimation anim, int kolo) {
+		}
 	}
 
 	// TODO It is only for project to compile.
-	private static class Pixmap {
+	static class Pixmap {
 		public Pixmap(String string) {
 		}
 	}
@@ -211,6 +338,10 @@ public class DeskView {
 
 		public void setPointSize(int i) {
 		}
+
+		public int pointSize() {
+			return 0;
+		}
 	}
 
 	// TODO It is only for project to compile.
@@ -233,6 +364,11 @@ public class DeskView {
 	static {
 		LOGGER.setLevel(Level.INFO);
 	}
+
+	/**
+	 * Pseudo random number generator.
+	 */
+	public static Random prng = new Random();
 
 	/**
 	 * instance
@@ -752,8 +888,8 @@ public class DeskView {
 		}
 
 		DirIterator it = new DirIterator(dir);
-		
-		while (it.hasNext()==true) {
+
+		while (it.hasNext() == true) {
 			LOGGER.info("" + it.hasNext());
 			if (it.fileInfo().isFile()) {
 				LOGGER.info(it.fileInfo().baseName());
@@ -864,77 +1000,545 @@ public class DeskView {
 	 * @date 15 Aug 2013
 	 */
 	public void _cleanGraphics(boolean all) {
-		// TODO for(GraphicsItem git : graphicsView.scene().items()){
-		// if (git.data(0).equals("card") == false
-		// && git.data(0).equals("anim") == false
-		// && git.parentItem().data(0).equals("anim") == false) {
-		//
-		// graphicsView.scene().removeItem(git);
-		//
-		// if (git.data(0).equals("light") == false) {
-		// }
-		// } else if (all == true) {
-		// if (git.data(0).equals("light") == false) {
-		// graphicsView.scene().removeItem(git);
-		// }
-		// }
-		// }
+		for (GraphicsItem git : graphicsView.scene().items()) {
+			if (git.data(0).equals("card") == false
+					&& git.data(0).equals("anim") == false
+					&& git.parentItem().data(0).equals("anim") == false) {
+
+				graphicsView.scene().removeItem(git);
+
+				if (git.data(0).equals("light") == false) {
+				}
+			} else if (all == true) {
+				if (git.data(0).equals("light") == false) {
+					graphicsView.scene().removeItem(git);
+				}
+			}
+		}
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _cleanGraphics() {
 		_cleanGraphics(false);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _gather() {
-		// TODO To be done by ...
+		cleanGraphics(true);
+		for (int i = 0; i < 32; i++) {
+			CardItem ci = new CardItem();
+			ci.setPixmap(rub);
+			ci.setPos(poziciaBase);
+			ci.setZValue(i);
+			ci.setOpacity(1);
+			ci.cid = i;
+			ci.setData(0, "card");
+			ci.setData(1, i);
+			graphicsView.scene().addItem(ci);
+			cardItem[i] = ci;
+		}
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _intro() {
-		// TODO To be done by ...
+		gather();
+
+		int n = new Integer(settings.value("intro/length", 10));
+		int delay = new Integer(settings.value("graphics/delay", 100));
+
+		List<List<Double>> x = new ArrayList<List<Double>>();
+		List<List<Double>> y = new ArrayList<List<Double>>();
+
+		for (int i = 0; i < 32; i++) {
+			x.add(new ArrayList<Double>());
+			y.add(new ArrayList<Double>());
+
+			for (int j = 0; j < n; j++) {
+				x.get(i).add((double) prng.nextInt(700));
+				y.get(i).add((double) prng.nextInt(500));
+			}
+
+			revealCard(i);
+		}
+
+		ParallelAnimationGroup xy = new ParallelAnimationGroup();
+
+		for (int i = 0; i < 32; i++) {
+			SequentialAnimationGroup xs = new SequentialAnimationGroup();
+			SequentialAnimationGroup ys = new SequentialAnimationGroup();
+
+			cardItem[i].setPos(x.get(i).get(0), y.get(i).get(0));
+
+			for (int j = 1; j < n; j++) {
+				PropertyAnimation ax = new PropertyAnimation(cardItem[i], "x");
+				ax.setStartValue(x.get(i).get(j - 1));
+				ax.setEndValue(x.get(i).get(j));
+				ax.setDuration(15 * delay + prng.nextInt(5 * delay));
+				ax.setEasingCurve(EasingCurve.InOutSine);
+				xs.addAnimation(ax);
+
+				PropertyAnimation ay = new PropertyAnimation(cardItem[i], "y");
+				ay.setStartValue(y.get(i).get(j - 1));
+				ay.setEndValue(y.get(i).get(j));
+				ay.setDuration(15 * delay + prng.nextInt(5 * delay));
+				ay.setEasingCurve(EasingCurve.InOutSine);
+				ys.addAnimation(ay);
+			}
+
+			PropertyAnimation ax = new PropertyAnimation(cardItem[i], "x");
+			ax.setStartValue(x.get(i).get(n - 1));
+			ax.setEndValue(poziciaBase.x());
+			ax.setDuration(15 * delay + prng.nextInt(5 * delay));
+			ax.setEasingCurve(EasingCurve.InOutSine);
+			xs.addAnimation(ax);
+
+			PropertyAnimation ay = new PropertyAnimation(cardItem[i], "y");
+			ay.setStartValue(y.get(i).get(n - 1));
+			ay.setEndValue(poziciaBase.y());
+			ay.setDuration(15 * delay + prng.nextInt(5 * delay));
+			ay.setEasingCurve(EasingCurve.InOutSine);
+			ys.addAnimation(ay);
+
+			xy.addAnimation(xs);
+			xy.addAnimation(ys);
+		}
+
+		signalMapper.setMapping(xy, game.stav.kolo);
+
+		// TODO Qt specific code.
+		// QObject.connect(xy,SIGNAL(finished()),signalMapper,SLOT(map()));
+
+		xy.start(AbstractAnimation.DeleteWhenStopped);
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * @param pid
+	 * @param offset
+	 * @param pause
+	 * @param last
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _rozdaj(int cid, int pid, int offset, int pause, boolean last) {
-		// TODO To be done by ...
+		cardItem[cid].setZValue(offset);
+
+		SequentialAnimationGroup rozd = new SequentialAnimationGroup();
+
+		PropertyAnimation anim = new PropertyAnimation(cardItem[cid], "pos");
+
+		// TODO Plus overload is not possible in Java.
+		// anim.setEndValue(poziciaKariet[pid]+Point(offset*(pid==0?30:20),0));
+
+		anim.setDuration(3 * Integer.valueOf(settings.value("graphics/delay",
+				100)));
+
+		if (pause > 0) {
+			rozd.addPause(pause
+					* Integer.valueOf(settings.value("graphics/delay", 100)));
+		}
+
+		rozd.addAnimation(anim);
+
+		if (last == true) {
+			signalMapper.setMapping(rozd, game.stav.kolo);
+
+			// TODO Qt secific code.
+			// QObject.connect(rozd,SIGNAL(finished()),signalMapper,SLOT(map()));
+		}
+
+		rozd.start(AbstractAnimation.DeleteWhenStopped);
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * @param pid
+	 * @param offset
+	 * @param pause
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _rozdaj(int cid, int pid, int offset, int pause) {
 		_rozdaj(cid, pid, offset, pause, false);
 	}
 
+	/**
+	 * 
+	 * @param pid
+	 * @param last
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _fixHand(int pid, boolean last) {
-		// TODO To be done by ...
+		int lastBad = 0;
+
+		for (int i = 0; i < game.players.get(pid).hand.size(); i++) {
+			int cid = game.players.get(pid).hand.get(i);
+			cardItem[cid].setZValue(i);
+			if (cardItem[cid].x() != poziciaKariet[pid].x() + i
+					* (pid == 0 ? 30 : 20)) {
+				lastBad = i;
+			}
+		}
+
+		for (int i = 0; i < game.players.get(pid).hand.size(); i++) {
+			int cid = game.players.get(pid).hand.get(i);
+
+			if (cardItem[cid].x() != poziciaKariet[pid].x() + i
+					* (pid == 0 ? 30 : 20)) {
+				PropertyAnimation anim = new PropertyAnimation(cardItem[cid],
+						"x");
+
+				anim.setEndValue(poziciaKariet[pid].x() + i
+						* (pid == 0 ? 30 : 20));
+
+				anim.setDuration(3 * Integer.valueOf(settings.value(
+						"graphics/delay", 100)));
+
+				if (last && i == lastBad) {
+					signalMapper.setMapping(anim, game.stav.kolo);
+
+					// TODO Qt specific code.
+					// QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
+				}
+
+				anim.start(AbstractAnimation.DeleteWhenStopped);
+			}
+		}
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * @param last
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _talon(int cid, boolean last) {
-		// TODO To be done by ...
+		cardItem[cid].setPixmap(rub);
+
+		PropertyAnimation anim = new PropertyAnimation(cardItem[cid], "pos");
+
+		anim.setEndValue(poziciaBase);
+
+		anim.setDuration(3 * Integer.valueOf(settings.value("graphics/delay",
+				100)));
+
+		if (last == true) {
+			signalMapper.setMapping(anim, game.stav.kolo);
+
+			// TODO Qt specific code.
+			// QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
+		}
+
+		anim.start(AbstractAnimation.DeleteWhenStopped);
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * @param reverse
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _ejectTromf(int cid, boolean reverse) {
-		// TODO To be done by ...
+		int vysunutie = ((game.stav.forhont == 0) ^ reverse) ? -120 : 120;
+
+		cardItem[cid].setY(cardItem[cid].y() + vysunutie);
+
+		if (game.stav.forhont != 0) {
+			hideCard(cid);
+		}
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _revealCard(int cid) {
-		// TODO To be done by ...
+		cardItem[cid].setPixmap(images[cid]);
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _hideCard(int cid) {
-		// TODO To be done by ...
+		cardItem[cid].setPixmap(rub);
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _draw() {
-		// TODO To be done by ...
+		LOGGER.info("start draw");
+		cleanGraphics(false);
+
+		/*
+		 * DRAW FORHONT LIGHT
+		 */
+
+		if (settings.value("graphics/light_type", "simple") == "gradient") {
+			graphicsScene.addItem(lightGradient[game.stav.forhont]);
+		} else if (settings.value("graphics/light_type", "simple") == "simple") {
+			graphicsScene.addItem(lightSimple[game.stav.forhont]);
+		}
+
+		/*
+		 * DRAW LABELS
+		 */
+
+		font.setBold(false);
+		font.setFamily("Monospace");
+		font.setPointSize(12);
+
+		for (int i = 0; i < 3; i++) {
+			GraphicsTextItem text = new GraphicsTextItem();
+
+			text.setHtml(game.players.get(i).name
+					+ ": <span style=\"font-size: xx-large;\">"
+					+ (game.players.get(i).peniaze) + (" xxx</span>"));
+
+			text.setPos(poziciaMena[i]);
+
+			text.setFont(font);
+
+			if (game.stav.forhont == i) {
+				text.setDefaultTextColor(Color.WHITE);
+			} else {
+				text.setDefaultTextColor(Color.YELLOW);
+			}
+
+			graphicsScene.addItem(text);
+		}
+
+		/*
+		 * DRAW CONSOLE
+		 */
+
+		font.setBold(false);
+
+		font.setPointSize(9);
+
+		int i = 0;
+		String o = "";
+		for (String s : out) {
+			if (i == 0) {
+				font.setPointSize(11);
+				font.setBold(true);
+			} else {
+				font.setPointSize(9);
+				font.setBold(false);
+			}
+
+			GraphicsTextItem output = new GraphicsTextItem("> " + s);
+
+			output.setPos(10, 350 - i);
+			output.setFont(font);
+			output.setDefaultTextColor(Color.YELLOW);
+
+			graphicsScene.addItem(output);
+
+			i += 6 + font.pointSize();
+		}
+
+		/*
+		 * DRAW TROMF SUIT
+		 */
+
+		if (game.stav.forhont > -1 && game.stav.hra.tromf > -1) {
+			GraphicsPixmapItem pi = new GraphicsPixmapItem();
+
+			pi.setPixmap(suits[game.stav.hra.tromf / 8]);
+			pi.setPos(poziciaTromfu[game.stav.forhont]);
+			pi.setZValue(1000);
+
+			graphicsView.scene().addItem(pi);
+		}
 	}
 
+	/**
+	 * ...
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _drawResults() {
-		// TODO To be done by ...
+		LOGGER.info("start draw results");
+		cleanGraphics(true);
+		draw();
+
+		Font font = new Font();
+		font.setBold(false);
+		font.setFamily("Monospace");
+		font.setPointSize(12);
+
+		GraphicsTextItem text = new GraphicsTextItem();
+		String html = "<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\"><tr><td align=\"center\" colspan=\"2\">"
+				+ game.stav.hra.forhontPoints
+				+ ":"
+				+ game.stav.hra.oppPoints
+				+ "</td></tr>";
+
+		for (eu.veldsoft.marias.ResRow row : game.stav.res) {
+			html += "<tr" + (row.third() ? " style=\"font-weight:bold;\"" : "")
+					+ "><td>" + row.first() + "</td><td align=\"right\">"
+					+ row.second() + "</td></tr>";
+			if (row.third() == true) {
+				html += "<tr><td></td><td></td></tr>";
+			}
+		}
+
+		html += "</table><a href=\"#\" style=\"color:white;\">" + "New game"
+				+ "</a>";
+
+		text.setHtml(html);
+		text.setPos(new Point(270, 220));
+		text.setFont(font);
+		text.setDefaultTextColor(Color.WHITE);
+		text.setTextInteractionFlags(Qt.TextBrowserInteraction);
+		text.setCursor(Qt.PointingHandCursor);
+
+		// TODO Qt specific code.
+		// QObject.connect(text,SIGNAL(linkActivated(String)),game,SLOT(newGame()));
+
+		graphicsScene.addItem(text);
 	}
 
+	/**
+	 * 
+	 * @param cid
+	 * @param pid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _animateCard(int cid, int pid) {
-		// TODO To be done by ...
+		cardItem[cid].setPixmap(images[cid]);
+
+		ParallelAnimationGroup hodKartu = new ParallelAnimationGroup();
+
+		PropertyAnimation anim = new PropertyAnimation(cardItem[cid], "pos");
+
+		anim.setEndValue(poziciaKopy[pid]);
+
+		anim.setDuration(3 * Integer.valueOf(settings.value("graphics/delay",
+				100)));
+
+		hodKartu.addAnimation(anim);
+
+		anim = new PropertyAnimation(cardItem[cid], "z");
+		anim.setEndValue(game.stav.kopa.size());
+		anim.setDuration(3 * Integer.valueOf(settings.value("graphics/delay",
+				100)));
+
+		hodKartu.addAnimation(anim);
+
+		signalMapper.setMapping(hodKartu, game.stav.kolo);
+
+		// TODO Qt specific code.
+		// QObject.connect(hodKartu,SIGNAL(finished()),signalMapper,SLOT(map()));
+
+		hodKartu.start(AbstractAnimation.DeleteWhenStopped);
 	}
 
+	/**
+	 * 
+	 * @param pid
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void _animateStich(int pid) {
-		// TODO To be done by ...
+		LOGGER.info("animate stich " + pid);
+
+		for (int i = 0; i < 3; i++) {
+			fixHand(i);
+		}
+
+		ParallelAnimationGroup berStich = new ParallelAnimationGroup();
+
+		for (int i = 0; i < 3; i++) {
+			cardItem[game.stav.kopa.get(i)].setZValue(cardItem[game.stav.kopa
+					.get(i)].zValue() - 1000 + 100 * game.stav.kolo);
+			
+			PropertyAnimation anim = new PropertyAnimation(
+					cardItem[game.stav.kopa.get(i)], "pos");
+			
+			anim.setEndValue(poziciaStichov[pid]);
+			
+			anim.setDuration(3 * Integer.valueOf(settings.value(
+					"graphics/delay", 100)));
+			
+			berStich.addAnimation(anim);
+			
+			anim = new PropertyAnimation(cardItem[game.stav.kopa.get(i)],
+					"opacity");
+			
+			anim.setEndValue(0);
+			
+			anim.setDuration(3 * Integer.valueOf(settings.value(
+					"graphics/delay", 100)));
+			
+			berStich.addAnimation(anim);
+		}
+		
+		SequentialAnimationGroup sag = new SequentialAnimationGroup();
+		
+		sag.addPause(7 * Integer.valueOf(settings.value("graphics/delay", 100)));
+		sag.addAnimation(berStich);
+
+		signalMapper.setMapping(sag, game.stav.kolo);
+
+		// TODO Qt specific code.
+		// QObject.connect(sag,SIGNAL(finished()),signalMapper,SLOT(map()));
+
+		sag.start(AbstractAnimation.DeleteWhenStopped);
 	}
 
 	/**
@@ -1021,540 +1625,3 @@ public class DeskView {
 		out.add(0, s);
 	}
 }
-
-// #include "deskview.h"
-//
-// DeskView* DeskView.instance = null;
-//
-// DeskView.DeskView(Ui_Marias* ui, Game* g)
-// {
-// game = g;
-// signalMapper = new QSignalMapper();
-// QObject.connect(signalMapper,SIGNAL(mapped(int)),game,SLOT(animationFinished(int)));
-// graphicsView = ui.graphicsView;
-// graphicsScene = new QGraphicsScene(graphicsView.sceneRect());
-// graphicsView.setScene(graphicsScene);
-// settings = new QSettings("marias.ini", QSettings.IniFormat);
-//
-// //INIT IMAGES
-//
-// String fName = settings.value("cards/images","img/classic7").toString();
-// QDir dir(fName);
-// if (!dir.exists())
-// qWarning() << QObject.tr("Cannot find the directory: ") << fName << "now: "
-// << QDir.current();
-// QDirIterator it(dir);
-// while (it.hasNext()) {
-// qDebug() << it.next();
-// if(it.fileInfo().isFile()){
-// qDebug() << it.fileInfo().baseName();
-// if(it.fileInfo().baseName().contains('s')){
-// int k = it.fileInfo().baseName()[1].digitValue();
-// if(k<4 && k>=0){
-// suits[k] = QPixmap(it.filePath());
-// qDebug() << "suit loaded: " << k;
-// }
-// }else{
-// int k = it.fileInfo().baseName().toInt();
-// if(k<32 && k>=0){
-// images[k] = QPixmap(it.filePath());
-// qDebug() << "image loaded: " << k;
-// }
-// }
-// }
-// }
-// rub = QPixmap(settings.value("cards/rub","img/rub.png").toString());
-// qDebug() << "rub loaded";
-//
-// //INIT ITEM POSITIONS
-//
-// poziciaKopy[0] = new Point(330,275);
-// poziciaKopy[1] = new Point(295,235);
-// poziciaKopy[2] = new Point(365,245);
-//
-// poziciaKariet[0] = new Point(200,445);
-// poziciaKariet[1] = new Point(70,50);
-// poziciaKariet[2] = new Point(400,50);
-//
-// poziciaTromfu[0] = new Point(300,395);
-// poziciaTromfu[1] = new Point(50,160);
-// poziciaTromfu[2] = new Point(420,160);
-//
-// poziciaMena[0] = new Point(550,395);
-// poziciaMena[1] = new Point(100,160);
-// poziciaMena[2] = new Point(480,160);
-//
-// poziciaStichov[0] = new Point(700,445);
-// poziciaStichov[1] = new Point(1,50);
-// poziciaStichov[2] = new Point(700,50);
-//
-// poziciaTextu[0] = new Point(400,350);
-// poziciaTextu[1] = new Point(200,150);
-// poziciaTextu[2] = new Point(600,150);
-//
-// poziciaBase = Point(700,200);
-//
-// //INIT LIGHT
-//
-// int cx[3],cy[3],r[3];
-// cx[0]=600;cy[0]=800;r[0]=500;
-// cx[1]=-100;cy[1]=-100;r[1]=500;
-// cx[2]=700;cy[2]=-200;r[2]=500;
-// for(int i=0;i<3;i++){
-// QRadialGradient gradient(cx[i], cy[i], r[i]);
-// gradient.setColorAt(0, QColor.fromRgbF(1, 1, 1, 1));
-// gradient.setColorAt(1, QColor.fromRgbF(0, 0, 0, 0));
-// QBrush brush(gradient);
-// lightGradient[i] = new
-// QGraphicsEllipseItem(cx[i]-r[i],cy[i]-r[i],2*r[i],2*r[i]);
-// lightGradient[i].setPen(QColor.fromRgb(255,255,255,0));
-// lightGradient[i].setBrush(brush);
-// lightGradient[i].setData(0,"light");
-// }
-// lightSimple[0] = new QGraphicsEllipseItem(100,300,800,600);
-// lightSimple[1] = new QGraphicsEllipseItem(-300,-300,800,600);
-// lightSimple[2] = new QGraphicsEllipseItem(300,-300,800,600);
-// for(int i=0;i<3;i++){
-// lightSimple[i].setPen(QColor.fromRgb(255,255,255,0));
-// lightSimple[i].setBrush(QBrush(QColor.fromRgb(255,255,255,i==0?15:25),Qt.SolidPattern));
-// lightSimple[i].setData(0,"light");
-// }
-// font = QFont();
-// }
-//
-// DeskView.~DeskView(){
-// delete graphicsScene;
-// delete graphicsView;
-// delete settings;
-// }
-//
-// DeskView* DeskView.Instance(){
-// if(instance==null){
-// LOGGER.info("DeskView: no instance to get");
-// }
-// return instance;
-// }
-//
-// void DeskView.createInstance(Ui_Marias* ui, Game* g){
-// if(instance!=null){
-// LOGGER.info("DeskView: create instance called twice");
-// }
-// instance = new DeskView(ui,g);
-// }
-//
-// void DeskView.destroyInstance(){
-// if(instance==null){
-// LOGGER.info("DeskView: destroying null class");
-// }
-// delete instance;
-// instance=null;
-// }
-//
-// void DeskView._cleanGraphics(bool all){
-// foreach(QGraphicsItem* git,graphicsView.scene().items()){
-// if(git.data(0)!="card" && git.data(0)!="anim" &&
-// git.parentItem().data(0)!="anim"){
-// graphicsView.scene().removeItem(git);
-// if(git.data(0)!="light")
-// delete git;
-// }else if(all){
-// if(git.data(0)!="light")
-// graphicsView.scene().removeItem(git);
-// delete git;
-// }
-// }
-// }
-//
-// void DeskView.cleanGraphics(bool all){
-// Instance()._cleanGraphics(all);
-// }
-//
-// void DeskView._gather(){
-// cleanGraphics(true);
-// for(int i=0;i<32;i++){
-// CardItem* ci = new CardItem();
-// ci.setPixmap(rub);
-// ci.setPos(poziciaBase);
-// ci.setZValue(i);
-// ci.setOpacity(1);
-// ci.cid = i;
-// ci.setData(0,"card");
-// ci.setData(1,i);
-// graphicsView.scene().addItem(ci);
-// cardItem[i] = ci;
-// }
-// }
-//
-// void DeskView.gather(){
-// Instance()._gather();
-// }
-//
-// void DeskView._intro(){
-// gather();
-// int n = settings.value("intro/length",10).toInt();
-// int delay = settings.value("graphics/delay",100).toInt();
-// QList<QList<qreal> > x;
-// QList<QList<qreal> > y;
-// for(int i=0;i<32;i++){
-// x.push_back(QList<qreal>());
-// y.push_back(QList<qreal>());
-// for(int j=0;j<n;j++){
-// x[i].push_back(rand()%700);
-// y[i].push_back(rand()%500);
-// }
-// revealCard(i);
-// }
-// QParallelAnimationGroup* xy = new QParallelAnimationGroup();
-// for(int i=0;i<32;i++){
-// QSequentialAnimationGroup* xs = new QSequentialAnimationGroup();
-// QSequentialAnimationGroup* ys = new QSequentialAnimationGroup();
-// cardItem[i].setPos(x[i][0],y[i][0]);
-// for(int j=1;j<n;j++){
-// PropertyAnimation* ax = new PropertyAnimation(cardItem[i],"x");
-// ax.setStartValue(x[i][j-1]);
-// ax.setEndValue(x[i][j]);
-// ax.setDuration(15*delay+rand()%(5*delay));
-// ax.setEasingCurve(EasingCurve.InOutSine);
-// xs.addAnimation(ax);
-//
-// PropertyAnimation* ay = new PropertyAnimation(cardItem[i],"y");
-// ay.setStartValue(y[i][j-1]);
-// ay.setEndValue(y[i][j]);
-// ay.setDuration(15*delay+rand()%(5*delay));
-// ay.setEasingCurve(EasingCurve.InOutSine);
-// ys.addAnimation(ay);
-// }
-// PropertyAnimation* ax = new PropertyAnimation(cardItem[i],"x");
-// ax.setStartValue(x[i][n-1]);
-// ax.setEndValue(poziciaBase.x());
-// ax.setDuration(15*delay+rand()%(5*delay));
-// ax.setEasingCurve(EasingCurve.InOutSine);
-// xs.addAnimation(ax);
-//
-// PropertyAnimation* ay = new PropertyAnimation(cardItem[i],"y");
-// ay.setStartValue(y[i][n-1]);
-// ay.setEndValue(poziciaBase.y());
-// ay.setDuration(15*delay+rand()%(5*delay));
-// ay.setEasingCurve(EasingCurve.InOutSine);
-// ys.addAnimation(ay);
-//
-// xy.addAnimation(xs);
-// xy.addAnimation(ys);
-// }
-// signalMapper.setMapping(xy,game.stav.kolo);
-// QObject.connect(xy,SIGNAL(finished()),signalMapper,SLOT(map()));
-// xy.start(AbstractAnimation.DeleteWhenStopped);
-//
-// }
-//
-// void DeskView.intro(){
-// Instance()._intro();
-// }
-//
-// void DeskView._rozdaj(int cid, int pid, int offset, int pause, bool last){
-// //qDebug() << "rozdavam " << cid << " " << pid << " " << offset;
-// cardItem[cid].setZValue(offset);
-// QSequentialAnimationGroup* rozd = new QSequentialAnimationGroup();
-// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"pos");
-// anim.setEndValue(poziciaKariet[pid]+Point(offset*(pid==0?30:20),0));
-// anim.setDuration(3*settings.value("graphics/delay",100).toInt());
-// if(pause>0)
-// rozd.addPause(pause*settings.value("graphics/delay",100).toInt());
-// rozd.addAnimation(anim);
-// if(last){
-// signalMapper.setMapping(rozd,game.stav.kolo);
-// QObject.connect(rozd,SIGNAL(finished()),signalMapper,SLOT(map()));
-// }
-// rozd.start(AbstractAnimation.DeleteWhenStopped);
-// }
-//
-// void DeskView.rozdaj(int cid, int pid,int offset,int pause, bool last){
-// Instance()._rozdaj(cid,pid,offset,pause,last);
-// }
-//
-// void DeskView._fixHand(int pid,bool last){
-// int lastBad=0;
-// for(int i=0;i<game.players[pid].hand.size();i++){
-// int cid = game.players[pid].hand[i];
-// cardItem[cid].setZValue(i);
-// if(cardItem[cid].x() != poziciaKariet[pid].x()+i*(pid==0?30:20))
-// lastBad=i;
-// }
-// for(int i=0;i<game.players[pid].hand.size();i++){
-// int cid = game.players[pid].hand[i];
-// if(cardItem[cid].x() != poziciaKariet[pid].x()+i*(pid==0?30:20)){
-// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"x");
-// anim.setEndValue(poziciaKariet[pid].x()+i*(pid==0?30:20));
-// anim.setDuration(3*settings.value("graphics/delay",100).toInt());
-// if(last && i==lastBad){
-// signalMapper.setMapping(anim,game.stav.kolo);
-// QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
-// }
-// anim.start(AbstractAnimation.DeleteWhenStopped);
-// }
-// }
-// }
-//
-// void DeskView.fixHand(int pid,bool last){
-// Instance()._fixHand(pid,last);
-// }
-//
-// void DeskView._talon(int cid,bool last){
-// cardItem[cid].setPixmap(rub);
-// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"pos");
-// anim.setEndValue(poziciaBase);
-// anim.setDuration(3*settings.value("graphics/delay",100).toInt());
-// if(last){
-// signalMapper.setMapping(anim,game.stav.kolo);
-// QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
-// }
-// anim.start(AbstractAnimation.DeleteWhenStopped);
-// }
-//
-// void DeskView.talon(int cid,bool last){
-// Instance()._talon(cid,last);
-// }
-//
-// void DeskView._ejectTromf(int cid,bool reverse){
-// int vysunutie=((game.stav.forhont==0)^reverse)?-120:120;
-// cardItem[cid].setY(cardItem[cid].y()+vysunutie);
-// if(game.stav.forhont!=0)hideCard(cid);
-// }
-//
-// void DeskView.ejectTromf(int cid,bool reverse){
-// Instance()._ejectTromf(cid,reverse);
-// }
-//
-// void DeskView._revealCard(int cid){
-// cardItem[cid].setPixmap(images[cid]);
-// }
-//
-// void DeskView.revealCard(int cid){
-// Instance()._revealCard(cid);
-// }
-//
-// void DeskView._hideCard(int cid){
-// cardItem[cid].setPixmap(rub);
-// }
-//
-// void DeskView.hideCard(int cid){
-// Instance()._hideCard(cid);
-// }
-//
-// void DeskView._draw(){
-// qDebug() << "start draw";
-// cleanGraphics(false);
-//
-// //DRAW FORHONT LIGHT
-//
-// if(settings.value("graphics/light_type","simple")=="gradient")
-// graphicsScene.addItem(lightGradient[game.stav.forhont]);
-// else if(settings.value("graphics/light_type","simple")=="simple")
-// graphicsScene.addItem(lightSimple[game.stav.forhont]);
-//
-// //DRAW LABELS
-//
-// font.setBold(false);
-// font.setFamily("Monospace");
-// font.setPointSize(12);
-//
-// for(int i=0;i<3;i++){
-// QGraphicsTextItem* text = new QGraphicsTextItem();
-// text.setHtml(game.players[i].name +
-// ": <span style=\"font-size: xx-large;\">" +
-// String.number(game.players[i].peniaze)+String.fromUtf8(" xxx</span>"));
-// text.setPos(poziciaMena[i]);
-// text.setFont(*&font);
-// if(game.stav.forhont==i)
-// text.setDefaultTextColor(QColor("white"));
-// else
-// text.setDefaultTextColor(QColor("yellow"));
-// graphicsScene.addItem(text);
-// }
-//
-// // DRAW CONSOLE
-//
-// font.setBold(false);
-// font.setPointSize(9);
-// int i=0;
-// String o="";
-// foreach(String s,out){
-// if(i==0){
-// font.setPointSize(11);
-// font.setBold(true);
-// }else{
-// font.setPointSize(9);
-// font.setBold(false);
-// }
-// QGraphicsTextItem* output = new QGraphicsTextItem("> "+s);
-// output.setPos(10,350 - i);
-// output.setFont(*&font);
-// output.setDefaultTextColor(QColor("yellow"));
-// graphicsScene.addItem(output);
-// i += 6 + font.pointSize();
-// }
-//
-// // DRAW TROMF SUIT
-//
-// if(game.stav.forhont>-1 && game.stav.hra.tromf>-1){
-// QGraphicsPixmapItem* pi = new QGraphicsPixmapItem();
-// pi.setPixmap(suits[game.stav.hra.tromf/8]);
-// pi.setPos(poziciaTromfu[game.stav.forhont]);
-// pi.setZValue(1000);
-// graphicsView.scene().addItem(pi);
-// }
-// }
-//
-// void DeskView.draw(){
-// return Instance()._draw();
-// }
-//
-// void DeskView._drawResults(){
-// qDebug() << "start draw results";
-// cleanGraphics(1);
-// draw();
-//
-// QFont font = QFont();
-// font.setBold(false);
-// font.setFamily("Monospace");
-// font.setPointSize(12);
-//
-// QGraphicsTextItem* text = new QGraphicsTextItem();
-// String
-// html="<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\"><tr><td align=\"center\" colspan=\"2\">"+String.number(game.stav.hra.forhontPoints)+":"+String.number(game.stav.hra.oppPoints)+"</td></tr>";
-// typedef QTriple<String,String,bool> ResRow;
-// foreach(ResRow row,game.stav.res){
-// html+="<tr"+String(row.third?" style=\"font-weight:bold;\"":"")+"><td>"+row.first+"</td><td align=\"right\">"+row.second+"</td></tr>";
-// if(row.third)
-// html+="<tr><td></td><td></td></tr>";
-// }
-// html+="</table><a href=\"#\" style=\"color:white;\">"+QObject.tr("New game")+"</a>";
-//
-// text.setHtml(html);
-// text.setPos(Point(270,220));
-// text.setFont(*&font);
-// text.setDefaultTextColor(QColor("white"));
-// text.setTextInteractionFlags(Qt.TextBrowserInteraction);
-// text.setCursor(Qt.PointingHandCursor);
-// QObject.connect(text,SIGNAL(linkActivated(String)),game,SLOT(newGame()));
-// graphicsScene.addItem(text);
-// }
-//
-// void DeskView.drawResults(){
-// Instance()._drawResults();
-// }
-//
-// void DeskView._animateCard(int cid,int pid){
-// cardItem[cid].setPixmap(images[cid]);
-// QParallelAnimationGroup* hodKartu= new QParallelAnimationGroup();
-// PropertyAnimation* anim = new PropertyAnimation(cardItem[cid],"pos");
-// anim.setEndValue(poziciaKopy[pid]);
-// anim.setDuration(3*settings.value("graphics/delay",100).toInt());
-// hodKartu.addAnimation(anim);
-// anim = new PropertyAnimation(cardItem[cid],"z");
-// anim.setEndValue(game.stav.kopa.size());
-// anim.setDuration(3*settings.value("graphics/delay",100).toInt());
-// hodKartu.addAnimation(anim);
-// signalMapper.setMapping(hodKartu,game.stav.kolo);
-// QObject.connect(hodKartu,SIGNAL(finished()),signalMapper,SLOT(map()));
-// hodKartu.start(AbstractAnimation.DeleteWhenStopped);
-// return;
-// }
-//
-// void DeskView.animateCard(int cid,int pid){
-// Instance()._animateCard(cid,pid);
-// }
-//
-// void DeskView._animateStich(int pid){
-// qDebug() << "animate stich " << pid;
-// for(int i=0;i<3;i++)
-// fixHand(i);
-//
-// QParallelAnimationGroup* berStich = new QParallelAnimationGroup();
-// for(int i=0;i<3;i++){
-// //qDebug() << "Adding anim"<< i << ": " << game.stav.kopa[i];
-// cardItem[game.stav.kopa[i]].setZValue(cardItem[game.stav.kopa[i]].zValue()-1000+100*game.stav.kolo);
-// PropertyAnimation* anim = new
-// PropertyAnimation(cardItem[game.stav.kopa[i]],"pos");
-// anim.setEndValue(poziciaStichov[pid]);
-// anim.setDuration(3*settings.value("graphics/delay",100).toInt());
-// berStich.addAnimation(anim);
-// anim = new PropertyAnimation(cardItem[game.stav.kopa[i]],"opacity");
-// anim.setEndValue(0);
-// anim.setDuration(3*settings.value("graphics/delay",100).toInt());
-// berStich.addAnimation(anim);
-// }
-// QSequentialAnimationGroup* sag = new QSequentialAnimationGroup();
-// sag.addPause(7*settings.value("graphics/delay",100).toInt());
-// sag.addAnimation(berStich);
-//
-// signalMapper.setMapping(sag,game.stav.kolo);
-// QObject.connect(sag,SIGNAL(finished()),signalMapper,SLOT(map()));
-// sag.start(AbstractAnimation.DeleteWhenStopped);
-// }
-//
-// void DeskView.animateStich(int pid){
-// Instance()._animateStich(pid);
-// }
-//
-// void DeskView._show(){
-// graphicsView.show();
-// }
-//
-// void DeskView.show(){
-// return Instance()._show();
-// }
-//
-// Game* DeskView._getGame(){
-// return game;
-// }
-//
-// Game* DeskView.getGame(){
-// return Instance()._getGame();
-// }
-//
-// void DeskView._print(String s,int pos){
-//
-// //nice animation
-//
-// //qDebug() << "printing on pos " << pos << ": " <<
-// String.number(poziciaTextu[pos].x()) << ":" <<
-// String.number(poziciaTextu[pos].y());
-// int textWidth = 750;
-//
-// font.setBold(false);
-// font.setFamily("Monospace");
-// font.setPointSize(50);
-//
-// SuperText* sText = new SuperText();
-// sText.setHtml("<p align=\"center\">"+s+"</p>");
-// sText.setTextWidth(textWidth);
-// sText.setData(0,"anim");
-// if(pos>2 || pos<0)pos=0;
-// sText.setPos(poziciaTextu[pos]-Point(textWidth/2,0));
-// sText.setFont(*&font);
-// sText.setDefaultTextColor(QColor("yellow"));
-// graphicsScene.addItem(sText);
-//
-// PropertyAnimation* superTextAnim = new PropertyAnimation(sText,"opacity");
-// superTextAnim.setDuration(10*settings.value("graphics/delay",100).toInt());
-// superTextAnim.setEndValue(0);
-// superTextAnim.setEasingCurve(EasingCurve.InQuad);
-// superTextAnim.start(AbstractAnimation.DeleteWhenStopped);
-//
-// _log(s);
-// _draw();
-// }
-//
-// void DeskView.print(String s,int pos){
-// Instance()._print(s,pos);
-// }
-//
-// void DeskView._log(String s){
-// if(out.size()>5)out.pop_back();
-// out.add(0, s);
-// }
-//
-// void DeskView.log(String s){
-// Instance()._log(s);
-// }

@@ -13,9 +13,7 @@ import android.widget.Toast;
  * @email tdb@tbsoft.eu
  * @date 16 Aug 2013
  */
-class Marias /* extends QMainWindow */{
-	// Q_OBJECT
-
+class Marias {
 	// TODO It is only for project to compile.
 	private static class Settings {
 		public static final int IniFormat = 0;
@@ -110,7 +108,6 @@ class Marias /* extends QMainWindow */{
 						+ (settings.value("version/revision", 0).equals("0") ? ""
 								: "." + settings.value("version/revision", 0))
 						+ "</b>", Toast.LENGTH_SHORT).show();
-
 	}
 
 	/**

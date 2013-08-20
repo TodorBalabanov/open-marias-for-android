@@ -97,7 +97,7 @@ class Game {
 	/**
 	 * Pseudo-random number generator.
 	 */
-	public Random rg;
+	public static Random prng = new Random();
 
 	/**
 	 * for poeple test
@@ -134,7 +134,6 @@ class Game {
 	/**
 	 * Initialize game.
 	 * 
-	 * 
 	 * @author Todor Balabanov
 	 * @email tdb@tbsoft.eu
 	 * @date 14 Aug 2013
@@ -146,11 +145,11 @@ class Game {
 		// TODO Settings should be available in order this fragmetn to work.
 		if (settings.value("shuffling/random", 1) == 1) {
 			LOGGER.info("random");
-			rg.setSeed(System.currentTimeMillis());
+			prng.setSeed(System.currentTimeMillis());
 			;
 		} else {
 			LOGGER.info("not random");
-			rg.setSeed(settings.value("shuffling/seed", 47));
+			prng.setSeed(settings.value("shuffling/seed", 47));
 		}
 
 		shuffleDeck();
@@ -189,6 +188,12 @@ class Game {
 		// TODO To be done by Miro ...
 	}
 
+	/**
+	 * 
+	 * @author Todor Balabanov
+	 * @email tdb@tbsoft.eu
+	 * @date 20 Aug 2013
+	 */
 	public void results() {
 		int p = stav.trick();
 
@@ -472,11 +477,11 @@ class Game {
 			deck.add(i);
 		}
 
-		int swapCount = 1000 + rg.nextInt(1000);
+		int swapCount = 1000 + prng.nextInt(1000);
 
 		// TODO Better shuffling algorithm shuld be used.
 		for (int i = 0; i < swapCount; i++) {
-			Integer card = deck.remove(rg.nextInt(32));
+			Integer card = deck.remove(prng.nextInt(32));
 			deck.add(card);
 		}
 	}

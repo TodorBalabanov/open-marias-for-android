@@ -41,7 +41,6 @@ class SettingsDialog {
 		}
 
 		public int value(String key, int i) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}
@@ -374,7 +373,7 @@ class SettingsDialog {
 		settings.setValue("shuffling/seed", ui.lineEdit_4_text());
 
 		if (ui.checkBox_checkState() != Qt.Checked) {
-			game.rg.setSeed(new Long(ui.lineEdit_4_text()));
+			game.prng.setSeed(new Long(ui.lineEdit_4_text()));
 		}
 
 		if (settings.value("players/left", "RandomPlayer").equals(
