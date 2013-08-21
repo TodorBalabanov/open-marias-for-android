@@ -172,8 +172,17 @@ class Game {
 		stav.kolo = -6;
 	}
 
+	/**
+	 * Reset the players money.
+	 * 
+	 * @author Miroslav Gyonov
+	 * @email mirkoslavcho1@abv.bg
+	 * @date 21 Jul 2013
+	 */
 	public void resetMoney() {
-		// TODO To be done by Miro ...
+		for (Player player : players) {
+			player.peniaze = 0;
+		}
 	}
 
 	/**
