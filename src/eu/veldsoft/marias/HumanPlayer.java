@@ -41,7 +41,6 @@ class HumanPlayer extends Player {
 	 * @email venci932@gmail.com
 	 * @date 13 Jul 2013
 	 */
-
 	public int play() {
 		LOGGER.info("ide human");
 		LOGGER.info("waiting for click...");

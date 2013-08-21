@@ -2,12 +2,14 @@ package eu.veldsoft.marias;
 
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 /**
  * 
@@ -32,17 +34,17 @@ class Game {
 	/**
 	 * Players container.
 	 */
-	public List<Player> players;
+	public List<Player> players = new ArrayList<Player>();
 
 	/**
 	 * Deck of cards.
 	 */
-	public List<Integer> deck;
+	public List<Integer> deck = new ArrayList<Integer>();
 
 	/**
 	 * Current state of the game.
 	 */
-	public Stav stav;
+	public Stav stav = new Stav();
 
 	/**
 	 * If is now the human turn flag.
@@ -105,7 +107,7 @@ class Game {
 	public Game(GameActivity gameActivity) {
 		this.gameActivity = gameActivity;
 
-		//TODO bd = new BiddingDialog(this);
+		// TODO bd = new BiddingDialog(this);
 
 		profiler = new Profiler();
 
@@ -134,7 +136,6 @@ class Game {
 		if (preferences.getBoolean("shuffling_random", true) == true) {
 			LOGGER.info("random");
 			MainActivity.prng.setSeed(System.currentTimeMillis());
-			;
 		} else {
 			LOGGER.info("not random");
 			MainActivity.prng.setSeed(preferences.getInt("shuffling_seed", 47));
@@ -156,14 +157,13 @@ class Game {
 		players.get(2).name = preferences.getString("players_right_name",
 				"right");
 
-		// TODO Use for-each loop.
-		for (int i = 0; i < 3; i++) {
-			// TODO May be internal objects are unchainged if there is deep
-			// copy.
-			players.get(i).setStav(stav);
-			players.get(i).setId(i);
-			players.get(i).profiler = profiler;
-			players.get(i).init();
+		int id = 0;
+		for (Player player : players) {
+			player.setStav(stav);
+			player.setId(id);
+			player.profiler = profiler;
+			player.init();
+			id++;
 		}
 
 		resetMoney();
@@ -640,10 +640,10 @@ class Game {
 			bd.hide();
 		}
 
-		for (int i = 0; i < 3; i++) {
-			players.get(i).body = 0;
-			players.get(i).hlasky = 0;
-			players.get(i).quickGame = quickGame;
+		for (Player player : players) {
+			player.body = 0;
+			player.hlasky = 0;
+			player.quickGame = quickGame;
 		}
 
 		stav.newGame();

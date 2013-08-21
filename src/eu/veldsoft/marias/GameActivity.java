@@ -16,7 +16,7 @@ public class GameActivity extends Activity {
 		setContentView(R.layout.activity_game);
 		
 		game = new Game(GameActivity.this);
-		//TODO game.init();
+		game.init();
 		
 		//TODO game.newGame();
 	}
