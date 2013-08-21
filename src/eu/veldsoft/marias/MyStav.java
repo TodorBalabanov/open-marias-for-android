@@ -38,6 +38,11 @@ class MyStav {
 	 * Players hands.
 	 */
 	public List hand[] = new List[3];
+	{
+		for(List element : hand){
+			element = new ArrayList<Integer>();
+		}
+	}
 
 	/**
 	 * 
@@ -55,9 +60,6 @@ class MyStav {
 	 */
 	public MyStav(Player p) {
 		me = p;
-		for (int i = 0; i < hand.length; i++) {
-			hand[i] = new ArrayList();
-		}
 	}
 
 	/**
