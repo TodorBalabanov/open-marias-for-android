@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Pseudo-random number generator.
 	 */
-	public static Random prng = new Random();
+	public static Random PRNG = new Random();
 
 	/**
 	 * Load default settings values as it was done in the original source code.

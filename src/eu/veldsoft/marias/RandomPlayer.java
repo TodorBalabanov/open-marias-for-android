@@ -2,7 +2,6 @@ package eu.veldsoft.marias;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Class for random player AI.
@@ -23,7 +22,7 @@ class RandomPlayer extends Player {
 	public RandomPlayer() {
 		type = "random";
 		name = "Randomak";
-		MainActivity.prng.setSeed(-1);
+		MainActivity.PRNG.setSeed(-1);
 	}
 
 	/**
@@ -74,14 +73,14 @@ class RandomPlayer extends Player {
 	public int bid() {
 		int bids = 0;
 		if (hand.contains(stav.hra.tromf7())) {
-			if (MainActivity.prng.nextInt((stav.hra.flekNaSedmu + 1) + 3) == 0) {
+			if (MainActivity.PRNG.nextInt((stav.hra.flekNaSedmu + 1) + 3) == 0) {
 				bids |= 2;
 			}
 		}
-		if (MainActivity.prng.nextInt((stav.hra.flekNaStovku + 1) + 3) == 0) {
+		if (MainActivity.PRNG.nextInt((stav.hra.flekNaStovku + 1) + 3) == 0) {
 			bids |= 1;
 		}
-		if (MainActivity.prng.nextInt(stav.hra.flekNaHru + 1) == 0) {
+		if (MainActivity.PRNG.nextInt(stav.hra.flekNaHru + 1) == 0) {
 			bids |= 4;
 		}
 		return (bids);
@@ -113,7 +112,7 @@ class RandomPlayer extends Player {
 	 * @date 17 Jul 2013
 	 */
 	public int pickRandom(List<Integer> legal) {
-		return (legal.indexOf(MainActivity.prng.nextInt(legal.size())));
+		return (legal.indexOf(MainActivity.PRNG.nextInt(legal.size())));
 	}
 
 	/**
@@ -129,10 +128,10 @@ class RandomPlayer extends Player {
 	 * @date 17 Jul 2013
 	 */
 	public int pickRandomTwo(List<Integer> legal) {
-		int i = MainActivity.prng.nextInt(legal.size());
+		int i = MainActivity.PRNG.nextInt(legal.size());
 		int k = legal.get(i);
 		legal.remove(i);
-		int j = MainActivity.prng.nextInt(legal.size());
+		int j = MainActivity.PRNG.nextInt(legal.size());
 		return (k * 32 + legal.get(j));
 	}
 }

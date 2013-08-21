@@ -373,7 +373,7 @@ class SettingsDialog {
 		settings.setValue("shuffling/seed", ui.lineEdit_4_text());
 
 		if (ui.checkBox_checkState() != Qt.Checked) {
-			MainActivity.prng.setSeed(new Long(ui.lineEdit_4_text()));
+			MainActivity.PRNG.setSeed(new Long(ui.lineEdit_4_text()));
 		}
 
 		if (settings.value("players/left", "RandomPlayer").equals(

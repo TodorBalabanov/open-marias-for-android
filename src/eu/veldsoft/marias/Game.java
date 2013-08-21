@@ -4,12 +4,9 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import android.content.SharedPreferences;
-import android.util.Log;
 
 /**
  * 
@@ -135,10 +132,10 @@ class Game {
 
 		if (preferences.getBoolean("shuffling_random", true) == true) {
 			LOGGER.info("random");
-			MainActivity.prng.setSeed(System.currentTimeMillis());
+			MainActivity.PRNG.setSeed(System.currentTimeMillis());
 		} else {
 			LOGGER.info("not random");
-			MainActivity.prng.setSeed(preferences.getInt("shuffling_seed", 47));
+			MainActivity.PRNG.setSeed(preferences.getInt("shuffling_seed", 47));
 		}
 
 		shuffleDeck();
@@ -474,11 +471,11 @@ class Game {
 			deck.add(i);
 		}
 
-		int swapCount = 1000 + MainActivity.prng.nextInt(1000);
+		int swapCount = 1000 + MainActivity.PRNG.nextInt(1000);
 
 		// TODO Better shuffling algorithm shuld be used.
 		for (int i = 0; i < swapCount; i++) {
-			Integer card = deck.remove(MainActivity.prng.nextInt(32));
+			Integer card = deck.remove(MainActivity.PRNG.nextInt(32));
 			deck.add(card);
 		}
 	}

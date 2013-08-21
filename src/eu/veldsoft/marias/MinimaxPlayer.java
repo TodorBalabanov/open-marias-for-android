@@ -256,10 +256,8 @@ class MinimaxPlayer extends Player {
 					+ String.valueOf(max) + " card=" + Card.title(chosen);
 
 			if (quickGame == false) {
-				// this->say(word);
 				LOGGER.info("Minimax time=" + profiler.getTime("minimaxSearch"));
 			}
-
 		} else {
 			LOGGER.info("MINIMAX FAILED " + Card.title(chosen)
 					+ " expected reward=" + String.valueOf(max));
@@ -303,7 +301,7 @@ class MinimaxPlayer extends Player {
 				LOGGER.info("Nestihli sa vygenerovat vsetky");
 			}
 
-			MyStav ms = null;
+			MyStav ms = new MyStav(this);
 			ms.stav = rozdania.stav;
 			for (cutoffLevel = 3 * (hand.size() - 1); cutoffLevel >= 0; cutoffLevel -= 3) {
 				if (quickGame == false) {
@@ -358,6 +356,7 @@ class MinimaxPlayer extends Player {
 			 * end for each cutoff level
 			 */
 		}
+		
 		/*
 		 * end if stav->kolo>0
 		 */
