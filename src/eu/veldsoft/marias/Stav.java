@@ -74,7 +74,7 @@ class Stav {
 	/**
 	 * ...
 	 */
-	public List<ResRow> res;
+	public List<ResRow> res = new ArrayList<ResRow>();
 
 	/**
 	 * Round id -1: during animation of second card to talon, during bidding,

@@ -252,7 +252,7 @@ class BiddingDialog {
 
 			ui.textEdit_clear();
 
-			if (game.stav.hra.farba) {
+			if (game.stav.hra.farba == true) {
 				DeskView.revealCard(game.stav.hra.tromf);
 			}
 		}
