@@ -5,6 +5,12 @@ import android.app.Activity;
 import android.view.Menu;
 
 public class BiddingActivity extends Activity {
+	/**
+	 * Bidding history is used to show what happened during the bidding process.
+	 * This text should be shown as toast each time when some kind of bid was
+	 * done.
+	 */
+	private String biddingHistory = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -86,8 +86,8 @@ public class CardItem {
 		}else if (kolo == -2) {
 			DeskView.getGame().talonClicked(cid);
 		}else if (kolo == -1) {
-			DeskView.getGame().bd.show();
-			DeskView.getGame().bd.raise();
+			//TODO DeskView.getGame().bd.show();
+			//TODO DeskView.getGame().bd.raise();
 		} else {
 			DeskView.getGame().cardClicked(cid);
 		}

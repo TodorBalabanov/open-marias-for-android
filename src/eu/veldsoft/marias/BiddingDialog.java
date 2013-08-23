@@ -214,6 +214,8 @@ class BiddingDialog {
 	 * @date 19 Aug 2013
 	 */
 	public void startBidding() {
+		//TODO This should be in BiddingActivity onCreate.
+		
 		game.profiler.start("bidding");
 
 		history.clear();
