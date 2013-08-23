@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 /**
@@ -47,11 +49,6 @@ class Game {
 	 * If is now the human turn flag.
 	 */
 	public boolean waitingForClick;
-
-	/**
-     *
-     */
-	public BiddingDialog bd;
 
 	/**
 	 * Reference to game windows.
@@ -103,8 +100,6 @@ class Game {
 	 */
 	public Game(GameActivity gameActivity) {
 		this.gameActivity = gameActivity;
-
-		// TODO bd = new BiddingDialog(this);
 
 		profiler = new Profiler();
 
@@ -473,7 +468,7 @@ class Game {
 
 		int swapCount = 1000 + MainActivity.PRNG.nextInt(1000);
 
-		// TODO Better shuffling algorithm shuld be used.
+		// TODO Better shuffling algorithm should be used.
 		for (int i = 0; i < swapCount; i++) {
 			Integer card = deck.remove(MainActivity.PRNG.nextInt(32));
 			deck.add(card);
@@ -495,8 +490,8 @@ class Game {
 
 		stav.kolo = -5;
 
-		for (int i = 0; i < 3; i++) {
-			players.get(i).hand.clear();
+		for (Player player : players) {
+			player.hand.clear();
 		}
 
 		for (int i = 0; i < 7; i++) {
@@ -642,9 +637,10 @@ class Game {
 	public void newGame() {
 		profiler.start("dealing and bidding");
 
-		if (bd.isVisible() == true) {
-			bd.hide();
-		}
+		// TODO In Android activities are not hiding.
+		// if (bd.isVisible() == true) {
+		// bd.hide();
+		// }
 
 		for (Player player : players) {
 			player.body = 0;
@@ -784,7 +780,12 @@ class Game {
 			stav.hra.farba = true;
 			stav.kopa.clear();
 			stav.id = stav.forhont;
-			bd.startBidding();
+
+			/*
+			 * This call bd.startBidding(); was replaced with activitiy start.
+			 */
+			gameActivity.startActivity(new Intent(gameActivity,
+					BiddingActivity.class));
 
 			return;
 		}

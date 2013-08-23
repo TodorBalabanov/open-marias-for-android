@@ -10,14 +10,32 @@
     tools:context=".GameActivity" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/trump_suit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/suit_as_trump_description"
+                android:src="@drawable/s0" />
+
+            <ImageView
+                android:id="@+id/trump_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/card16" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
             <ImageView
                 android:id="@+id/right1card1"
@@ -90,6 +108,20 @@
                 android:src="@drawable/rub" />
 
             <ImageView
+                android:id="@+id/right1card11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:src="@drawable/rub" />
+
+            <ImageView
+                android:id="@+id/right1card12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="46dp"
+                android:src="@drawable/rub" />
+
+            <ImageView
                 android:id="@+id/left2card1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,7 +190,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="300dp"
                 android:src="@drawable/rub" />
-        </FrameLayout>
+
+            <ImageView
+                android:id="@+id/left2card11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="304dp"
+                android:src="@drawable/rub" />
+
+            <ImageView
+                android:id="@+id/left2card12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="308dp"
+                android:src="@drawable/rub" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -176,103 +222,109 @@
                 android:id="@+id/right1played"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/card10" />
+                android:src="@drawable/card13" />
 
             <ImageView
                 android:id="@+id/left2layed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/card11" />
+                android:src="@drawable/card14" />
 
             <ImageView
                 android:id="@+id/front3layed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/card12" />
-
-            <ImageView
-                android:id="@+id/trump"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/suit_as_trump_description"
-                android:src="@drawable/s0" />
+                android:src="@drawable/card15" />
         </LinearLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content" >
 
             <ImageView
                 android:id="@+id/front3card1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="0dp"
                 android:src="@drawable/card00" />
 
             <ImageView
                 android:id="@+id/front3card2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/card01" />
 
             <ImageView
                 android:id="@+id/front3card3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="60dp"
                 android:src="@drawable/card02" />
 
             <ImageView
                 android:id="@+id/front3card4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="90dp"
                 android:src="@drawable/card03" />
 
             <ImageView
                 android:id="@+id/front3card5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="120dp"
                 android:src="@drawable/card04" />
 
             <ImageView
                 android:id="@+id/front3card6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="150dp"
                 android:src="@drawable/card05" />
 
             <ImageView
                 android:id="@+id/front3card7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="210dp"
+                android:layout_marginTop="180dp"
                 android:src="@drawable/card06" />
 
             <ImageView
                 android:id="@+id/front3card8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="240dp"
+                android:layout_marginTop="210dp"
                 android:src="@drawable/card07" />
 
             <ImageView
                 android:id="@+id/front3card9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="270dp"
+                android:layout_marginTop="240dp"
                 android:src="@drawable/card08" />
 
             <ImageView
                 android:id="@+id/front3card10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="270dp"
                 android:src="@drawable/card09" />
-        </FrameLayout>
+
+            <ImageView
+                android:id="@+id/front3card11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:src="@drawable/card10" />
+
+            <ImageView
+                android:id="@+id/front3card12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="330dp"
+                android:src="@drawable/card11" />
+        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>
