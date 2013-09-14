@@ -24,13 +24,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/suit_as_trump_description"
-                android:src="@drawable/s0" />
+                android:src="@drawable/s" />
 
             <ImageView
                 android:id="@+id/trump_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/card16" />
+                android:src="@drawable/empty" />
         </LinearLayout>
 
         <RelativeLayout
@@ -42,168 +42,168 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/right1card12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="46dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="264dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="268dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="272dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="276dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="280dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="284dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="288dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="292dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="296dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="300dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="304dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/left2card12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="308dp"
-                android:src="@drawable/rub" />
+                android:src="@drawable/empty" />
         </RelativeLayout>
 
         <LinearLayout
@@ -222,19 +222,19 @@
                 android:id="@+id/right1played"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/card13" />
+                android:src="@drawable/empty" />
 
             <ImageView
-                android:id="@+id/left2layed"
+                android:id="@+id/left2played"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/card14" />
+                android:src="@drawable/empty" />
 
             <ImageView
-                android:id="@+id/front3layed"
+                android:id="@+id/front3played"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/card15" />
+                android:src="@drawable/empty" />
         </LinearLayout>
 
         <RelativeLayout
@@ -246,84 +246,84 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:src="@drawable/card00" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/card01" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
-                android:src="@drawable/card02" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="90dp"
-                android:src="@drawable/card03" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="120dp"
-                android:src="@drawable/card04" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="150dp"
-                android:src="@drawable/card05" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="180dp"
-                android:src="@drawable/card06" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="210dp"
-                android:src="@drawable/card07" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="240dp"
-                android:src="@drawable/card08" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="270dp"
-                android:src="@drawable/card09" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="300dp"
-                android:src="@drawable/card10" />
+                android:src="@drawable/empty" />
 
             <ImageView
                 android:id="@+id/front3card12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="330dp"
-                android:src="@drawable/card11" />
+                android:src="@drawable/empty" />
         </RelativeLayout>
     </LinearLayout>
 

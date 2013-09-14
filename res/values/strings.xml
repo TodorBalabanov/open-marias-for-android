@@ -24,5 +24,7 @@
     <string name="title_activity_results">Results</string>
     <string name="title_activity_bidding">Bidding</string>
     <string name="bid_label">OK</string>
+    <string name="deal1_label">Deal1</string>
+    <string name="deal2_label">Deal2</string>
 
 </resources>
