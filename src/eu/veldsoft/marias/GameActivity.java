@@ -142,8 +142,10 @@ public class GameActivity extends Activity {
 		game = new Game(GameActivity.this);
 		game.init();
 
-		// TODO clearTable();
-		// TODO game.newGame();
+		/*
+		 * Clear table is done to initialize visual controls before next round.
+		 */
+		clearTable();
 	}
 
 	@Override
@@ -156,6 +158,8 @@ public class GameActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.deal_1_phase:
+			game.newGame();
+			
 			Toast.makeText(GameActivity.this, "Deal 1 ...", Toast.LENGTH_SHORT)
 					.show();
 			return (true);

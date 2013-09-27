@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 /**
  * 
@@ -498,7 +499,7 @@ class Game {
 			players.get(stav.forhont).hand.add(deck.get(i));
 
 			if (quickGame == false) {
-				DeskView.rozdaj(deck.get(i), stav.forhont, i, i);
+				//TODO DeskView.rozdaj(deck.get(i), stav.forhont, i, i);
 			}
 		}
 
@@ -506,7 +507,7 @@ class Game {
 			players.get((stav.forhont + 1) % 3).hand.add(deck.get(i));
 
 			if (quickGame == false) {
-				DeskView.rozdaj(deck.get(i), (stav.forhont + 1) % 3, i - 7, i);
+				//TODO DeskView.rozdaj(deck.get(i), (stav.forhont + 1) % 3, i - 7, i);
 			}
 		}
 
@@ -514,8 +515,7 @@ class Game {
 			players.get((stav.forhont + 2) % 3).hand.add(deck.get(i));
 
 			if (quickGame == false) {
-				DeskView.rozdaj(deck.get(i), (stav.forhont + 2) % 3, i - 12, i,
-						i == 16);
+				//TODO DeskView.rozdaj(deck.get(i), (stav.forhont + 2) % 3, i - 12, i, i == 16);
 			}
 		}
 
@@ -629,6 +629,7 @@ class Game {
 	}
 
 	/**
+	 * Each new round is activated by this function.
 	 * 
 	 * @author Todor Balabanov
 	 * @email tdb@tbsoft.eu
@@ -636,11 +637,6 @@ class Game {
 	 */
 	public void newGame() {
 		profiler.start("dealing and bidding");
-
-		// TODO In Android activities are not hiding.
-		// if (bd.isVisible() == true) {
-		// bd.hide();
-		// }
 
 		for (Player player : players) {
 			player.body = 0;
@@ -653,10 +649,10 @@ class Game {
 		shuffleDeck();
 
 		if (quickGame == false) {
-			DeskView.log("Nova hra.");
-			DeskView.log("Forhont je " + players.get(stav.forhont).name);
-			DeskView.gather();
-			DeskView.draw();
+			//TODO DeskView.log("Nova hra.");
+			//TODO DeskView.log("Forhont je " + players.get(stav.forhont).name);
+			//TODO DeskView.gather();
+			//TODO DeskView.draw();
 		}
 
 		rozdaj1();
