@@ -1,5 +1,6 @@
 package eu.veldsoft.marias;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,17 +25,17 @@ class Profiler {
 	/**
 	 * 
 	 */
-	public Map<String, Double> totals;
+	public Map<String, Double> totals = new HashMap<String, Double>();
 
 	/**
 	 * 
 	 */
-	public Map<String, Integer> counts;
+	public Map<String, Integer> counts = new HashMap<String, Integer>();
 
 	/**
 	 * 
 	 */
-	public Map<String, Long> timers;
+	public Map<String, Long> timers = new HashMap<String, Long>();
 
 	/**
 	 * If name provided, returns the time in ms of timer with given name.
