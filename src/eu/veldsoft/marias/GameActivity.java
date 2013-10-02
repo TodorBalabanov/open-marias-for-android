@@ -146,6 +146,8 @@ public class GameActivity extends Activity {
 		 * Clear table is done to initialize visual controls before next round.
 		 */
 		clearTable();
+		
+		DeskView.createInstance(this, game);
 	}
 
 	@Override

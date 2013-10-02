@@ -372,7 +372,7 @@ public class DeskView {
 	/**
 	 * instance
 	 */
-	private static DeskView instance;
+	private static DeskView instance = null;
 
 	/**
 	 * 
@@ -387,12 +387,12 @@ public class DeskView {
 	/**
 	 * 
 	 */
-	private SignalMapper signalMapper;
+	private GameActivity activity;
 
 	/**
 	 * Pointer to game
 	 */
-	private Game game;
+	private Game game = null;
 
 	/**
 	 * Pointers to graphics items - cards. They are only moved from one position
@@ -406,12 +406,14 @@ public class DeskView {
 	private Pixmap rub;
 
 	/**
-	 * Images of cards.
+	 * Images of the cards.
+	 * Load from Android drawable resources. 
 	 */
 	private Pixmap images[] = new Pixmap[32];
 
 	/**
-	 * Tromf icons images.
+	 * Trump icons images.
+	 * Load from Android drawable resources. 
 	 */
 	private Pixmap suits[] = new Pixmap[4];
 
@@ -487,6 +489,7 @@ public class DeskView {
 		if (instance == null) {
 			LOGGER.info("DeskView: no instance to get");
 		}
+		
 		return instance;
 	}
 
@@ -502,9 +505,10 @@ public class DeskView {
 	 * @email tdb@tbsoft.eu
 	 * @date 15 Aug 2013
 	 */
-	public static void createInstance(Marias ui, Game g) {
+	public static void createInstance(GameActivity ui, Game g) {
 		if (instance != null) {
 			LOGGER.info("DeskView: create instance called twice");
+			return;
 		}
 
 		instance = new DeskView(ui, g);
@@ -860,133 +864,9 @@ public class DeskView {
 	 * @email tdb@tbsoft.eu
 	 * @date 19 Aug 2013
 	 */
-	public DeskView(Marias ui, Game g) {
+	private DeskView(GameActivity ui, Game g) {
 		game = g;
-
-		signalMapper = new SignalMapper();
-
-		// TODO Qt specific code.
-		// QObject.connect(signalMapper,SIGNAL(mapped(int)),game,SLOT(animationFinished(int)));
-
-		graphicsView = ui.graphicsView;
-		graphicsScene = new GraphicsScene(graphicsView.sceneRect());
-		graphicsView.setScene(graphicsScene);
-		settings = new Settings("marias.ini", Settings.IniFormat);
-
-		/*
-		 * INIT IMAGES
-		 */
-
-		String fName = settings.value("cards/images", "img/classic7");
-
-		Dir dir = new Dir(fName);
-
-		if (dir.exists() == false) {
-			LOGGER.info("Cannot find the directory: " + fName + "now: "
-					+ Dir.current());
-		}
-
-		DirIterator it = new DirIterator(dir);
-
-		while (it.hasNext() == true) {
-			LOGGER.info("" + it.hasNext());
-			if (it.fileInfo().isFile()) {
-				LOGGER.info(it.fileInfo().baseName());
-				if (it.fileInfo().baseName().contains("s")) {
-					int k = it.fileInfo().baseName().charAt(1) - '0';
-					if (k < 4 && k >= 0) {
-						suits[k] = new Pixmap((String) it.filePath());
-						LOGGER.info("suit loaded: " + k);
-					}
-				} else {
-					int k = new Integer(it.fileInfo().baseName());
-					if (k < 32 && k >= 0) {
-						images[k] = new Pixmap((String) it.filePath());
-						LOGGER.info("image loaded: " + k);
-					}
-				}
-			}
-		}
-
-		rub = new Pixmap("" + settings.value("cards/rub", "img/rub.png"));
-
-		LOGGER.info("rub loaded");
-
-		/*
-		 * INIT ITEM POSITIONS
-		 */
-
-		poziciaKopy[0] = new Point(330, 275);
-		poziciaKopy[1] = new Point(295, 235);
-		poziciaKopy[2] = new Point(365, 245);
-
-		poziciaKariet[0] = new Point(200, 445);
-		poziciaKariet[1] = new Point(70, 50);
-		poziciaKariet[2] = new Point(400, 50);
-
-		poziciaTromfu[0] = new Point(300, 395);
-		poziciaTromfu[1] = new Point(50, 160);
-		poziciaTromfu[2] = new Point(420, 160);
-
-		poziciaMena[0] = new Point(550, 395);
-		poziciaMena[1] = new Point(100, 160);
-		poziciaMena[2] = new Point(480, 160);
-
-		poziciaStichov[0] = new Point(700, 445);
-		poziciaStichov[1] = new Point(1, 50);
-		poziciaStichov[2] = new Point(700, 50);
-
-		poziciaTextu[0] = new Point(400, 350);
-		poziciaTextu[1] = new Point(200, 150);
-		poziciaTextu[2] = new Point(600, 150);
-
-		poziciaBase = new Point(700, 200);
-
-		/*
-		 * INIT LIGHT
-		 */
-
-		int cx[] = new int[3];
-		int cy[] = new int[3];
-		int r[] = new int[3];
-
-		cx[0] = 600;
-		cy[0] = 800;
-		r[0] = 500;
-
-		cx[1] = -100;
-		cy[1] = -100;
-		r[1] = 500;
-
-		cx[2] = 700;
-		cy[2] = -200;
-		r[2] = 500;
-
-		for (int i = 0; i < 3; i++) {
-			RadialGradient gradient = new RadialGradient(cx[i], cy[i], r[i]);
-
-			gradient.setColorAt(0, Color.fromRgbF(1, 1, 1, 1));
-			gradient.setColorAt(1, Color.fromRgbF(0, 0, 0, 0));
-
-			Brush brush = new Brush(gradient);
-			lightGradient[i] = new GraphicsEllipseItem(cx[i] - r[i], cy[i]
-					- r[i], 2 * r[i], 2 * r[i]);
-			lightGradient[i].setPen(Color.fromRgb(255, 255, 255, 0));
-			lightGradient[i].setBrush(brush);
-			lightGradient[i].setData(0, "light");
-		}
-
-		lightSimple[0] = new GraphicsEllipseItem(100, 300, 800, 600);
-		lightSimple[1] = new GraphicsEllipseItem(-300, -300, 800, 600);
-		lightSimple[2] = new GraphicsEllipseItem(300, -300, 800, 600);
-		for (int i = 0; i < 3; i++) {
-			lightSimple[i].setPen(Color.fromRgb(255, 255, 255, 0));
-			lightSimple[i].setBrush(new Brush(Color.fromRgb(255, 255, 255,
-					i == 0 ? 15 : 25), Qt.SolidPattern));
-			lightSimple[i].setData(0, "light");
-		}
-
-		font = new Font();
+		activity = ui;
 	}
 
 	/**
@@ -1120,8 +1000,6 @@ public class DeskView {
 			xy.addAnimation(ys);
 		}
 
-		signalMapper.setMapping(xy, game.stav.kolo);
-
 		// TODO Qt specific code.
 		// QObject.connect(xy,SIGNAL(finished()),signalMapper,SLOT(map()));
 
@@ -1161,8 +1039,6 @@ public class DeskView {
 		rozd.addAnimation(anim);
 
 		if (last == true) {
-			signalMapper.setMapping(rozd, game.stav.kolo);
-
 			// TODO Qt secific code.
 			// QObject.connect(rozd,SIGNAL(finished()),signalMapper,SLOT(map()));
 		}
@@ -1221,8 +1097,6 @@ public class DeskView {
 						"graphics/delay", 100)));
 
 				if (last && i == lastBad) {
-					signalMapper.setMapping(anim, game.stav.kolo);
-
 					// TODO Qt specific code.
 					// QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
 				}
@@ -1252,8 +1126,6 @@ public class DeskView {
 				100)));
 
 		if (last == true) {
-			signalMapper.setMapping(anim, game.stav.kolo);
-
 			// TODO Qt specific code.
 			// QObject.connect(anim,SIGNAL(finished()),signalMapper,SLOT(map()));
 		}
@@ -1477,8 +1349,6 @@ public class DeskView {
 
 		hodKartu.addAnimation(anim);
 
-		signalMapper.setMapping(hodKartu, game.stav.kolo);
-
 		// TODO Qt specific code.
 		// QObject.connect(hodKartu,SIGNAL(finished()),signalMapper,SLOT(map()));
 
@@ -1531,8 +1401,6 @@ public class DeskView {
 
 		sag.addPause(7 * Integer.valueOf(settings.value("graphics/delay", 100)));
 		sag.addAnimation(berStich);
-
-		signalMapper.setMapping(sag, game.stav.kolo);
 
 		// TODO Qt specific code.
 		// QObject.connect(sag,SIGNAL(finished()),signalMapper,SLOT(map()));
