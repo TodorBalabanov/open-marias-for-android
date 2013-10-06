@@ -126,18 +126,30 @@ public class GameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 
-		findViewById(R.id.front3card1).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card2).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card3).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card4).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card5).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card6).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card7).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card8).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card9).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card10).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card11).setOnClickListener(onHumanPlayerCardClick);
-		findViewById(R.id.front3card12).setOnClickListener(onHumanPlayerCardClick);
+		findViewById(R.id.front3card1).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card2).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card3).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card4).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card5).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card6).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card7).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card8).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card9).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card10).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card11).setOnClickListener(
+				onHumanPlayerCardClick);
+		findViewById(R.id.front3card12).setOnClickListener(
+				onHumanPlayerCardClick);
 
 		game = new Game(GameActivity.this);
 		game.init();
@@ -146,7 +158,7 @@ public class GameActivity extends Activity {
 		 * Clear table is done to initialize visual controls before next round.
 		 */
 		clearTable();
-		
+
 		DeskView.createInstance(this, game);
 	}
 
@@ -159,9 +171,14 @@ public class GameActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.deal_1_phase:
+		case R.id.new_game:
 			game.newGame();
-			
+			Toast.makeText(GameActivity.this, "New Game ...",
+					Toast.LENGTH_SHORT).show();
+			return (true);
+
+		case R.id.deal_1_phase:
+			//TODO Show cards after dealing.
 			Toast.makeText(GameActivity.this, "Deal 1 ...", Toast.LENGTH_SHORT)
 					.show();
 			return (true);
@@ -169,10 +186,10 @@ public class GameActivity extends Activity {
 		case R.id.deal_2_phase:
 			Toast.makeText(GameActivity.this, "Deal 2 ...", Toast.LENGTH_SHORT)
 					.show();
-			return true;
+			return (true);
 
 		default:
-			return super.onOptionsItemSelected(item);
+			return (super.onOptionsItemSelected(item));
 		}
 	}
 }

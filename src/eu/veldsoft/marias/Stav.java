@@ -23,6 +23,46 @@ class Stav {
 	}
 
 	/**
+	 * 
+	 */
+	public static final int MINUS_SIX = -6;
+
+	/**
+	 * 
+	 */
+	public static final int MINUS_FIVE = -5;
+
+	/**
+	 * 
+	 */
+	public static final int MINUS_FOUR = -4;
+
+	/**
+	 * 
+	 */
+	public static final int MINUS_THREE = -3;
+
+	/**
+	 * 
+	 */
+	public static final int MINUS_TWO = -2;
+
+	/**
+	 * 
+	 */
+	public static final int MINUS_ONE = -1;
+
+	/**
+	 * 
+	 */
+	public static final int ZERO = 0;
+
+	/**
+	 * 
+	 */
+	public static final int PLUS_TEN = 10;
+
+	/**
 	 * id of player, who's turn it is now. Id is to list of players Game
 	 * instance stores.
 	 */
@@ -52,7 +92,7 @@ class Stav {
 	public int kolo;
 
 	/**
-	 * 
+	 * Hra means game.
 	 */
 	public Hra hra;
 

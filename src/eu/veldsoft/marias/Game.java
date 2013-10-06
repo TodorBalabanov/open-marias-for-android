@@ -495,9 +495,15 @@ class Game {
 			player.hand.clear();
 		}
 
+		/*
+		 * Forhont player cards deal.
+		 */
 		for (int i = 0; i < 7; i++) {
 			players.get(stav.forhont).hand.add(deck.get(i));
 
+			/*
+			 * Cards deal animation.
+			 */
 			if (quickGame == false) {
 				//TODO DeskView.rozdaj(deck.get(i), stav.forhont, i, i);
 			}
@@ -506,6 +512,9 @@ class Game {
 		for (int i = 7; i < 12; i++) {
 			players.get((stav.forhont + 1) % 3).hand.add(deck.get(i));
 
+			/*
+			 * Cards deal animation.
+			 */
 			if (quickGame == false) {
 				//TODO DeskView.rozdaj(deck.get(i), (stav.forhont + 1) % 3, i - 7, i);
 			}
@@ -514,6 +523,9 @@ class Game {
 		for (int i = 12; i < 17; i++) {
 			players.get((stav.forhont + 2) % 3).hand.add(deck.get(i));
 
+			/*
+			 * Cards deal animation.
+			 */
 			if (quickGame == false) {
 				//TODO DeskView.rozdaj(deck.get(i), (stav.forhont + 2) % 3, i - 12, i, i == 16);
 			}
@@ -649,8 +661,8 @@ class Game {
 		shuffleDeck();
 
 		if (quickGame == false) {
-			//TODO DeskView.log("Nova hra.");
-			//TODO DeskView.log("Forhont je " + players.get(stav.forhont).name);
+			DeskView.log("Nova hra.");
+			DeskView.log("Forhont je " + players.get(stav.forhont).name);
 			//TODO DeskView.gather();
 			//TODO DeskView.draw();
 		}
@@ -680,28 +692,32 @@ class Game {
 			return;
 		}
 
-		if (stav.kolo == -6) {
+		/*
+		 * May be it is done in each new card deal. 
+		 */
+		if (stav.kolo == Stav.MINUS_SIX) {
 			if (quickGame == false) {
 				DeskView.gather();
 			}
 
-			stav.kolo = -5;
+			stav.kolo = Stav.MINUS_FIVE;
 			return;
 		}
 
-		if (stav.kolo == -5) {
+		if (stav.kolo == Stav.MINUS_FIVE) {
+			players.get(0).sortHand();
+			
 			if (quickGame == false) {
 				for (int i = 0; i < players.get(0).hand.size(); i++) {
+					//-<>
 					DeskView.revealCard(players.get(0).hand.get(i));
 				}
 			}
 
-			players.get(0).sortHand();
-
 			/*
 			 * first kolo increase, then animation
 			 */
-			stav.kolo = -4;
+			stav.kolo = Stav.MINUS_FOUR;
 
 			if (quickGame == false) {
 				for (int i = 0; i < players.get(0).hand.size(); i++) {
@@ -709,13 +725,13 @@ class Game {
 							i == players.get(0).hand.size() - 1);
 				}
 			} else {
-				animationFinished(-4);
+				animationFinished(Stav.MINUS_FOUR);
 			}
 
 			return;
 		}
 
-		if (stav.kolo == -4) {
+		if (stav.kolo == Stav.MINUS_FOUR) {
 			if (players.get(stav.forhont).type == "human" && quickGame == false) {
 				DeskView.print("ZVOL TROMF", stav.forhont);
 				waitingForClick = true;
@@ -726,11 +742,11 @@ class Game {
 			return;
 		}
 
-		if (stav.kolo == -3) {
+		if (stav.kolo == Stav.MINUS_THREE) {
 			/*
 			 * first kolo increase, then animation
 			 */
-			stav.kolo = -2;
+			stav.kolo = Stav.MINUS_TWO;
 
 			if (quickGame == false) {
 				for (int i = 0; i < players.get(0).hand.size(); i++) {
@@ -743,13 +759,13 @@ class Game {
 			if (quickGame == false) {
 				DeskView.fixHand(0, true);
 			} else {
-				animationFinished(-2);
+				animationFinished(Stav.MINUS_TWO);
 			}
 
 			return;
 		}
 
-		if (stav.kolo == -2) {
+		if (stav.kolo == Stav.MINUS_TWO) {
 			if (players.get(stav.forhont).type == "human" && quickGame == false) {
 				DeskView.print("2 KARTY DO TALONU", stav.forhont);
 				waitingForClick = true;
@@ -761,7 +777,7 @@ class Game {
 			return;
 		}
 
-		if (stav.kolo == -1) {
+		if (stav.kolo == Stav.MINUS_ONE) {
 			if (quickGame == false) {
 				DeskView.fixHand(0);
 			}
@@ -786,7 +802,7 @@ class Game {
 			return;
 		}
 
-		if (stav.kolo == 10) {
+		if (stav.kolo == Stav.PLUS_TEN) {
 			stav.hra.tromf = -1;
 
 			if (quickGame == false) {

@@ -282,7 +282,7 @@ class BiddingDialog {
 
 		game.stav.vysid = game.stav.forhont;
 		game.stav.id = game.stav.forhont;
-		game.stav.kolo = 0;
+		game.stav.kolo = Stav.ZERO;
 
 		if (game.quickGame == false) {
 			if (game.stav.hra.farba) {
